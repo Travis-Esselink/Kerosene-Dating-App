@@ -3,7 +3,9 @@ const app = express()
 require('dotenv').config()
 PORT = process.env.PORT
 
-
+app.get('ping', () => {
+    res.send('pong')
+  })
 
 app.get('/', (req,res)=> {
     res.send('Hello World')
@@ -13,3 +15,4 @@ app.get('/', (req,res)=> {
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })
+

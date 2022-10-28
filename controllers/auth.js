@@ -41,8 +41,9 @@ router.post('/logout', (req, res) => {
 
 router.get('/loggedin-user', (req,res) => {
   if (req.user) {
+
     const { id, username } = req.user
-    res.json({ id, username })
+
   } else {
     res.status(404).json({ msg: 'User not logged in' })
   }

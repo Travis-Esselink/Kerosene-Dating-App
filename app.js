@@ -4,7 +4,7 @@ require('dotenv').config()
 PORT = process.env.PORT
 
 app.get('ping', () => {
-    res.send('pong')
+    res.send('pang')
   })
 
 app.get('/', (req,res)=> {

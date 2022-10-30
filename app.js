@@ -42,7 +42,7 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use(authRouter)
-// app.use(apiRouter)
+app.use(apiRouter)
 
 //LISTENER
 app.listen(PORT,()=>{

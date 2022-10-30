@@ -17,7 +17,7 @@ const userSchema = new Schema({
     dateOfBirth:{type:Date},
     gender:{type:String},
     genderPref:{type:String},
-    agePref:{type:Number},
+    ageRange:{type:Number},
     
     bio:{type:String},
     coverImage:[{type:String}],

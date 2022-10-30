@@ -4,7 +4,7 @@
     "dateOfBirth": "02/03/1980",
     "gender": "M",
     "genderPref":"F",
-    "agePref": "25",
+    "ageRange": "8",
         
     "bio": "Im the light mode guy with more than 10 beanies. Superpower: 'Can teach under any conditions: train sound, migraine, even in the midst of moving house'. What can kill me: 'bread'",
     "coverImage":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
@@ -19,7 +19,7 @@
     "dateOfBirth": "02/03/1985",
     "gender": "M",
     "genderPref":"M",
-    "agePref": "25",
+    "ageRange": "6",
         
     "bio": "I own a few businesses however I still felt like I lack of something then I fall in love with coding. I also good at multi-tasking. I can do my own personal project while teaching a class. Room 10 is my fav and students like to call me Rob",
     "coverImage":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
@@ -34,9 +34,24 @@
     "dateOfBirth": "02/07/1995",
     "gender": "M",
     "genderPref":"M",
-    "agePref": "22",
+    "ageRange": "7",
         
     "bio": "Cringe and CSS is not my things. I usually finish homework and exercise earlier than anyone in the class because I have dishes to wash and dinner to cook. How do I keep my energy for all these tasks? Redbull",
+    "coverImage":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
+    "images":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
+    "matches": [],
+    "seen": []
+},
+
+{
+    "username": "Lucy",
+	"displayName": "Lucy",
+    "dateOfBirth": "10/08/1990",
+    "gender": "F",
+    "genderPref":"M",
+    "ageRange": "5",
+        
+    "bio": "Lucy Goosey",
     "coverImage":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
     "images":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
     "matches": [],

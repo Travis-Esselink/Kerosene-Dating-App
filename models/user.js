@@ -20,8 +20,8 @@ const userSchema = new Schema({
     agePref:{type:Number},
     
     bio:{type:String},
-    coverImage:{type:String},
-    images:{type:String},
+    coverImage:[{type:String}],
+    images:[{type:String}],
     matches: [{type:matchSchema}],
     seen: [{type:seenSchema}]
 }, 

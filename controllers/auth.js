@@ -51,7 +51,7 @@ router.get('/loggedin-user', (req,res) => {
 
 
 router.post('/register', async (req,res)=>{
-    // try {
+    try {
         const {username, password} = req.body 
         const user = await User.register(    
             new User({ username:username}),
@@ -62,9 +62,9 @@ router.post('/register', async (req,res)=>{
             res.json(user)
     })
 
-    // } catch (error) {
-    //     res.json({msg: 'register error'})
-    // }
+    } catch (error) {
+        res.json({msg: 'register error'})
+    }
 })
 
 

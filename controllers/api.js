@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const upload = require('../middlewares/upload')
-
+const seedData = require('../seed/seed.json')
+const User = require('../models/user')
 
 /*
 - Setup the RESTful routes
@@ -12,7 +13,27 @@ const upload = require('../middlewares/upload')
     - To Check who is logged Get Route
 */
 
+router.put('/seed', async (req,res)=>{
+    console.log(seedData)
 
+    try {
+        console.log('Dropping User and Post collections')
+        await Promise.all([
+            User.collection.drop(),
+        ])
+        console.log('Collections dropped')
+    } catch {
+        console.log('Collections not found')
+    }
+    
+    seedData.forEach(async (user)=>{
+        await User.register(    
+            new User(user),
+            '1234'
+        )
+    })
+    res.json('data seeded')
+})
 
 //get Profiles - takes the logged in user profile and sends back profiles to show based on users preferences
     //Required logic/checks:
@@ -41,12 +62,39 @@ router.get('/v1/profiles/:matchedUserID', (req,res) => {
 
 
 
-//edit route - edit own user profile
-router.put('/v1/profiles/:userID', (req,res) => {
-    //account set and edit
-    //expects id of user
-    //updates user in db
-    //sends updated user
+//edit route - edit own user profile 
+router.put('/v1/profiles/:userID', upload.fields([{name:'images'},{name:'coverImage'}]), async (req,res) => {
+    
+    let user = await User.findById(req.params.userID)
+
+    const existingCoverImage = user.coverImage
+    if (req.files?.coverImage) {
+      req.body.coverImage = req.files.coverImage[0].path
+    } else {
+      req.body.coverImage = existingCoverImage
+    }
+
+    const existingImages = user.images
+    if (req.files?.images) {
+
+        const newImages = req.files.images.map((image)=>{
+            console.log(image,'iterated image')
+            return image.path
+        })
+        req.body.images = [...existingImages,...newImages]
+    } else {
+        req.body.images = existingImages
+    }
+
+
+    user = await User.findByIdAndUpdate(req.params.userID,req.body,{new:true})
+
+    res.json(user)
+
+})
+
+router.put('/vi/profiles/:userID/:imageIndex', async (req,res) => {
+    //removes image from users image array at given index
 })
 
 

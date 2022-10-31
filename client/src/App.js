@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import Simple from "./TestSwipe"
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <p>Hello from React</p>
+      <Routes>
+        <Route path="/TestSwipe" element={<Simple />} />
+      </Routes>
     </div>
   );
 }

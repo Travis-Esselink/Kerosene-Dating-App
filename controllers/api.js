@@ -48,9 +48,12 @@ router.get('/v1/profiles', async (req,res) => {
 
 
 //get users matches - return matches of user
-router.get('/v1/matches', (req,res) => {
-    //expects nothing
-    //sends req.users mastches 
+router.get('/v1/matches', async (req,res) => {
+     const matchIDs = req.user.matches.map((e)=>{
+        return matchIDs.push(e.match.toString())
+    })
+    const matches = await User.find({_id:matchIDs})
+    res.json(matches)
 })
 
 
@@ -95,8 +98,12 @@ router.put('/v1/profiles/:userID', upload.fields([{name:'images'},{name:'coverIm
 
 })
 
-router.put('/vi/profiles/:userID/:imageIndex', async (req,res) => {
-    //removes image from users image array at given index
+router.put('/vi/profiles/:userID/:imageID', async (req,res) => {
+    let user = await User.findById(req.params.userID)
+
+    const newImages = [...user.images] 
+    user.images = newImages
+    user.save()
 })
 
 

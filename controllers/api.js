@@ -46,7 +46,7 @@ router.put('/seed/:count', async (req,res)=>{
     } catch {
         console.log('Collections not found')
     }
-    
+
     for (let i = 0; i < req.params.count; i++){
         User.register(    
             new User(seedData[i]),
@@ -143,7 +143,7 @@ router.get('/v1/profiles/:matchedUserID', async (req,res) => {
 
 //edit route - edit own user profile 
 router.put('/v1/profiles/:userID', upload.fields([{name:'images'},{name:'coverImage'}]), async (req,res) => {
-    
+
     let user = await User.findById(req.params.userID)
 
     const existingCoverImage = user.coverImage
@@ -220,16 +220,30 @@ router.put('/v1/swipe/:swipedUserID', (req,res) => {
 
 
 //remove match API
-    //update both users match array
-router.put('/v1/profiles/remove/:matchedUserID'), (req,res) => {
-    const user = User.findById(req.user.id)
-    const newMatches = [...user.matches].filter((match)=>{
-        return match.id!==req.params.matchedUserID
+//update both users match array
+router.put('/v1/profiles/unmatch/:matchedUserID', async (req,res) => {
+    const user = await User.findById(req.user.id)
+    const match = await User.findById(req.params.matchedUserID)
+
+    //remove match from users array
+    const newUserMatches = [...user.matches].filter((e)=>{
+        return e.match.toString()!==req.params.matchedUserID
     })
-    user.matches=newMatches
+
+    //remove user from matches array
+    const newMatchMatches = [...match.matches].filter((e)=>{
+        return e.match.toString()!==req.user.id
+    })
+
+
+    //update and save arrays
+    user.matches=newUserMatches
     user.save()
+    match.matches=newMatchMatches
+    match.save()
     res.json(user.matches)
-}
+
+})
 
 
 

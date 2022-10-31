@@ -13,15 +13,15 @@ const seenSchema = new Schema({
 })
 
 const userSchema = new Schema({
-    displayName:{type:String},
-    dateOfBirth:{type:Date},
-    gender:{type:String},
-    genderPref:{type:String},
-    ageRange:{type:Number},
+    displayName:String,
+    dateOfBirth:Date,
+    gender:String,
+    genderPref:String,
+    ageRange:Number,
     
-    bio:{type:String},
-    coverImage:[{type:String}],
-    images:[{type:String}],
+    bio:String,
+    coverImage:[String],
+    images:[String],
     matches: [{type:matchSchema}],
     seen: [{type:seenSchema}]
 }, 

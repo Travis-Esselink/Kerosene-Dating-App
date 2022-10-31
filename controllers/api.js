@@ -41,9 +41,58 @@ router.put('/seed', async (req,res)=>{
         //profile must not appear in users seen array
         //profile must fit user preferences, and vice-versa
 router.get('/v1/profiles', async (req,res) => {
-    //expects nothing  
-    //sends a list of user profiles (x length maybe 20)
-    res.send()
+    
+    const responseLength = 20
+
+    const checkAgeCompatibility = (user1,user2) => {
+        const user1DOB = new Date(user1.dateOfBirth)
+        const user1MaxDOB = new Date(user1DOB)
+        const user1MinDOB = new Date(user1DOB)
+        user1MaxDOB.setFullYear(user1MaxDOB.getFullYear()+user1.ageRange)
+        user1MinDOB.setFullYear(user1MinDOB.getFullYear()-user1.ageRange)
+        
+        const user2DOB = new Date(user2.dateOfBirth)
+        const user2MaxDOB = new Date(user2DOB)
+        const user2MinDOB = new Date(user2DOB)
+        user2MaxDOB.setFullYear(user2MaxDOB.getFullYear()+user2.ageRange)
+        user2MinDOB.setFullYear(user2MinDOB.getFullYear()-user2.ageRange)
+
+        const check1 = (user2DOB >= user1MinDOB && user2DOB <=user1MaxDOB) 
+        const check2 = (user1DOB >= user2MinDOB && user1DOB <=user2MaxDOB) 
+        return (check1 && check2)
+    }
+
+    const checkGenderCompatibility = (user1,user2) => {
+        const check1 = user1.genderPref === user2.gender
+        const check2 = user2.genderPref === user1.gender
+        return (check1 && check2)
+    }
+
+    const checkSeen = (user1,user2) => {
+        return !user1.seen.every((e) => {
+            return (e.user._id.toString()!==user2.id)
+        })
+    }
+
+    const queue=[]
+    const allProfiles = await User.find({_id: {$ne:req.user.id}}) //get all profiles except the loged in users
+    const filteredProfiles = allProfiles.filter((e)=>{
+        return (e.displayName) //filter out any incomplete profiles. displayName will be undefined for incomplete profiles
+    })
+
+    filteredProfiles.every((profile)=>{
+        const ageCompatible = checkAgeCompatibility(req.user,profile)
+        const genderCompatible = checkGenderCompatibility(req.user,profile)
+        const seen = checkSeen(req.user,profile)
+
+        if (ageCompatible && genderCompatible && !seen) {
+            queue.push(profile)
+        }
+
+        return queue.length<responseLength
+    })
+
+    res.json(queue)
 })
 
 
@@ -96,12 +145,18 @@ router.put('/v1/profiles/:userID', upload.fields([{name:'images'},{name:'coverIm
 
 })
 
-router.put('/vi/profiles/:userID/:imageID', async (req,res) => {
+router.put('/v1/profiles/:userID/:imageID', async (req,res) => {
+    //expects the cloudinary image name, eg "wt0sd4gcjcjsr4xyxydg.jpg"
     let user = await User.findById(req.params.userID)
 
-    const newImages = [...user.images] 
+    const newImages = [...user.images].filter((image)=>{
+        const id = image.slice(image.lastIndexOf('/')+1)
+        return id !== req.params.imageID
+    })
     user.images = newImages
+
     user.save()
+    res.json(user.images)
 })
 
 
@@ -110,9 +165,14 @@ router.put('/vi/profiles/:userID/:imageID', async (req,res) => {
     // --->nav user back to register page.
     // ---> then delete the user profile
 
-router.delete('/v1/profiles/:userID', (req,res) => {
-    
-})
+router.delete('/v1/profiles/:userID', async (req,res) => {
+    let user = await User.findById(req.params.id)
+    if (req.user?.id !== req.params.id) {
+        return res.status(401).json({msg: 'Not Authorised'})
+    }
+    user = await user.remove()
+    res.json(user)
+  })
 
 
 

@@ -54,7 +54,7 @@ router.post('/register', async (req,res)=>{
     try {
         const {username, password} = req.body 
         const user = await User.register(    
-            new User({ username:username}),
+            new User({username:username}),
             password
         )
 

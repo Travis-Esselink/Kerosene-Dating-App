@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css';
 
 import LandingPage from './components/LandingPage';
+import Simple from "./TestSwipe"
+
 // Structure of Components:
 // - LandingPage:
 //  1. Header
@@ -24,8 +26,9 @@ import LandingPage from './components/LandingPage';
 function App() {
   return (
     <div className="App">
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/TestSwipe" element={<Simple />} />
       </Routes>
     </div>
   );

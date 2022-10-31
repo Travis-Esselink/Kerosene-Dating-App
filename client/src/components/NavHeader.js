@@ -1,10 +1,11 @@
 import AppLogo from "../images/datingAppLogo.png";
 import {Link} from "react-router-dom"
 
-const NavHeader = () => {
+const NavHeader = ({setShowModal, setIsSignUp}) => {
 
     const handleClick = () => {
-        console.log("Clicked");
+        setShowModal(true)
+        setIsSignUp(false)
     }
 
     return (
@@ -18,3 +19,7 @@ const NavHeader = () => {
 }
 
 export default NavHeader
+
+// 2. When I click on Login button, means:
+//  - show the pop-up -> setShowModal(true)
+//  - the user has ady created an account. -> setIsSignUp(false)

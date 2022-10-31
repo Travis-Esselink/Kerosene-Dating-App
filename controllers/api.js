@@ -13,9 +13,30 @@ const User = require('../models/user')
     - To Check who is logged Get Route
 */
 
-router.put('/seed', async (req,res)=>{
-    console.log(seedData)
+router.put('/seed/match', async (req,res)=>{
+    //add random matches
 
+const users = await User.find()
+
+    users.forEach( async (user)=>{
+        const added = []
+        for (let i =0;i < Math.floor(Math.random()*6); i++) {
+            const index = Math.floor(Math.random()*users.length)
+            const randomUser = users[index]
+            if (randomUser !== user && added.indexOf(index) === -1) {
+                added.push(index)
+                randomUser.matches.push({match:user,chatRoomID:`${user.id}-${randomUser.id}`})
+                randomUser.seen.push({user:user,liked:true})
+                user.matches.push({match:randomUser,chatRoomID:`${user.id}-${randomUser.id}`})
+                user.seen.push({user:randomUser,liked:true})
+            }
+        }
+    })
+    users.forEach( async (user)=>{user.save()})
+    res.json('matches added')
+})
+
+router.put('/seed/:count', async (req,res)=>{
     try {
         console.log('Dropping User and Post collections')
         await Promise.all([
@@ -26,14 +47,18 @@ router.put('/seed', async (req,res)=>{
         console.log('Collections not found')
     }
     
-    seedData.forEach(async (user)=>{
-        await User.register(    
-            new User(user),
+    for (let i = 0; i < req.params.count; i++){
+        User.register(    
+            new User(seedData[i]),
             '1234'
         )
-    })
+    }
+    
     res.json('data seeded')
 })
+
+
+
 
 //get Profiles - takes the logged in user profile and sends back profiles to show based on users preferences
     //Required logic/checks:
@@ -147,9 +172,9 @@ router.put('/v1/profiles/:userID', upload.fields([{name:'images'},{name:'coverIm
 
 })
 
-router.put('/v1/profiles/:userID/:imageID', async (req,res) => {
+router.put('/v1/remove-image/:imageID', async (req,res) => {
     //expects the cloudinary image name, eg "wt0sd4gcjcjsr4xyxydg.jpg"
-    let user = await User.findById(req.params.userID)
+    let user = await User.findById(req.user.id)
 
     const newImages = [...user.images].filter((image)=>{
         const id = image.slice(image.lastIndexOf('/')+1)
@@ -197,7 +222,13 @@ router.put('/v1/swipe/:swipedUserID', (req,res) => {
 //remove match API
     //update both users match array
 router.put('/v1/profiles/remove/:matchedUserID'), (req,res) => {
-    //ex
+    const user = User.findById(req.user.id)
+    const newMatches = [...user.matches].filter((match)=>{
+        return match.id!==req.params.matchedUserID
+    })
+    user.matches=newMatches
+    user.save()
+    res.json(user.matches)
 }
 
 

@@ -55,9 +55,11 @@ router.get('/v1/matches', (req,res) => {
 
 
 //show route (Get match) - returns selected matches user profile
-router.get('/v1/profiles/:matchedUserID', (req,res) => {
+router.get('/v1/profiles/:matchedUserID', async (req,res) => {
     //expects a user id of the matched user to dispaly
     //returns profile of user
+    const user = await User.findById(req.params.matchedUserID)
+    res.json(user)
 })
 
 

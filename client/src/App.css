@@ -48,7 +48,7 @@ nav .logo-container .logo {
 /* ============================== LandingPage ============================== */
 /* - Set width & height to 100vw/vh so it takes up the whole viewport */
 /* - Set position:fixed so unable to scroll */
-/* - Set linear gradient from right-bottom to left-top; from black to orange in 45 deg gradient */
+/* - Set linear gradient from right-bottom to left-top; from black to orange */
 /* - Set background image to cover the whole viewport, no-repeat & be center */
 .landingpage {
   width: 100vw;

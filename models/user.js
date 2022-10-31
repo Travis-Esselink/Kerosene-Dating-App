@@ -3,7 +3,7 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const Schema = mongoose.Schema
 
 const matchSchema = new Schema({
-    match: [{type:Schema.Types.ObjectId,  ref: "User"}],
+    match: {type:Schema.Types.ObjectId,  ref: "User"},
     chatRoomID: {type:String, required:true}
 })
 

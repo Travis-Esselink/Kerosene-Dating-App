@@ -1,38 +1,95 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;700&display=swap');
+
+::before, ::after, * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Readex Pro", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ============================== NavHeader ============================== */
+/* Set children elements inside the nav to space-between */
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Set the logo-container size to contain logo image */
+nav .logo-container {
+  max-width: 170px;
+  margin: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Style the logo to fit the logo-container & border-radius */
+nav .logo-container .logo {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Style Login button */
+.login-button {
+  color: #ff0000;
+  background: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 30px;
+  border-radius: 20px;
+  border: none;
+  margin: 20px 20px;
+}
+
+/* Login button when hover */
+.login-button:hover {
+  color: #ffffff;
+  background: #ff6e40;
+}
+
+/* ============================== LandingPage ============================== */
+/* - Set width & height to 100vw/vh so it takes up the whole viewport */
+/* - Set position:fixed so unable to scroll */
+/* - Set linear gradient from right-bottom to left-top; from black to orange in 45 deg gradient */
+/* - Set background image to cover the whole viewport, no-repeat & be center */
+.landingpage {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(to left top, rgb(0, 0, 0, 0.2), rgba(179, 84, 30, 0.6)), 
+    url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Set the content to be center, justify-center wont center so use vh for margin instead */
+.landingpage-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 30vh;
 }
 
-.App-link {
-  color: #61dafb;
+/* Find the Right One, Right Here, Right Now */
+h1 {
+  font-size: 4vw;
+  color:#ffffff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style CreateAcc button */
+.createAcc-button {
+  color: #ffffff;
+  background: linear-gradient(45deg, #ff0000, #ff6e40);
+  font-size: 20px;
+  padding: 10px 50px;
+  border-radius: 30px;
+  border: none;
+  margin: 20px 20px;
+  width: 100%;
+  max-width: 250px;
+}
+
+/* Style CreateAcc button when hover */
+.createAcc-button:hover {
+  color: #ffffff;
+  background: linear-gradient(30deg, #ff6e40, #ff0000);
 }

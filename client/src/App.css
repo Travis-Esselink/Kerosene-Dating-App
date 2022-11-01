@@ -11,6 +11,7 @@
 /* Set children elements inside the nav to space-between */
 nav {
   width: 100%;
+  max-height: 80px;
   display: flex;
   justify-content: space-between;
 }
@@ -96,6 +97,7 @@ h1 {
 }
 
 /* ============================== CreateAccount compo ============================== */
+/* Logo for downloading apps */
 .logo-container {
   max-width: 250px;
   margin: 15px;
@@ -103,5 +105,21 @@ h1 {
 
 .logo-container .logo {
   width: 100%;
+}
+
+/* ============================== Edit User Profile compo ============================== */
+hr {
+  margin: 10px;
+}
+.profile-form {
+  margin: 30px;
+}
+
+.profile-form h2 {
+  font-weight: 600;
+  color: #ff0000;
+  /* background: -webkit-linear-gradient(#ff6e40, #ff0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
 }
 

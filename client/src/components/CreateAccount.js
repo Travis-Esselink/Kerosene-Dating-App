@@ -32,35 +32,56 @@ const CreateAccount = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if (fields.password !== fields.confirmPassword) {
-            setErrorPassword("Passwords are not matched")
-            setFields({
-                ...fields,
-                password: "",
-                confirmPassword: "",
-            })
-        } else {
-            setErrorPassword(null)
-            const res = await fetch('/register', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(fields)
-            })
-            const data = await res.json()
-            if (res.status === 403) {
-                setErrorRegister(data)
-                console.log(data + "Test Fails Registered");
-            } else if (res.status === 200) {
-                setErrorRegister(null)
-                // props.setUser(data) // the user's obj
-                // navigate('/v1/profiles/${data.id}')
-                console.log("Test Registered!");
-            }
-            setFields(initialState)
+        const res = await fetch('/register', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(fields)
+        })
+        const data = await res.json()
+        if (res.status === 403) {
+            setErrorRegister(data)
+            console.log(data + "Test Fails Registered");
+        } else if (res.status === 400) {
+            console.log("smth")
+        } else if (res.status === 200) {
+            setErrorRegister(null)
+            // props.setUser(data) // the user's obj
+            // navigate('/v1/profiles/${data.id}')
+            console.log("Test Registered!");
         }
+        setFields(initialState)
     }
+        // if (fields.password !== fields.confirmPassword) {
+        //     setErrorPassword("Passwords are not matched")
+        //     setFields({
+        //         ...fields,
+        //         password: "",
+        //         confirmPassword: "",
+        //     })
+        // } else {
+        //     setErrorPassword(null)
+        //     const res = await fetch('/register', {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify(fields)
+        //     })
+        //     const data = await res.json()
+        //     if (res.status === 403) {
+        //         setErrorRegister(data)
+        //         console.log(data + "Test Fails Registered");
+        //     } else if (res.status === 200) {
+        //         setErrorRegister(null)
+        //         // props.setUser(data) // the user's obj
+        //         // navigate('/v1/profiles/${data.id}')
+        //         console.log("Test Registered!");
+        //     }
+        //     setFields(initialState)
+        // }
+    //}
 
     return (
         <Modal

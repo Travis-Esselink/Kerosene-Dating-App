@@ -1,3 +1,7 @@
+// TODO:
+// 1. Might need to define isSignUp state here and pass it or the setIsSignUp to Login & CreateAccount to render different things. 
+
+
 import React, {useState} from "react"
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -5,8 +9,6 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import NavHeader from "./NavHeader"
 import CreateAccount from "./CreateAccount"
-
-// import SignInOutModal from "./SignInOutModal"
 
 const LandingPage = () => {
     const [modalShow, setModalShow] = React.useState(false);

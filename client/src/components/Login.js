@@ -1,7 +1,7 @@
 // NEED TO DO:
 // If login successfully:
-// render accountSetup page
-// Need to pass setUser here?
+// - render accountSetup page
+// - Need to pass setUser here...?
 
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"

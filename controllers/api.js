@@ -46,12 +46,14 @@ router.put('/seed/:count', async (req,res)=>{
     } catch {
         console.log('Collections not found')
     }
-
+    
     for (let i = 0; i < req.params.count; i++){
-        User.register(    
-            new User(seedData[i]),
-            '1234'
-        )
+        if (seedData[i]) {
+            User.register(
+                new User(seedData[i]),
+                '1234'
+            )
+        }
     }
     
     res.json('data seeded')
@@ -67,7 +69,7 @@ router.put('/seed/:count', async (req,res)=>{
         //profile must fit user preferences, and vice-versa
 router.get('/v1/profiles', async (req,res) => {
     
-    const responseLength = 20
+    const responseLength = 5
 
     const checkAgeCompatibility = (user1,user2) => {
         const user1DOB = new Date(user1.dateOfBirth)
@@ -101,6 +103,7 @@ router.get('/v1/profiles', async (req,res) => {
 
     const queue=[]
     const allProfiles = await User.find({_id: {$ne:req.user.id}}) //get all profiles except the loged in users
+    console.log(allProfiles.length,'profs')
     const filteredProfiles = allProfiles.filter((e)=>{
         return (e.displayName) //filter out any incomplete profiles. displayName will be undefined for incomplete profiles
     })
@@ -116,7 +119,7 @@ router.get('/v1/profiles', async (req,res) => {
 
         return queue.length<responseLength
     })
-
+    console.log(queue.length)
     res.json(queue)
 })
 
@@ -208,7 +211,8 @@ router.delete('/v1/profiles/:userID', async (req,res) => {
     //check for match - named function
     //create match, update user match arrays, create a chatroom - named function
 router.put('/v1/swipe/:swipedUserID', async (req,res) => {
-
+    console.log('hit swipe api')
+    console.log(req.body)
     const user = await User.findById(req.user.id)
     const swipedUser = await User.findById(req.params.swipedUserID) 
     console.log(user.seen)

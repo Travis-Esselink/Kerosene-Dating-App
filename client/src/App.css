@@ -33,7 +33,7 @@ nav .logo-container .logo {
   background: #ffffff;
   font-size: 20px;
   font-weight: 600;
-  padding: 0 30px;
+  padding: 0 20px;
   border-radius: 20px;
   border: none;
   margin: 20px 20px;
@@ -84,7 +84,7 @@ h1 {
   padding: 5px 50px;
   border-radius: 30px;
   border: none;
-  margin: 20px 20px;
+  margin-top: 10px;
   width: 100%;
   max-width: 250px;
 }
@@ -104,3 +104,4 @@ h1 {
 .logo-container .logo {
   width: 100%;
 }
+

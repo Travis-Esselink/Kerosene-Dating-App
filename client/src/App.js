@@ -4,6 +4,7 @@ import './App.css';
 
 import LandingPage from './components/LandingPage';
 import Simple from "./TestSwipe"
+import EditProfile from "./components/EditProfile"
 
 // Structure of Components:
 // - LandingPage:
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/TestSwipe" element={<Simple />} />
+        <Route path="/editprofile" element={<EditProfile />} />
       </Routes>
     </div>
   );

@@ -1,52 +1,34 @@
-import {useState} from "react"
+import React, {useState} from "react"
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import NavHeader from "./NavHeader"
 import CreateAccount from "./CreateAccount"
-import Login from "./Login"
-import SignInOutModal from "./SignInOutModal"
+
+// import SignInOutModal from "./SignInOutModal"
 
 const LandingPage = () => {
-    const [showModal, setShowModal] = useState(false)
-    const [isSignUp, setIsSignUp] = useState(true)
+    const [modalShow, setModalShow] = React.useState(false);
 
     const handleClick = () => {
-        setShowModal(true)
-        setIsSignUp(true)
+        setModalShow(true)
     }
 
     return (
         <div className="landingpage">
-            <NavHeader 
-                setShowModal={setShowModal}
-                setIsSignUp={setIsSignUp} />
+            <NavHeader />
 
             <div className="landingpage-content">
                 <h1>Find The Right One, Right Here, Right Now</h1>
-                <button className="createAcc-button" onClick={handleClick}>Create Account</button>
+                <ThemeProvider prefixes={{ btn: 'createAcc-button'}}>
+                    <Button onClick={handleClick}>Create Account</Button>
+                </ThemeProvider>
             </div>
 
-            {showModal && (
-                    <SignInOutModal setShowModal={setShowModal} isSignUp={isSignUp} />
-                )}
-
+            <CreateAccount show={modalShow} onHide={() => setModalShow(false)} />
         </div>
     )
 }
 
 export default LandingPage
-
-// show the modal for register or login
-
-// Assume all users are not our users-> SignUp: true. once click on login button, setSignUp to false 
-//  - if isSignUp is true, then bring up the register form.
-//  - if isSignUp is false, then bring up the login form
-// Either register or login, once clicked, bring up the form modal. modal: true or false?
-// { isSignUp ? <CreateAccount setIsSignUp={setIsSignUp} /> : <Login setIsSignUp={setIsSignUp} git />}
-
-// 1. When I click on Create Account button, means:
-//  - show the pop-up -> setShowModal(true) 
-//  - the user has not created account yet. -> setIsSignUp(true)
-
-// 2. When I click on Login button, means:
-//  - show the pop-up -> setShowModal(true)
-//  - the user has ady created an account. -> setIsSignUp(false)

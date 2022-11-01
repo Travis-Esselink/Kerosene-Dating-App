@@ -1,25 +1,28 @@
 import AppLogo from "../images/datingAppLogo.png";
-import {Link} from "react-router-dom"
+import {useState} from "react"
+import {Link} from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
-const NavHeader = ({setShowModal, setIsSignUp}) => {
+import Login from "./Login"
 
-    const handleClick = () => {
-        setShowModal(true)
-        setIsSignUp(false)
-    }
+const NavHeader = () => {
+    const [modalShow, setModalShow] = useState(false);
 
     return (
+        <>
         <nav>
             <div className="logo-container">
                 <Link to="/"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
-            <button className="login-button" onClick={handleClick}>Log in</button>
+            <ThemeProvider prefixes={{ btn: 'login-button'}}>
+                    <Button onClick={() => setModalShow(true)}>Login</Button>
+            </ThemeProvider>
         </nav>
+        <Login show={modalShow} onHide={() => setModalShow(false)} />
+        </>
     )
 }
+                
 
 export default NavHeader
-
-// 2. When I click on Login button, means:
-//  - show the pop-up -> setShowModal(true)
-//  - the user has ady created an account. -> setIsSignUp(false)

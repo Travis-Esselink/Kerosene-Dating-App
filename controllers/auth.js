@@ -59,11 +59,11 @@ router.post('/register', async (req,res)=>{
         )
 
         req.login(user, () => {
-            res.json(user)
+            res.json(user) // user here is obj w _id: ObjectId
     })
 
     } catch (error) {
-        res.json({msg: 'register error'})
+        res.status(403).json(error.message)
     }
 })
 

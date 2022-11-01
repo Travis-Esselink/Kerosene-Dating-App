@@ -1,10 +1,16 @@
-// When isSignUp is false:
+// NEED TO DO:
+// If login successfully:
+// render accountSetup page
+// Need to pass setUser here?
+
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
+import Modal from 'react-bootstrap/Modal';
+import BrandLogo from "../images/two-hearts-48.png"
 
 const initialState = { username: '', password: '' }
 
-const Login = ({setIsSignUp, setUser}) => {
+const Login = (props) => {
     const [fields, setFields] = useState(initialState)
     const [error, setError] = useState(null)
     const navigate = useNavigate()
@@ -31,16 +37,30 @@ const Login = ({setIsSignUp, setUser}) => {
             setError(data) // {msg: 'Incorrect username or password'}
         } else if (res.status === 200) {
             setError(null)
-            setUser(data) // { id, username }
-            navigate('/v1/profiles')
+            // props.setUser(data) // { id, username }
+            // navigate('/v1/profiles')
+            console.log("Test Logged In!");
         }
         setFields(initialState)
     }
 
     return (
-
-        <form onSubmit={handleSubmit}>
-            {error && <p>{error.msg}</p>}
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            <img src={BrandLogo} alt="BrandLogo" />
+            GET STARTED
+            </Modal.Title>
+        </Modal.Header>
+            
+        <Modal.Body>
+            <p>By clicking Login, you agree to our Terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
+            <form onSubmit={handleSubmit}>
             <label htmlFor="login-username">Username: </label>
             <input
             name="username"
@@ -57,7 +77,13 @@ const Login = ({setIsSignUp, setUser}) => {
             id="login-password"
             type="Password" />
             <input type="submit" value="Login" />
+            {error && <p>{error.msg}</p>}
         </form>
+        </Modal.Body>
+            <Modal.Footer>
+            <h3>GET THE APP</h3>
+            </Modal.Footer>
+        </Modal> 
     )
 }
 

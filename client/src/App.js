@@ -26,10 +26,12 @@ import EditProfile from "./components/EditProfile"
 
 
 function App() {
+  const [user, setUser] = useState(null)
+
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" user={user} element={<LandingPage />} />
         <Route path="/TestSwipe" element={<Simple />} />
         <Route path="/editprofile" element={<EditProfile />} />
       </Routes>

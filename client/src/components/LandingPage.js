@@ -10,7 +10,7 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavHeader from "./NavHeader"
 import CreateAccount from "./CreateAccount"
 
-const LandingPage = () => {
+const LandingPage = ({user}) => {
     const [modalShow, setModalShow] = React.useState(false);
 
     const handleClick = () => {
@@ -19,7 +19,7 @@ const LandingPage = () => {
 
     return (
         <div className="landingpage">
-            <NavHeader />
+            <NavHeader user={user} />
 
             <div className="landingpage-content">
                 <h1>Find The Right One, Right Here, Right Now</h1>

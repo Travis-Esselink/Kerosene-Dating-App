@@ -44,7 +44,12 @@ const CreateAccount = (props) => {
             setErrorRegister(data)
             console.log(data + "Test Fails Registered");
         } else if (res.status === 400) {
-            console.log("smth")
+            setErrorPassword("Passwords are not matched", data)
+            setFields({
+                ...fields,
+                password: "",
+                confirmPassword: "",
+            })
         } else if (res.status === 200) {
             setErrorRegister(null)
             // props.setUser(data) // the user's obj

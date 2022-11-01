@@ -51,8 +51,9 @@ router.get('/loggedin-user', (req,res) => {
 
 
 router.post('/register', async (req,res)=>{
-    try {
-        const {username, password} = req.body 
+  const {username, password, confirmPassword} = req.body
+  try {
+      if (password === confirmPassword) { 
         const user = await User.register(    
             new User({username:username}),
             password
@@ -60,11 +61,18 @@ router.post('/register', async (req,res)=>{
 
         req.login(user, () => {
             res.json(user) // user here is obj w _id: ObjectId
-    })
+        })
+      }
+  } catch (error) {
+      res.status(403).json(error.message)
+  }
+  // what should I write to let above try catch to run first, then only run below code?
+  // because if the username has ady existed, then it will tell the user first.
 
-    } catch (error) {
-        res.status(403).json(error.message)
-    }
+  // I put this as else if inside try, but it will also tell me the pw dont match first. 
+  // if (password !== confirmPassword) {
+  //   res.status(400).json({message: "Passwords do not match"})
+  // }
 })
 
 

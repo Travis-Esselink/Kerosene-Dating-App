@@ -6,9 +6,7 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import Login from "./Login"
 
-// const initialUser = "Please Delete Me" // TO DE DELETED!!! **
-
-const NavHeader = () => {
+const NavHeader = ({user}) => {
     const [modalShow, setModalShow] = useState(false);
     // const [user, setUser] = useState(initialUser); // TO DE DELETED!!! **
     // if there is a loggedin User, login button disappear.
@@ -23,10 +21,11 @@ const NavHeader = () => {
                 <Link to="/"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
 
-            {/* { !user && } */}
+            { !user && 
             <ThemeProvider prefixes={{ btn: 'login-button'}}>
                     <Button onClick={() => setModalShow(true)}>Login</Button>
             </ThemeProvider>
+            }
         </nav>
         <Login show={modalShow} onHide={() => setModalShow(false)} />
         </>

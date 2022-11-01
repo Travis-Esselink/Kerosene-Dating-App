@@ -37,6 +37,7 @@ const users = await User.find()
 })
 
 router.put('/seed/:count', async (req,res)=>{
+    const count = Math.min(req.params.count,seedData.length-1)
     try {
         console.log('Dropping User and Post collections')
         await Promise.all([
@@ -47,7 +48,7 @@ router.put('/seed/:count', async (req,res)=>{
         console.log('Collections not found')
     }
     
-    for (let i = 0; i < req.params.count; i++){
+    for (let i = 0; i < count; i++){
         if (seedData[i]) {
             User.register(
                 new User(seedData[i]),
@@ -55,7 +56,10 @@ router.put('/seed/:count', async (req,res)=>{
             )
         }
     }
-    
+    await User.register(
+        new User(seedData[seedData.length-1]),
+        '1234'
+    )
     res.json('data seeded')
 })
 
@@ -67,9 +71,9 @@ router.put('/seed/:count', async (req,res)=>{
         //profile must have required fields filled out
         //profile must not appear in users seen array
         //profile must fit user preferences, and vice-versa
-router.get('/v1/profiles', async (req,res) => {
+router.get('/v1/profiles/:count', async (req,res) => {
     
-    const responseLength = 5
+    const responseLength = req.params.count
 
     const checkAgeCompatibility = (user1,user2) => {
         const user1DOB = new Date(user1.dateOfBirth)
@@ -126,11 +130,16 @@ router.get('/v1/profiles', async (req,res) => {
 
 //get users matches - return matches of user
 router.get('/v1/matches', async (req,res) => {
-     const matchIDs = req.user.matches.map((e)=>{
-        return matchIDs.push(e.match.toString())
-    })
-    const matches = await User.find({_id:matchIDs})
-    res.json(matches)
+
+    if (req.user) {
+        const matchIDs = req.user.matches.map((e)=>{
+            return e.match.toString()
+        })
+        const matches = await User.find({_id:matchIDs})
+        res.json(matches)
+    } else {
+        res.status(404).json({msg:'User logged in'})
+    }
 })
 
 
@@ -215,7 +224,6 @@ router.put('/v1/swipe/:swipedUserID', async (req,res) => {
     console.log(req.body)
     const user = await User.findById(req.user.id)
     const swipedUser = await User.findById(req.params.swipedUserID) 
-    console.log(user.seen)
     const alreadySeen = user.seen.filter((e)=>{
         return e.user._id.toString()===swipedUser.id
 
@@ -251,7 +259,7 @@ router.put('/v1/swipe/:swipedUserID', async (req,res) => {
     }
     user.save()
     swipedUser.save()
-    res.json({user:user,match:matched})
+    res.json({profile:swipedUser,match:matched})
 })
 
 

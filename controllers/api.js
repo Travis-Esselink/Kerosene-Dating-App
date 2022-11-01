@@ -207,14 +207,47 @@ router.delete('/v1/profiles/:userID', async (req,res) => {
     //updates the seen array, with the result of the swipe (like = true/false)
     //check for match - named function
     //create match, update user match arrays, create a chatroom - named function
-router.put('/v1/swipe/:swipedUserID', (req,res) => {
-    //expects req.body to contain an object ({liked:Booolean}) depending on which way user swiped
-    //expects id of swiped user 
+router.put('/v1/swipe/:swipedUserID', async (req,res) => {
 
-    //update databases
+    const user = await User.findById(req.user.id)
+    const swipedUser = await User.findById(req.params.swipedUserID) 
+    console.log(user.seen)
+    const alreadySeen = user.seen.filter((e)=>{
+        return e.user._id.toString()===swipedUser.id
 
-    //sends object of whether it is match or not {match:Boolean}
-    res.json({match:false})
+    }).length > 0
+
+    if (!alreadySeen) {
+        user.seen.push({user:swipedUser.id, liked:req.body.liked})
+    } else {
+        res.json({user:user,match:false,msg:'User already swiped on this profile'})
+        return
+    }
+
+    
+
+    if (!req.body.liked) {
+        user.save()
+        res.json({match:false})
+        return
+    }
+
+
+    const matched = swipedUser.seen.some((e)=>{
+        const userHasBeenSeen = e.user._id.toString()===user.id
+        const userWasLiked = e.liked
+        return (userHasBeenSeen && userWasLiked)
+        
+    })
+    if (matched) {
+        user.matches.push({match:swipedUser.id,chatRoomID:`${user.id}-${swipedUser.id}`})
+        swipedUser.matches.push({match:user.id,chatRoomID:`${user.id}-${swipedUser.id}`})
+
+        //OPEN CHATROOMS
+    }
+    user.save()
+    swipedUser.save()
+    res.json({user:user,match:matched})
 })
 
 

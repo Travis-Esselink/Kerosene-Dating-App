@@ -81,7 +81,7 @@ h1 {
   color: #ffffff;
   background: linear-gradient(45deg, #ff0000, #ff6e40);
   font-size: 20px;
-  padding: 10px 50px;
+  padding: 5px 50px;
   border-radius: 30px;
   border: none;
   margin: 20px 20px;
@@ -93,4 +93,14 @@ h1 {
 .createAcc-button:hover {
   color: #ffffff;
   background: linear-gradient(30deg, #ff6e40, #ff0000);
+}
+
+/* ============================== CreateAccount compo ============================== */
+.logo-container {
+  max-width: 250px;
+  margin: 15px;
+}
+
+.logo-container .logo {
+  width: 100%;
 }

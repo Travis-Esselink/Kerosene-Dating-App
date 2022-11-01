@@ -6,7 +6,11 @@
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import BrandLogo from "../images/two-hearts-48.png"
+import DownloadAppLogo from "../images/app-store.png"
 
 const initialState = { username: '', password: '' }
 
@@ -81,7 +85,10 @@ const Login = (props) => {
         </form>
         </Modal.Body>
             <Modal.Footer>
-            <h3>GET THE APP</h3>
+            <h4>Get the App</h4>
+            <div className="logo-container">
+                <img className="logo" src={DownloadAppLogo} alt="Download App Logo" />
+            </div>
             </Modal.Footer>
         </Modal> 
     )

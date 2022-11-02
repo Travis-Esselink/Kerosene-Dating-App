@@ -30,36 +30,44 @@ const CreateAccount = (props) => {
         })
     }
 
+    const handleNameChange = async (event) => {
+        const { name, value } = event.target
+        setFields({
+          ...fields,
+          [name]: value
+        })
+        if (value) {
+        const res = await fetch(`/v1/checkUsername/${value}`)
+        const existedUsername = await res.json()
+        console.log(existedUsername);
+        setErrorRegister(existedUsername.message)
+        }
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if (fields.password !== fields.confirmPassword) {
-            setErrorPassword("Passwords are not matched")
+        const res = await fetch('/register', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(fields)
+        })
+        const data = await res.json()
+        if (res.status === 400) {
+            setErrorPassword("Passwords are not matched", data)
             setFields({
                 ...fields,
                 password: "",
                 confirmPassword: "",
             })
-        } else {
-            setErrorPassword(null)
-            const res = await fetch('/register', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(fields)
-            })
-            const data = await res.json()
-            if (res.status === 403) {
-                setErrorRegister(data)
-                console.log(data + "Test Fails Registered");
-            } else if (res.status === 200) {
-                setErrorRegister(null)
-                // props.setUser(data) // the user's obj
-                // navigate('/v1/profiles/${data.id}')
-                console.log("Test Registered!");
-            }
-            setFields(initialState)
+        } else if (res.status === 200) {
+            setErrorRegister(null)
+            // props.setUser(data) // the user's obj
+            // navigate('/v1/profiles/${data.id}')
+            console.log("Test Registered!");
         }
+        setFields(initialState)
     }
 
     return (
@@ -83,9 +91,14 @@ const CreateAccount = (props) => {
                     <Form.Control 
                         type="text" 
                         name="username"
-                        onChange={handleChange}
+                        onChange={handleNameChange}
                         value={fields.username}
                         placeholder="Username" />
+                    {errorRegister && 
+                    <Form.Text className="text-muted">
+                    {errorRegister}
+                    </Form.Text>
+                    }
                     </Form.Group>
 
                     <Form.Group className="mb-3">
@@ -107,7 +120,7 @@ const CreateAccount = (props) => {
                     </Form.Group>
                     
                     {errorPassword && <p>{errorPassword}</p>}
-                    {errorRegister && <p>{errorRegister}</p>}
+                   
                     
                     <ThemeProvider prefixes={{ btn: 'createAcc-button'}}>
                     <Button type="submit">

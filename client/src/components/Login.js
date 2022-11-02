@@ -1,7 +1,7 @@
 // NEED TO DO:
 // If login successfully:
-// render accountSetup page
-// Need to pass setUser here?
+// - render accountSetup page
+// - Need to pass setUser here...?
 
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
@@ -64,25 +64,34 @@ const Login = (props) => {
             
         <Modal.Body>
             <p>By clicking Login, you agree to our Terms. Learn how we process your data in our Privacy Policy and Cookie Policy.</p>
-            <form onSubmit={handleSubmit}>
-            <label htmlFor="login-username">Username: </label>
-            <input
-            name="username"
-            id="login-username"
-            onChange={handleChange}
-            value={fields.username}
-            type="text" />
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                <Form.Control 
+                    type="text" 
+                    name="username"
+                    onChange={handleChange}
+                    value={fields.username}
+                    placeholder="Username" />
+                </Form.Group>
 
-            <label htmlFor="login-password">Password</label>
-            <input
-            onChange={handleChange}
-            value={fields.password}
-            name="password"
-            id="login-password"
-            type="Password" />
-            <input type="submit" value="Login" />
-            {error && <p>{error.msg}</p>}
-        </form>
+                <Form.Group className="mb-3">
+                <Form.Control 
+                    type="password" 
+                    name="password"
+                    onChange={handleChange}
+                    value={fields.password}
+                    placeholder="Password" />
+                </Form.Group>
+
+                {error && <p>{error.msg}</p>}
+
+                <ThemeProvider prefixes={{ btn: 'createAcc-button'}}>
+                <Button type="submit">
+                    Login
+                </Button>
+                </ThemeProvider>
+
+            </Form>
         </Modal.Body>
             <Modal.Footer>
             <h4>Get the App</h4>

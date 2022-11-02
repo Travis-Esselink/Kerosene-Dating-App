@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css';
 
 import LandingPage from './components/LandingPage';
-import Simple from "./TestSwipe"
+import Swipe from "./components/Swipe"
+import Home from "./components/Home"
 
 // Structure of Components:
 // - LandingPage:
@@ -24,11 +25,28 @@ import Simple from "./TestSwipe"
 
 
 function App() {
+
+  const [user,setUser] = useState()
+  
+  useEffect( () => {
+
+    const getUser = async () => {
+        const res = await fetch('/loggedin-user')
+        const user = await res.json()
+        setUser(user)
+
+        
+      }
+      getUser()
+  },[])
+
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/TestSwipe" element={<Simple />} />
+        {/* <Route path="/TestSwipe" element={<Simple />} /> */}
+        <Route path="/home" element = {<Home user={user}/>}/>
       </Routes>
     </div>
   );

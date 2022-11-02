@@ -39,11 +39,9 @@ router.post('/logout', (req, res) => {
 })
 
 
-router.get('/loggedin-user', (req,res) => {
+router.get('/loggedin-user', async (req,res) => {
   if (req.user) {
-
-    const { id, username } = req.user
-
+    res.json(req.user)
   } else {
     res.status(404).json({ msg: 'User not logged in' })
   }

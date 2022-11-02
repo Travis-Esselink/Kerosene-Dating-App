@@ -1,5 +1,4 @@
-// confirm whether onChange is needed for this?
-
+import { useState } from 'react'
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -9,13 +8,59 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import NavHeader from "./NavHeader"
 
+const newUser1 = {
+    displayName: "",
+    dateOfBirth: "",
+    gender:"",
+}
+
+const oldUser = {
+    displayName: "old User",
+    dateOfBirth: "2002-01-30",
+    gender:"M",
+    ageRange: "8"
+}
+
 const EditProfile = () => {
+    const [errorImages, setErrorImages] = useState(false) // only for this compo
+    const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
+    const [userData, setUserData] = useState({...oldUser})
+
+    // isSignUp = true, initial fields = {key: value-blank} - user.displayName = ""
+    // isSignUp = false, initial fields = {user.key: user.value} - user.displayName = "test"
+
+    // Handling number of images uploaded
+    const handleSelect = (event) => {
+        if (event.target.files.length > 6 ) {
+            event.preventDefault()
+            setErrorImages(true)
+        } else {
+            setErrorImages(false)
+        }
+    }
+
+    const handleAgeRangeChange = (event) => {
+        if (event.target.value < 0) {
+            setErrorAgeRange(true)
+        } else {
+            setErrorAgeRange(false)
+        }
+    }
+
+    const handleChange = (event) => {
+        const {name, value} = event.target
+        setUserData({
+            ...userData,
+            [name]: value
+        })
+    }
+
     return (
         <>
         <NavHeader />
         <hr />
         <div className="profile-form">
-        <h2>Create an Account</h2>
+        <h2>Create an Account Or Edit Profile</h2>
         <br />
         <Form>
             <Row>
@@ -25,8 +70,8 @@ const EditProfile = () => {
                     <Form.Control 
                         type="text" placeholder="Enter Preferred Name" required 
                         name="displayName" 
-                        // value={fields.displayName}
-                        // onChange={handleChange}
+                        value={userData.displayName}
+                        onChange={handleChange}
                         />
                     </Form.Group>
 
@@ -35,8 +80,8 @@ const EditProfile = () => {
                     <Form.Control 
                         type="date" required
                         name="dateOfBirth" 
-                        // value={fields.dateOfBirth}
-                        // onChange={handleChange}
+                        value={userData.dateOfBirth}
+                        onChange={handleChange}
                         />
                     </Form.Group>
 
@@ -49,14 +94,16 @@ const EditProfile = () => {
                         <Form.Check
                         inline type="radio" label="Male" id="male" className="gender-radio"
                         name="gender"
-                        value="M" // fields.gender = "M" 
-                         // onChange={handleChange}
+                        value="M"
+                        checked={userData.gender === "M" ? true : false}
+                        onChange={handleChange}
                         />
                         <Form.Check
                         inline type="radio" label="Female" id="female"
                         name="gender"
-                        value="F" // fields.gender = "F" 
-                         // onChange={handleChange}
+                        value="F"
+                        checked={userData.gender === "F" ? true : false}
+                        onChange={handleChange}
                         />
                     </Form.Group>
                     </fieldset>
@@ -70,20 +117,17 @@ const EditProfile = () => {
                         <Form.Check
                         inline type="radio" label="Male" id="male"
                         name="genderPref"
-                        value="M" // fields.gender = "M" 
-                         // onChange={handleChange}
+                        value="M"
                         />
                         <Form.Check
                         inline type="radio" label="Female" id="female"
                         name="genderPref"
-                        value="F" // fields.gender = "F" 
-                         // onChange={handleChange}
+                        value="F"
                         />
                         <Form.Check
                         inline type="radio" label="Everyone" id="everyone"
                         name="genderPref"
-                        value="FM" // fields.gender = "F" 
-                         // onChange={handleChange}
+                        value="FM"
                         />
                     </Form.Group>
                     </fieldset>
@@ -96,9 +140,10 @@ const EditProfile = () => {
                     <Form.Control
                         type="number" min="0"
                         name="ageRange" 
-                        // value={fields.dateOfBirth}
-                        // onChange={handleChange}
+                        value={userData.ageRange}
+                        onChange={handleChange}
                         />
+                    {errorAgeRange && <Form.Text className="text-danger">Number has to be minimum zero</Form.Text>}
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="bio">
@@ -106,8 +151,6 @@ const EditProfile = () => {
                     <Form.Control 
                         as="textarea" rows={3} placeholder="Tell about yourself"
                         name="bio"
-                        // value={fields.bio}
-                        // onChange={handleChange}
                     />
                     </Form.Group>
                 </Col>
@@ -119,7 +162,6 @@ const EditProfile = () => {
                     <Form.Control
                     type="file"
                     name="coverImage"
-                    // onChange={handleChange}
                     />
                 </Form.Group>
 
@@ -128,21 +170,27 @@ const EditProfile = () => {
                     <Form.Control
                     type="file" multiple
                     name="images"
-                    // onChange={handleChange}
+                    onChange={handleSelect}
                     />
-                    <Form.Text className="text-muted">
-                    Can choose up to 6 images
-                    </Form.Text>
+                    {errorImages 
+                    ? <Form.Text className="text-danger">Only 6 images accepted</Form.Text>
+                    : <Form.Text className="text-muted">Can choose up to 6 images</Form.Text>
+                    }
                 </Form.Group>
                 </Col>
             </Row>
 
-            <ThemeProvider prefixes={{ btn: 'createAcc-button'}}>
-                <Button type="submit">
+            <ThemeProvider prefixes={{ btn: 'createAcc-button', disabled: '.createAcc-button:disabled'}}>
+                <Button 
+                type="submit"
+                disabled={errorImages} 
+                //{errorImages && "disabled"}
+                >
                     Submit
                 </Button>
             </ThemeProvider>
         </Form>
+
         </div>
         </>
     )
@@ -156,3 +204,5 @@ export default EditProfile
 //   -webkit-appearance: none;
 //   margin: 0;
 // }
+
+// Edit Profile

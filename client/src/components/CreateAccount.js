@@ -36,11 +36,9 @@ const CreateAccount = (props) => {
           ...fields,
           [name]: value
         })
-        console.log(value)
         if (value) {
         const res = await fetch(`/v1/checkUsername/${value}`)
         const existedUsername = await res.json()
-        // console.log(existedUsername);
         setErrorRegister(existedUsername.message)
         }
     }

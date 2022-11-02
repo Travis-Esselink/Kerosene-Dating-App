@@ -93,7 +93,7 @@ h1 {
 /* Style CreateAcc button when hover */
 .createAcc-button:hover {
   color: #ffffff;
-  background: linear-gradient(30deg, #ff6e40, #ff0000);
+  background: linear-gradient(45deg, #ff6e40, #ff0000);
 }
 
 /* ============================== CreateAccount compo ============================== */
@@ -226,4 +226,9 @@ hr {
   /* background: -webkit-linear-gradient(#ff6e40, #ff0000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
+}
+
+.createAcc-button:disabled {
+  color: #ffffff;
+  background: #4644442e;
 }

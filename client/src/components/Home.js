@@ -6,13 +6,15 @@ import BrandLogo from "../images/two-hearts-48.png"
 import Swipe from "./Swipe"
 import HomeNav from "./HomeNav"
 import Matches from "./Matches"
-
+import { useParams } from 'react-router-dom'
 
 const Home = ({user}) => {
+
+    const { tab } = useParams()
     const [needQueue,setNeedQueue] = useState(0)
     const [queue,setQueue] = useState([])
     const [showMatch,setShowMatch] = useState(false)
-    const [display,setDisplay] = useState('main')
+    const [display,setDisplay] = useState(tab)
 
 
     const [matches,setMatches] = useState([])
@@ -62,7 +64,7 @@ const Home = ({user}) => {
         <>
             {display==='main' ? 
                 <Swipe queue={queue} setQueue={setQueue} updateQueue={updateQueue} user={user} handleMatch={handleMatch}/> : 
-                <Matches matches={matches}/>
+                <Matches matches={matches} messagedMatches={matches}/>
             }
 
             {/* Modal setShowMatch={setShowMatch} */}

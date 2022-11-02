@@ -28,8 +28,6 @@ const userSchema = new Schema({
 { timestamps: true }
 ) 
 
-
-
 userSchema.plugin(passportLocalMongoose)
 
 const User = mongoose.model('User',userSchema)

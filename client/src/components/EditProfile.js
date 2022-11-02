@@ -69,19 +69,19 @@ const EditProfile = () => {
                     <br />
                         <Form.Check
                         inline type="radio" label="Male" id="male"
-                        name="gender"
+                        name="genderPref"
                         value="M" // fields.gender = "M" 
                          // onChange={handleChange}
                         />
                         <Form.Check
                         inline type="radio" label="Female" id="female"
-                        name="gender"
+                        name="genderPref"
                         value="F" // fields.gender = "F" 
                          // onChange={handleChange}
                         />
                         <Form.Check
                         inline type="radio" label="Everyone" id="everyone"
-                        name="gender"
+                        name="genderPref"
                         value="FM" // fields.gender = "F" 
                          // onChange={handleChange}
                         />

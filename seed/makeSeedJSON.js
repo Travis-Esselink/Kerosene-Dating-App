@@ -21996,7 +21996,7 @@ const seed = [{
     "dateOfBirth": "02/03/1980",
     "gender": "M",
     "genderPref":"F",
-    "ageRange": "8",
+    "ageRange": "100",
         
     "bio": "Im the light mode guy with more than 10 beanies. Superpower: 'Can teach under any conditions: train sound, migraine, even in the midst of moving house'. What can kill me: 'bread'",
     "coverImage":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
@@ -22043,8 +22043,9 @@ for (let i=0;i<1000;i++) {
     const randomMonth = Math.floor(Math.random()*12)+1
     const randomDay = Math.floor(Math.random()*31)+1
     const randomDOB = `${randomYear}-${randomMonth}-${randomDay}`
-    const randomGender = genders[Math.floor(Math.random()*2)]
-    const randomGenderPref = genders[Math.floor(Math.random()*2)]
+    let randomGender = genders[Math.floor(Math.random()*2)]
+    randomGender = 'F'
+    let randomGenderPref = randomGender==='F' ? 'M' : 'F'
     const randomName = names[Math.floor(Math.random()*names.length)]
     names.splice(names.indexOf(randomName),1)
     const range = Math.floor(Math.random()*10)+2

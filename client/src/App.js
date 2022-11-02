@@ -3,8 +3,9 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css';
 
 import LandingPage from './components/LandingPage';
-import Simple from "./TestSwipe"
 import EditProfile from "./components/EditProfile"
+import Swipe from "./components/Swipe"
+import Home from "./components/Home"
 
 // Structure of Components:
 // - LandingPage:
@@ -26,14 +27,38 @@ import EditProfile from "./components/EditProfile"
 
 
 function App() {
+<<<<<<< HEAD
   const [user, setUser] = useState(null)
+=======
+
+  const [user,setUser] = useState()
+  
+  useEffect( () => {
+
+    const getUser = async () => {
+        const res = await fetch('/loggedin-user')
+        const user = await res.json()
+        setUser(user)
+
+        
+      }
+      getUser()
+  },[])
+
+>>>>>>> main
 
   return (
     <div className="App">
       <Routes>
+<<<<<<< HEAD
         <Route path="/" user={user} element={<LandingPage />} />
         <Route path="/TestSwipe" element={<Simple />} />
         <Route path="/editprofile" element={<EditProfile />} />
+=======
+        <Route path="/" element={<LandingPage />} />
+        {/* <Route path="/TestSwipe" element={<Simple />} /> */}
+        <Route path="/home" element = {<Home user={user}/>}/>
+>>>>>>> main
       </Routes>
     </div>
   );

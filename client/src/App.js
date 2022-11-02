@@ -32,6 +32,8 @@ import Match from "./components/Match"
 
 function App() {
   const [user,setUser] = useState()
+  console.log(user)
+  const [isSignUp, setIsSignUp] = useState(true)
   
   useEffect( () => {
 
@@ -51,8 +53,8 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/home/:tab" element = {<Home user={user}/>}/>
         <Route path="/home/matches/:id" element = {<Match user={user}/>} />
-        <Route path="/" element={<LandingPage user={user} />} />
-        <Route path="/editprofile" element={<EditProfile user={user} />} />
+        <Route path="/" element={<LandingPage user={user} setUser={setUser} setIsSignUp={setIsSignUp} />} />
+        <Route path="/editprofile" element={<EditProfile user={user} isSignUp={isSignUp} />} />
         <Route path="/home" element = {<Home user={user}/>}/>
 
       </Routes>

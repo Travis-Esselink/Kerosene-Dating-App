@@ -7,27 +7,14 @@ import Row from 'react-bootstrap/Row';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import NavHeader from "./NavHeader"
+import { useNavigate } from 'react-router-dom';
 
-// const newUser1 = {
-//     displayName: "",
-//     dateOfBirth: "",
-//     gender:"",
-// }
-
-// const oldUser = {
-//     displayName: "old User",
-//     dateOfBirth: "2002-01-30",
-//     gender:"M",
-//     ageRange: "8"
-// }
-
-const EditProfile = ({user}) => {
+const EditProfile = ({user, isSignUp}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
     const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
     const [userData, setUserData] = useState({...user}) // get from App.js
 
-    // isSignUp = true, initial fields = {key: value-blank} - user.displayName = ""
-    // isSignUp = false, initial fields = {user.key: user.value} - user.displayName = "test"
+    const navigate = useNavigate()
 
     // Handling number of images uploaded
     const handleSelect = (event) => {
@@ -39,20 +26,30 @@ const EditProfile = ({user}) => {
         }
     }
 
-    const handleAgeRangeChange = (event) => {
-        if (event.target.value < 0) {
+    const handleChange = (event) => {
+        const {name, value} = event.target
+        // handling ageRange validation
+        if (name === "ageRange" && value < 0) {
             setErrorAgeRange(true)
         } else {
             setErrorAgeRange(false)
         }
-    }
-
-    const handleChange = (event) => {
-        const {name, value} = event.target
         setUserData({
             ...userData,
             [name]: value
         })
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        const formData = new FormData(event.target)
+        const res = await fetch (`/v1/profiles/${userData.id}`, {
+            method: "PUT",
+            body: formData
+        })
+        const data = await res.json()
+        setUserData(data)
+        navigate('/home/main')
     }
 
     return (
@@ -60,9 +57,9 @@ const EditProfile = ({user}) => {
         <NavHeader />
         <hr />
         <div className="profile-form">
-        <h2>Create an Account Or Edit Profile</h2>
+        <h2>{isSignUp ? "Create an Account" : "Edit Profile"}</h2>
         <br />
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Row>
                 <Col> {/* xs={7} */}
                     <Form.Group className="mb-3" controlId="displayName">
@@ -184,7 +181,6 @@ const EditProfile = ({user}) => {
                 <Button 
                 type="submit"
                 disabled={errorImages} 
-                //{errorImages && "disabled"}
                 >
                     Submit
                 </Button>
@@ -197,12 +193,3 @@ const EditProfile = ({user}) => {
 }
 
 export default EditProfile
-
-// make the arrow disappear for number selector
-// .age-range::-webkit-outer-spin-button,
-// .age-range::-webkit-inner-spin-button {
-//   -webkit-appearance: none;
-//   margin: 0;
-// }
-
-// Edit Profile

@@ -9,6 +9,8 @@ import HomeNav from "./HomeNav"
 import Matches from "./Matches"
 import { useParams } from 'react-router-dom'
 
+import NavHeader from "./NavHeader"
+
 const Home = ({user}) => {
 
     const { tab } = useParams()
@@ -90,6 +92,7 @@ const Home = ({user}) => {
 
     return (
         <>
+        <NavHeader />
             {display==='main' ? 
                 <Swipe queue={queue} setQueue={setQueue} updateQueue={updateQueue} user={user} handleMatch={handleMatch}/> : 
                 <Matches notMessagedMatches={notMessagedMatches} messagedMatches={messagedMatches}/>

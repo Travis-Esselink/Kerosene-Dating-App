@@ -1,7 +1,6 @@
 // NEED TO DO:
-// If login successfully:
-// - render accountSetup page
-// - Need to pass setUser here...?
+// cannot pass in setUser as props
+// need to delete the console.log
 
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
@@ -14,7 +13,7 @@ import DownloadAppLogo from "../images/app-store.png"
 
 const initialState = { username: '', password: '' }
 
-const Login = (props) => {
+const Login = ({show, onHide, setUser }) => {
     const [fields, setFields] = useState(initialState)
     const [error, setError] = useState(null)
     const navigate = useNavigate()
@@ -41,16 +40,17 @@ const Login = (props) => {
             setError(data) // {msg: 'Incorrect username or password'}
         } else if (res.status === 200) {
             setError(null)
-            props.setUser(data)
+            // props.setUser(data)
             navigate('/home/main')
-            console.log("Test Logged In!");
+            console.log("Test Logged In!"); // to be deleted!
         }
         setFields(initialState)
     }
 
     return (
         <Modal
-            {...props}
+        show={show}
+        onHide={onHide}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered

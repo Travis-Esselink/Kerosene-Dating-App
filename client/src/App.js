@@ -27,10 +27,6 @@ import Home from "./components/Home"
 
 
 function App() {
-<<<<<<< HEAD
-  const [user, setUser] = useState(null)
-=======
-
   const [user,setUser] = useState()
   
   useEffect( () => {
@@ -45,20 +41,13 @@ function App() {
       getUser()
   },[])
 
->>>>>>> main
 
   return (
     <div className="App">
       <Routes>
-<<<<<<< HEAD
         <Route path="/" user={user} element={<LandingPage />} />
-        <Route path="/TestSwipe" element={<Simple />} />
         <Route path="/editprofile" element={<EditProfile />} />
-=======
-        <Route path="/" element={<LandingPage />} />
-        {/* <Route path="/TestSwipe" element={<Simple />} /> */}
         <Route path="/home" element = {<Home user={user}/>}/>
->>>>>>> main
       </Routes>
     </div>
   );

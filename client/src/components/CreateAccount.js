@@ -23,7 +23,7 @@ const CreateAccount = (props) => {
     const navigate = useNavigate()
 
     const handleChange = (event) => {
-        const { name, value } = event.target
+        const { name, value } = event.target // password & confirm-password
         setFields({
           ...fields,
           [name]: value
@@ -31,7 +31,7 @@ const CreateAccount = (props) => {
     }
 
     const handleNameChange = async (event) => {
-        const { name, value } = event.target
+        const { name, value } = event.target // username
         setFields({
           ...fields,
           [name]: value
@@ -39,35 +39,40 @@ const CreateAccount = (props) => {
         if (value) {
         const res = await fetch(`/v1/checkUsername/${value}`)
         const existedUsername = await res.json()
-        console.log(existedUsername);
         setErrorRegister(existedUsername.message)
         }
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await fetch('/register', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(fields)
-        })
-        const data = await res.json()
-        if (res.status === 400) {
-            setErrorPassword("Passwords are not matched", data)
+        if (fields.password !== fields.confirmPassword) {
+            setErrorPassword("Passwords are not matched")
             setFields({
                 ...fields,
                 password: "",
                 confirmPassword: "",
             })
-        } else if (res.status === 200) {
-            setErrorRegister(null)
-            // props.setUser(data) // the user's obj
-            // navigate('/v1/profiles/${data.id}')
-            console.log("Test Registered!");
+        } else {
+            setErrorPassword(null)
+            const res = await fetch('/register', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(fields)
+            })
+            const data = await res.json()
+            if (res.status === 403) {
+                setErrorRegister(data)
+                console.log(data + "Test Fails Registered");
+            } else if (res.status === 200) {
+                setErrorRegister(null)
+                // props.setUser(data) // the user's obj
+                // navigate('/v1/profiles/${data.id}')
+                console.log("Test Registered!");
+            }
+            setFields(initialState)
         }
-        setFields(initialState)
     }
 
     return (

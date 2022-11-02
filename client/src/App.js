@@ -39,7 +39,6 @@ function App() {
         const res = await fetch('/loggedin-user')
         const user = await res.json()
         setUser(user)
-        
       }
       getUser()
   },[])

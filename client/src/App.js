@@ -1,11 +1,15 @@
-import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+
+
 import './App.css';
 
+import Chat from './chatFolder/Chat'
 import LandingPage from './components/LandingPage';
 import EditProfile from "./components/EditProfile"
 import Swipe from "./components/Swipe"
 import Home from "./components/Home"
+import Match from "./components/Match"
 
 // Structure of Components:
 // - LandingPage:
@@ -34,7 +38,7 @@ function App() {
     const getUser = async () => {
         const res = await fetch('/loggedin-user')
         const user = await res.json()
-        setUser(user)        
+        setUser(user)
       }
       getUser()
   },[])
@@ -43,9 +47,15 @@ function App() {
   return (
     <div className="App">
       <Routes>
+
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/home/:tab" element = {<Home user={user}/>}/>
+        <Route path="/home/matches/:id" element = {<Match user={user}/>} />
         <Route path="/" user={user} element={<LandingPage />} />
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/home" element = {<Home user={user}/>}/>
+
+
       </Routes>
     </div>
   );

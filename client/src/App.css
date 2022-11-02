@@ -171,9 +171,8 @@ h1 {
   padding: 20px;
 }
 
-.base-nav {
-  position: absolute;
-  bottom:0;
+.nav {
+  position: fixed;
   background-color:rgba(226, 213, 213, 0.87);
   display:flex;
   justify-content: space-evenly;
@@ -183,11 +182,19 @@ h1 {
 
 }
 
-.base-nav img {
-  padding: 0 13px;
+.base {
+  bottom:0;
 }
 
-.base-nav .selected {
+.top {
+  top:0;
+}
+
+.base-nav img {
+  padding: 0 12px;
+}
+
+.selected {
   background-color: rgb(224, 167, 167);
   border-radius:30%;
 }
@@ -208,10 +215,23 @@ h1 {
   margin: 5px 15px;
 }
 
+.message-gallery {
+  padding-bottom:60px;
+}
+
 .match-thumb-name {
   text-align: center;
 }
 
+.match-content {
+  max-width:100%;
+  max-height:100%;
+  padding-top:40px;
+}
+
+.match-content img {
+  max-width:100%;
+}
 /* ============================== Edit User Profile compo ============================== */
 hr {
   margin: 10px;

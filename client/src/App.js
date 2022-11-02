@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+
+
 import './App.css';
 
+import Chat from './chatFolder/Chat'
 import LandingPage from './components/LandingPage';
 import EditProfile from "./components/EditProfile"
 import Swipe from "./components/Swipe"
@@ -36,7 +39,6 @@ function App() {
         const res = await fetch('/loggedin-user')
         const user = await res.json()
         setUser(user)
-
         
       }
       getUser()
@@ -47,11 +49,13 @@ function App() {
     <div className="App">
       <Routes>
 
+        <Route path="/chat" element={<Chat />} />
         <Route path="/home/:tab" element = {<Home user={user}/>}/>
-        <Route path="/home/matches/:id" element = {<Match />} />
+        <Route path="/home/matches/:id" element = {<Match user={user}/>} />
         <Route path="/" user={user} element={<LandingPage />} />
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/home" element = {<Home user={user}/>}/>
+
 
       </Routes>
     </div>

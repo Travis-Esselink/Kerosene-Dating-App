@@ -2,14 +2,15 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import MatchNav from './MatchNav'
+import Chat from './Chat'
 
-const Match = () => {
+const Match = ({user}) => {
     const navigate = useNavigate()
 
     const { id } = useParams()
     const [match,setMatch] = useState()
     const [tab,setTab] = useState('profile')
-
+    const [roomID,setRooomID] = useState('defaultChat')
     const navBack = () => {
         navigate(-1)
     }
@@ -22,17 +23,22 @@ const Match = () => {
 
 
     useEffect(() => {
-        console.log('effect')
+
         const getMatch = async () => {
-            const res = await fetch(`/v1/profiles/${id}`)
-            const match = await res.json()
-            console.log(match)
-            setMatch(match)
-            
+            if (user) {
+                const res = await fetch(`/v1/profiles/${id}`)
+                const match = await res.json()
+                setMatch(match)
+                const chatRoomID = match.matches.filter((e)=>{
+                    return (e.match === user._id.toString())
+                })[0].chatRoomID
+                setRooomID(chatRoomID+'/')
+            }
         } 
         getMatch()
-    },[id])
 
+    },[user])
+    
 
     return (
         <>
@@ -51,7 +57,7 @@ const Match = () => {
                         </>
                         : 
                         <>
-                            <p>Messages</p>
+                            <Chat user={user} roomID={roomID}/>
                         </>
                         
                     }

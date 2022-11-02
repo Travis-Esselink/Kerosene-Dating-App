@@ -15,7 +15,7 @@ header {
 li {
     list-style-type: none;
     margin-bottom: 10px;
-    background-color: #6929ca;
+    background-color: #c32e5b;
     padding: 5px;
     border-radius: 10px;
     color: white;
@@ -42,6 +42,11 @@ li span {
     background-color: #b7b5b9;
 }
 
+#message-btn {
+    width: 100px;
+    height: 35px;
+}
+
 input {
     width: 70%;
     height: 30px;
@@ -54,11 +59,11 @@ button {
 
 .sent {
     text-align: right;
-    background-color: #a79cb3;
+    background-color: #e293b3;
     margin-left: 50%;
 }
 
 .sent span {
     margin-left: 5px;
-    color: #6929ca;
+    color: #d33f5a;
 }

@@ -82,7 +82,7 @@ const EditProfile = () => {
                         <Form.Check
                         inline type="radio" label="Everyone" id="everyone"
                         name="gender"
-                        value="F" // fields.gender = "F" 
+                        value="FM" // fields.gender = "F" 
                          // onChange={handleChange}
                         />
                     </Form.Group>

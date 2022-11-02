@@ -13,7 +13,6 @@ const Home = ({user}) => {
     const [queue,setQueue] = useState([])
     const [showMatch,setShowMatch] = useState(false)
     const [display,setDisplay] = useState('main')
-    const [firstMount,setFirstMount] = useState(true)
 
 
     const [matches,setMatches] = useState([])
@@ -32,7 +31,7 @@ const Home = ({user}) => {
 
     useEffect( () => {
         const getQueue = async () => {
-            const res = await fetch('/v1/profiles/7')
+            const res = await fetch('/v1/profiles')
             let data = await res.json()
             setQueue(data.reverse())  
         }
@@ -41,10 +40,11 @@ const Home = ({user}) => {
     },[])
 
     const updateQueue = async () => {
-        const res = await fetch('/v1/profiles/7')
+        const res = await fetch('/v1/profiles')
         let data = await res.json()
-        const newQueue = [...data].reverse()
+        const newQueue = data.reverse()
         setQueue(newQueue)
+        console.log(queue)
     }
 
 

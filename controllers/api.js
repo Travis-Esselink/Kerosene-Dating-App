@@ -71,9 +71,9 @@ router.put('/seed/:count', async (req,res)=>{
         //profile must have required fields filled out
         //profile must not appear in users seen array
         //profile must fit user preferences, and vice-versa
-router.get('/v1/profiles/:count', async (req,res) => {
+router.get('/v1/profiles', async (req,res) => {
     
-    const responseLength = req.params.count
+    const responseLength = 9
 
     const checkAgeCompatibility = (user1,user2) => {
         const user1DOB = new Date(user1.dateOfBirth)
@@ -94,8 +94,8 @@ router.get('/v1/profiles/:count', async (req,res) => {
     }
 
     const checkGenderCompatibility = (user1,user2) => {
-        const check1 = user1.genderPref === user2.gender
-        const check2 = user2.genderPref === user1.gender
+        const check1 = user1.genderPref.includes(user2.gender)
+        const check2 = user2.genderPref.includes(user1.gender)
         return (check1 && check2)
     }
 

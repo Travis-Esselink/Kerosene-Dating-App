@@ -14,7 +14,7 @@ const Match = () => {
         navigate(-1)
     }
 
-    const displayTab = (setTab) => {
+    const displayTab = (tab) => {
         setTab(tab)
     }
 
@@ -43,11 +43,18 @@ const Match = () => {
                         <MatchNav match={match} navBack={navBack} displayTab={displayTab} tab={tab}/>
                     </div>
 
-
-                    <img src={match.coverImage}/>
-                    <p>{match.displayName}</p>
-                    <p>{match.dateOfBirth}</p>
-                    
+                    {tab==='profile' ? 
+                        <>
+                            <img src={match.coverImage}/>
+                            <p>{match.displayName}</p>
+                            <p>{match.dateOfBirth}</p>
+                        </>
+                        : 
+                        <>
+                            <p>Messages</p>
+                        </>
+                        
+                    }
                 </div>
                 }
             </div>

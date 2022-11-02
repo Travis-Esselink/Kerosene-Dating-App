@@ -41,6 +41,7 @@ router.post('/logout', (req, res) => {
 
 router.get('/loggedin-user', async (req,res) => {
   if (req.user) {
+    console.log('sending user')
     res.json(req.user)
   } else {
     res.status(404).json({ msg: 'User not logged in' })

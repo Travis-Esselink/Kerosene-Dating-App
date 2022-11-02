@@ -39,7 +39,6 @@ function App() {
         const res = await fetch('/loggedin-user')
         const user = await res.json()
         setUser(user)
-
         
       }
       getUser()
@@ -52,7 +51,7 @@ function App() {
 
         <Route path="/chat" element={<Chat />} />
         <Route path="/home/:tab" element = {<Home user={user}/>}/>
-        <Route path="/home/matches/:id" element = {<Match />} />
+        <Route path="/home/matches/:id" element = {<Match user={user}/>} />
         <Route path="/" user={user} element={<LandingPage />} />
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/home" element = {<Home user={user}/>}/>

@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const HomeNav = ({display, handleNavClick}) => {
     const navigate = useNavigate() 
     const displayMain = () => {
-        
         navigate('/home/main')
         handleNavClick('main')
     }
@@ -18,7 +17,7 @@ const HomeNav = ({display, handleNavClick}) => {
 
     return (
         <>
-            <div className="base-nav">
+            <div className="base nav">
                 <img src={AppLogo} onClick={displayMain} className={display==='main' ? 'selected' : ''}/>
                 <img src={CrossLogo} onClick={displayMatches} className={display==='matches' ? 'selected' : ''}/>
             </div>

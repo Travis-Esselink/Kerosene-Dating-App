@@ -1,4 +1,5 @@
-
+import { ref, onValue } from "firebase/database";
+import { db } from './lib/FirebaseDatabase'
 import { useState,useEffect } from 'react'
 // import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
@@ -17,19 +18,47 @@ const Home = ({user}) => {
     const [display,setDisplay] = useState(tab)
 
 
-    const [matches,setMatches] = useState([])
+    const [notMessagedMatches,setNotMessagedMatches] = useState([])
     const [messagedMatches,setMessagedMatches] = useState ([])
     
     useEffect(() => {
-        const getMatches = async () => {
-            const res = await fetch('/v1/matches')
-            const data = await res.json()
-            console.log(data)
-            setMatches(data)
+        if (user) {
+            const getRoomID = (match) => {
+                const chatRoomID = match.matches.filter((e)=>{
+                    return (e.match === user._id.toString())
+                })[0].chatRoomID
+                return chatRoomID+'/'
+            }
+
+            const getMatches = async () => {
+                const res = await fetch('/v1/matches')
+                const data = await res.json()
+                const messaged = []
+                const notMessaged = []
+                data.forEach((match)=>{
+                    const roomID = getRoomID(match)
+                    const fetchChat = ref(db, roomID)
+                    onValue(fetchChat, (snapshot) => {
+                        if (snapshot.exists()) {
+                            const messages = snapshot.val()
+                            console.log(messages,'messages')
+                            const keys = Object.keys(messages)
+                            const latestMessageTime = Math.max(...keys)
+                            const latestMessage = messages[latestMessageTime]
+                            match.latestMessage = latestMessage
+                            messaged.push(match)
+                        } else {
+                            notMessaged.push(match)
+                        }
+                    })
+                })
+                
+                setNotMessagedMatches(notMessaged)
+                setMessagedMatches(messaged)
+            }
+            getMatches()
         }
-        getMatches()
-        console.log(matches)
-    },[])
+    },[user])
 
     useEffect( () => {
         const getQueue = async () => {
@@ -46,7 +75,6 @@ const Home = ({user}) => {
         let data = await res.json()
         const newQueue = data.reverse()
         setQueue(newQueue)
-        console.log(queue)
     }
 
 
@@ -64,7 +92,7 @@ const Home = ({user}) => {
         <>
             {display==='main' ? 
                 <Swipe queue={queue} setQueue={setQueue} updateQueue={updateQueue} user={user} handleMatch={handleMatch}/> : 
-                <Matches matches={matches} messagedMatches={matches}/>
+                <Matches notMessagedMatches={notMessagedMatches} messagedMatches={messagedMatches}/>
             }
 
             {/* Modal setShowMatch={setShowMatch} */}

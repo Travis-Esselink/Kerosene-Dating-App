@@ -171,9 +171,8 @@ h1 {
   padding: 20px;
 }
 
-.base-nav {
+.nav {
   position: fixed;
-  bottom:0;
   background-color:rgba(226, 213, 213, 0.87);
   display:flex;
   justify-content: space-evenly;
@@ -183,11 +182,19 @@ h1 {
 
 }
 
+.base {
+  bottom:0;
+}
+
+.top {
+  top:0;
+}
+
 .base-nav img {
   padding: 0 12px;
 }
 
-.base-nav .selected {
+.selected {
   background-color: rgb(224, 167, 167);
   border-radius:30%;
 }
@@ -219,6 +226,7 @@ h1 {
 .match-content {
   max-width:100%;
   max-height:100%;
+  padding-top:40px;
 }
 
 .match-content img {

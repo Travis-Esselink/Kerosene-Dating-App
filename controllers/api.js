@@ -73,58 +73,62 @@ router.put('/seed/:count', async (req,res)=>{
         //profile must fit user preferences, and vice-versa
 router.get('/v1/profiles', async (req,res) => {
     
-    const responseLength = 9
+    if (req.user) {
+        const responseLength = 9
 
-    const checkAgeCompatibility = (user1,user2) => {
-        const user1DOB = new Date(user1.dateOfBirth)
-        const user1MaxDOB = new Date(user1DOB)
-        const user1MinDOB = new Date(user1DOB)
-        user1MaxDOB.setFullYear(user1MaxDOB.getFullYear()+user1.ageRange)
-        user1MinDOB.setFullYear(user1MinDOB.getFullYear()-user1.ageRange)
-        
-        const user2DOB = new Date(user2.dateOfBirth)
-        const user2MaxDOB = new Date(user2DOB)
-        const user2MinDOB = new Date(user2DOB)
-        user2MaxDOB.setFullYear(user2MaxDOB.getFullYear()+user2.ageRange)
-        user2MinDOB.setFullYear(user2MinDOB.getFullYear()-user2.ageRange)
+        const checkAgeCompatibility = (user1,user2) => {
+            const user1DOB = new Date(user1.dateOfBirth)
+            const user1MaxDOB = new Date(user1DOB)
+            const user1MinDOB = new Date(user1DOB)
+            user1MaxDOB.setFullYear(user1MaxDOB.getFullYear()+user1.ageRange)
+            user1MinDOB.setFullYear(user1MinDOB.getFullYear()-user1.ageRange)
+            
+            const user2DOB = new Date(user2.dateOfBirth)
+            const user2MaxDOB = new Date(user2DOB)
+            const user2MinDOB = new Date(user2DOB)
+            user2MaxDOB.setFullYear(user2MaxDOB.getFullYear()+user2.ageRange)
+            user2MinDOB.setFullYear(user2MinDOB.getFullYear()-user2.ageRange)
 
-        const check1 = (user2DOB >= user1MinDOB && user2DOB <=user1MaxDOB) 
-        const check2 = (user1DOB >= user2MinDOB && user1DOB <=user2MaxDOB) 
-        return (check1 && check2)
-    }
-
-    const checkGenderCompatibility = (user1,user2) => {
-        const check1 = user1.genderPref.includes(user2.gender)
-        const check2 = user2.genderPref.includes(user1.gender)
-        return (check1 && check2)
-    }
-
-    const checkSeen = (user1,user2) => {
-        return !user1.seen.every((e) => {
-            return (e.user._id.toString()!==user2.id)
-        })
-    }
-
-    const queue=[]
-    const allProfiles = await User.find({_id: {$ne:req.user.id}}) //get all profiles except the loged in users
-    console.log(allProfiles.length,'profs')
-    const filteredProfiles = allProfiles.filter((e)=>{
-        return (e.displayName) //filter out any incomplete profiles. displayName will be undefined for incomplete profiles
-    })
-
-    filteredProfiles.every((profile)=>{
-        const ageCompatible = checkAgeCompatibility(req.user,profile)
-        const genderCompatible = checkGenderCompatibility(req.user,profile)
-        const seen = checkSeen(req.user,profile)
-
-        if (ageCompatible && genderCompatible && !seen) {
-            queue.push(profile)
+            const check1 = (user2DOB >= user1MinDOB && user2DOB <=user1MaxDOB) 
+            const check2 = (user1DOB >= user2MinDOB && user1DOB <=user2MaxDOB) 
+            return (check1 && check2)
         }
 
-        return queue.length<responseLength
-    })
-    console.log(queue.length)
-    res.json(queue)
+        const checkGenderCompatibility = (user1,user2) => {
+            const check1 = user1.genderPref.includes(user2.gender)
+            const check2 = user2.genderPref.includes(user1.gender)
+            return (check1 && check2)
+        }
+
+        const checkSeen = (user1,user2) => {
+            return !user1.seen.every((e) => {
+                return (e.user._id.toString()!==user2.id)
+            })
+        }
+
+        const queue=[]
+        const allProfiles = await User.find({_id: {$ne:req.user.id}}) //get all profiles except the loged in users
+        console.log(allProfiles.length,'profs')
+        const filteredProfiles = allProfiles.filter((e)=>{
+            return (e.displayName) //filter out any incomplete profiles. displayName will be undefined for incomplete profiles
+        })
+
+        filteredProfiles.every((profile)=>{
+            const ageCompatible = checkAgeCompatibility(req.user,profile)
+            const genderCompatible = checkGenderCompatibility(req.user,profile)
+            const seen = checkSeen(req.user,profile)
+
+            if (ageCompatible && genderCompatible && !seen) {
+                queue.push(profile)
+            }
+
+            return queue.length<responseLength
+        })
+        console.log(queue.length)
+        res.json(queue)
+    } else {
+        res.status(401).json({msg:'No user logged in'})
+    }
 })
 
 
@@ -138,7 +142,7 @@ router.get('/v1/matches', async (req,res) => {
         const matches = await User.find({_id:matchIDs})
         res.json(matches)
     } else {
-        res.status(404).json({msg:'User logged in'})
+        res.status(401).json({msg:'No user logged in'})
     }
 })
 

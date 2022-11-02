@@ -1,8 +1,10 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import MatchNav from './MatchNav'
+import NavMatch from './NavMatch'
 import Chat from './Chat'
+import Unmatch from './Unmatch'
+import Button from 'react-bootstrap/Button';
 
 const Match = ({user}) => {
     const navigate = useNavigate()
@@ -11,6 +13,7 @@ const Match = ({user}) => {
     const [match,setMatch] = useState()
     const [tab,setTab] = useState('profile')
     const [roomID,setRooomID] = useState('defaultChat')
+
     const navBack = () => {
         navigate(-1)
     }
@@ -39,6 +42,16 @@ const Match = ({user}) => {
 
     },[user])
     
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+        setShow(false)
+    }
+
+    const handleShow = () => {
+        console.log('button clicked')
+        setShow(true)
+    }
 
     return (
         <>
@@ -46,7 +59,7 @@ const Match = ({user}) => {
             {!match? <p>Loading...</p> :
                 <div className='match-content'>
                     <div className='match-nav'>
-                        <MatchNav match={match} navBack={navBack} displayTab={displayTab} tab={tab}/>
+                        <NavMatch match={match} navBack={navBack} displayTab={displayTab} tab={tab}/>
                     </div>
 
                     {tab==='profile' ? 
@@ -54,6 +67,8 @@ const Match = ({user}) => {
                             <img src={match.coverImage}/>
                             <p>{match.displayName}</p>
                             <p>{match.dateOfBirth}</p>
+                            <Button onClick={handleShow}>Unmatch</Button>
+                            <Unmatch show={show} handleClose={handleClose} match={match}/>
                         </>
                         : 
                         <>
@@ -64,6 +79,7 @@ const Match = ({user}) => {
                 </div>
                 }
             </div>
+
         </>
     )
 }

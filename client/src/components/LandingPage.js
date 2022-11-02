@@ -18,7 +18,7 @@ const LandingPage = ({user}) => {
         setModalShow(true)
         setIsSignUp(true)
     }
-
+    console.log(user,'user')
     return (
         <div className="landingpage">
             <NavHeader user={user} setIsSignUp={setIsSignUp} />

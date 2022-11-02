@@ -23,7 +23,7 @@ const NavHeader = ({user, setIsSignUp}) => {
         <>
         <nav>
             <div className="logo-container">
-                <Link to="/"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
+                <Link to="/home"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
 
             { !user && 

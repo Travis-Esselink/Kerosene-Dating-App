@@ -171,15 +171,12 @@ h1 {
   padding: 20px;
 }
 
-.nav {
+.navBar {
   position: fixed;
   background-color:rgba(226, 213, 213, 0.87);
-  display:flex;
-  justify-content: space-evenly;
   flex-direction: row;
   width: 100%;
   padding:5px;
-
 }
 
 .base {
@@ -188,6 +185,16 @@ h1 {
 
 .top {
   top:0;
+}
+
+.space-between {
+  display:flex;
+  justify-content: space-between;
+}
+
+.space-evenly {
+  display:flex;
+  justify-content:space-evenly;
 }
 
 .base-nav img {

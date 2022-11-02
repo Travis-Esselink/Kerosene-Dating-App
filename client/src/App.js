@@ -10,6 +10,9 @@ import EditProfile from "./components/EditProfile"
 import Swipe from "./components/Swipe"
 import Home from "./components/Home"
 import Match from "./components/Match"
+import Matches from "./components/Matches"
+
+
 
 // Structure of Components:
 // - LandingPage:
@@ -50,7 +53,8 @@ function App() {
       <Routes>
 
         <Route path="/chat" element={<Chat />} />
-        <Route path="/home/:tab" element = {<Home user={user}/>}/>
+        <Route path="/home/main" element = {<Home user={user}/>}/>
+        <Route path="/home/matches" element = {<Matches user={user} />}/>
         <Route path="/home/matches/:id" element = {<Match user={user}/>} />
         <Route path="/" user={user} element={<LandingPage />} />
         <Route path="/editprofile" element={<EditProfile />} />

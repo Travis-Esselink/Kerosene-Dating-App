@@ -37,6 +37,7 @@ const users = await User.find()
 })
 
 router.put('/seed/:count', async (req,res)=>{
+    const count = Math.min(req.params.count,seedData.length-1)
     try {
         console.log('Dropping User and Post collections')
         await Promise.all([
@@ -46,14 +47,19 @@ router.put('/seed/:count', async (req,res)=>{
     } catch {
         console.log('Collections not found')
     }
-
-    for (let i = 0; i < req.params.count; i++){
-        User.register(    
-            new User(seedData[i]),
-            '1234'
-        )
-    }
     
+    for (let i = 0; i < count; i++){
+        if (seedData[i]) {
+            User.register(
+                new User(seedData[i]),
+                '1234'
+            )
+        }
+    }
+    await User.register(
+        new User(seedData[seedData.length-1]),
+        '1234'
+    )
     res.json('data seeded')
 })
 
@@ -67,7 +73,7 @@ router.put('/seed/:count', async (req,res)=>{
         //profile must fit user preferences, and vice-versa
 router.get('/v1/profiles', async (req,res) => {
     
-    const responseLength = 20
+    const responseLength = 9
 
     const checkAgeCompatibility = (user1,user2) => {
         const user1DOB = new Date(user1.dateOfBirth)
@@ -88,8 +94,8 @@ router.get('/v1/profiles', async (req,res) => {
     }
 
     const checkGenderCompatibility = (user1,user2) => {
-        const check1 = user1.genderPref === user2.gender
-        const check2 = user2.genderPref === user1.gender
+        const check1 = user1.genderPref.includes(user2.gender)
+        const check2 = user2.genderPref.includes(user1.gender)
         return (check1 && check2)
     }
 
@@ -101,6 +107,7 @@ router.get('/v1/profiles', async (req,res) => {
 
     const queue=[]
     const allProfiles = await User.find({_id: {$ne:req.user.id}}) //get all profiles except the loged in users
+    console.log(allProfiles.length,'profs')
     const filteredProfiles = allProfiles.filter((e)=>{
         return (e.displayName) //filter out any incomplete profiles. displayName will be undefined for incomplete profiles
     })
@@ -116,18 +123,23 @@ router.get('/v1/profiles', async (req,res) => {
 
         return queue.length<responseLength
     })
-
+    console.log(queue.length)
     res.json(queue)
 })
 
 
 //get users matches - return matches of user
 router.get('/v1/matches', async (req,res) => {
-     const matchIDs = req.user.matches.map((e)=>{
-        return matchIDs.push(e.match.toString())
-    })
-    const matches = await User.find({_id:matchIDs})
-    res.json(matches)
+
+    if (req.user) {
+        const matchIDs = req.user.matches.map((e)=>{
+            return e.match.toString()
+        })
+        const matches = await User.find({_id:matchIDs})
+        res.json(matches)
+    } else {
+        res.status(404).json({msg:'User logged in'})
+    }
 })
 
 
@@ -207,14 +219,47 @@ router.delete('/v1/profiles/:userID', async (req,res) => {
     //updates the seen array, with the result of the swipe (like = true/false)
     //check for match - named function
     //create match, update user match arrays, create a chatroom - named function
-router.put('/v1/swipe/:swipedUserID', (req,res) => {
-    //expects req.body to contain an object ({liked:Booolean}) depending on which way user swiped
-    //expects id of swiped user 
+router.put('/v1/swipe/:swipedUserID', async (req,res) => {
+    console.log('hit swipe api')
+    console.log(req.body)
+    const user = await User.findById(req.user.id)
+    const swipedUser = await User.findById(req.params.swipedUserID) 
+    const alreadySeen = user.seen.filter((e)=>{
+        return e.user._id.toString()===swipedUser.id
 
-    //update databases
+    }).length > 0
 
-    //sends object of whether it is match or not {match:Boolean}
-    res.json({match:false})
+    if (!alreadySeen) {
+        user.seen.push({user:swipedUser.id, liked:req.body.liked})
+    } else {
+        res.json({user:user,match:false,msg:'User already swiped on this profile'})
+        return
+    }
+
+    
+
+    if (!req.body.liked) {
+        user.save()
+        res.json({match:false})
+        return
+    }
+
+
+    const matched = swipedUser.seen.some((e)=>{
+        const userHasBeenSeen = e.user._id.toString()===user.id
+        const userWasLiked = e.liked
+        return (userHasBeenSeen && userWasLiked)
+        
+    })
+    if (matched) {
+        user.matches.push({match:swipedUser.id,chatRoomID:`${user.id}-${swipedUser.id}`})
+        swipedUser.matches.push({match:user.id,chatRoomID:`${user.id}-${swipedUser.id}`})
+
+        //OPEN CHATROOMS
+    }
+    user.save()
+    swipedUser.save()
+    res.json({profile:swipedUser,match:matched})
 })
 
 

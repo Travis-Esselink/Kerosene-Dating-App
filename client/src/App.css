@@ -1,38 +1,229 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;700&display=swap');
+
+::before, ::after, * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Readex Pro", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ============================== NavHeader ============================== */
+/* Set children elements inside the nav to space-between */
+nav {
+  width: 100%;
+  max-height: 80px;
+  display: flex;
+  justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Set the logo-container size to contain logo image */
+nav .logo-container {
+  max-width: 170px;
+  margin: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Style the logo to fit the logo-container & border-radius */
+nav .logo-container .logo {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Style Login button */
+.login-button {
+  color: #ff0000;
+  background: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 20px;
+  border-radius: 20px;
+  border: none;
+  margin: 20px 20px;
+}
+
+/* Login button when hover */
+.login-button:hover {
+  color: #ffffff;
+  background: #ff6e40;
+}
+
+/* ============================== LandingPage ============================== */
+/* - Set width & height to 100vw/vh so it takes up the whole viewport */
+/* - Set position:fixed so unable to scroll */
+/* - Set linear gradient from right-bottom to left-top; from black to orange */
+/* - Set background image to cover the whole viewport, no-repeat & be center */
+.landingpage {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(to left top, rgb(0, 0, 0, 0.2), rgba(179, 84, 30, 0.6)), 
+    url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Set the content to be center, justify-center wont center so use vh for margin instead */
+.landingpage-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30vh;
+}
+
+/* Find the Right One, Right Here, Right Now */
+h1 {
+  font-size: 4vw;
+  color:#ffffff;
+  text-align: center;
+}
+
+/* Style CreateAcc button */
+.createAcc-button {
+  color: #ffffff;
+  background: linear-gradient(45deg, #ff0000, #ff6e40);
+  font-size: 20px;
+  padding: 5px 50px;
+  border-radius: 30px;
+  border: none;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 250px;
+}
+
+/* Style CreateAcc button when hover */
+.createAcc-button:hover {
+  color: #ffffff;
+  background: linear-gradient(30deg, #ff6e40, #ff0000);
+}
+
+/* ============================== CreateAccount compo ============================== */
+/* Logo for downloading apps */
+.logo-container {
+  max-width: 250px;
+  margin: 15px;
+}
+
+.logo-container .logo {
+  width: 100%;
+}
+
+/* ---------- Dashboard Sample ----------  */
+.dashboard {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center; 
 }
 
-.App-link {
-  color: #61dafb;
+.swipe {
+  position: absolute;
+  height:300px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card-container {
+  width: 90vw;
+  max-width: 260px;
+  min-height: 500px;
+  margin:0 auto;
+}
+
+#profile-header {
+  color:black
+}
+
+.card {
+  position: relative;
+  background-color: #fff;
+  width: 80vw;
+  max-width: 260px;
+  min-height: 500px;
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.30);
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+.cardContent {
+  width: 100%;
+  height: 100%;
+}
+
+
+.card h3 {
+  position: absolute;
+  bottom: 0;
+  margin: 10px;
+  color: #fff;
+}
+
+.infoText {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  color: #ff0000;
+  animation-name: popup;
+  animation-duration: 800ms;
+}
+
+.dashboard .swipe-direction {
+  position: absolute;
+  top: 40%;
+  padding: 20px;
+}
+
+.base-nav {
+  position: absolute;
+  bottom:0;
+  background-color:rgba(226, 213, 213, 0.87);
+  display:flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
+  padding:5px;
+
+}
+
+.base-nav img {
+  padding: 0 13px;
+}
+
+.base-nav .selected {
+  background-color: rgb(224, 167, 167);
+  border-radius:30%;
+}
+
+
+
+
+.match-gallery {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  justify-content: flex-start;
+}
+
+.match-thumb {
+  border-radius: 50%;
+  max-height:60px;
+  margin: 5px 15px;
+}
+
+.match-thumb-name {
+  text-align: center;
+}
+
+/* ============================== Edit User Profile compo ============================== */
+hr {
+  margin: 10px;
+}
+.profile-form {
+  margin: 30px;
+}
+
+.profile-form h2 {
+  font-weight: 600;
+  color: #ff0000;
+  /* background: -webkit-linear-gradient(#ff6e40, #ff0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
 }

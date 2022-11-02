@@ -41,8 +41,8 @@ const Login = (props) => {
             setError(data) // {msg: 'Incorrect username or password'}
         } else if (res.status === 200) {
             setError(null)
-            // props.setUser(data) // { id, username }
-            // navigate('/v1/profiles')
+            props.setUser(data)
+            navigate('/home/main')
             console.log("Test Logged In!");
         }
         setFields(initialState)
@@ -81,9 +81,8 @@ const Login = (props) => {
                     onChange={handleChange}
                     value={fields.password}
                     placeholder="Password" />
+                {error && <Form.Text className="text-muted">{error.msg}</Form.Text>}
                 </Form.Group>
-
-                {error && <p>{error.msg}</p>}
 
                 <ThemeProvider prefixes={{ btn: 'createAcc-button'}}>
                 <Button type="submit">

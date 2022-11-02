@@ -8,23 +8,23 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import NavHeader from "./NavHeader"
 
-const newUser1 = {
-    displayName: "",
-    dateOfBirth: "",
-    gender:"",
-}
+// const newUser1 = {
+//     displayName: "",
+//     dateOfBirth: "",
+//     gender:"",
+// }
 
-const oldUser = {
-    displayName: "old User",
-    dateOfBirth: "2002-01-30",
-    gender:"M",
-    ageRange: "8"
-}
+// const oldUser = {
+//     displayName: "old User",
+//     dateOfBirth: "2002-01-30",
+//     gender:"M",
+//     ageRange: "8"
+// }
 
-const EditProfile = () => {
+const EditProfile = ({user}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
     const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
-    const [userData, setUserData] = useState({...oldUser})
+    const [userData, setUserData] = useState({...user}) // get from App.js
 
     // isSignUp = true, initial fields = {key: value-blank} - user.displayName = ""
     // isSignUp = false, initial fields = {user.key: user.value} - user.displayName = "test"

@@ -51,10 +51,9 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/home/:tab" element = {<Home user={user}/>}/>
         <Route path="/home/matches/:id" element = {<Match user={user}/>} />
-        <Route path="/" user={user} element={<LandingPage />} />
-        <Route path="/editprofile" element={<EditProfile />} />
+        <Route path="/" element={<LandingPage user={user} />} />
+        <Route path="/editprofile" element={<EditProfile user={user} />} />
         <Route path="/home" element = {<Home user={user}/>}/>
-
 
       </Routes>
     </div>

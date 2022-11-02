@@ -5,6 +5,7 @@ import './App.css';
 import LandingPage from './components/LandingPage';
 import Swipe from "./components/Swipe"
 import Home from "./components/Home"
+import Match from "./components/Match"
 
 // Structure of Components:
 // - LandingPage:
@@ -45,8 +46,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        {/* <Route path="/TestSwipe" element={<Simple />} /> */}
-        <Route path="/home" element = {<Home user={user}/>}/>
+        <Route path="/home/:tab" element = {<Home user={user}/>}/>
+
+      
+        <Route path="/home/matches/:id" element = {<Match />} />
       </Routes>
     </div>
   );

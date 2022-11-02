@@ -65,7 +65,7 @@ const CreateAccount = ({show, onHide, setUser }) => {
                 console.log(data + "Test Fails Registered");
             } else if (res.status === 200) {
                 setErrorRegister(null)
-                // props.setUser(data) // the user's obj
+                setUser(data) // the user's obj
                 navigate('/editprofile')
                 console.log("Test Registered!");
             }

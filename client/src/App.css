@@ -252,3 +252,20 @@ hr {
   color: #ffffff;
   background: #4644442e;
 }
+
+/* ============================== Loading Page compo ============================== */
+.loading-page {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(to left top, #ff0000, #ff6e40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-page h3 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-style: italic;
+}

@@ -9,12 +9,15 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavHeader from "./NavHeader"
 import { useNavigate } from 'react-router-dom';
 
-const EditProfile = ({user, isSignUp}) => {
+const EditProfile = ({user, setUser, isSignUp}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
     const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
     const [userData, setUserData] = useState({...user}) // get from App.js
 
     const navigate = useNavigate()
+    
+    console.log(user); // the user obj
+    console.log(userData); // {} - empty obj
 
     // Handling number of images uploaded
     const handleSelect = (event) => {
@@ -43,12 +46,13 @@ const EditProfile = ({user, isSignUp}) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         const formData = new FormData(event.target)
-        const res = await fetch (`/v1/profiles/${userData.id}`, {
+        const res = await fetch (`/v1/profiles/${user._id}`, {
             method: "PUT",
             body: formData
         })
         const data = await res.json()
-        setUserData(data)
+        console.log(data)
+        setUser(data)
         navigate('/home/main')
     }
 

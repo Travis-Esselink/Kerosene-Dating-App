@@ -148,6 +148,7 @@ router.get('/v1/profiles/:matchedUserID', async (req,res) => {
     //expects a user id of the matched user to dispaly
     //returns profile of user
     const user = await User.findById(req.params.matchedUserID)
+    console.log(user)
     res.json(user)
 })
 

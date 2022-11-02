@@ -12,14 +12,16 @@ import CreateAccount from "./CreateAccount"
 
 const LandingPage = ({user}) => {
     const [modalShow, setModalShow] = React.useState(false);
+    const [isSignUp, setIsSignUp] = useState(true) // might need to lift
 
     const handleClick = () => {
         setModalShow(true)
+        setIsSignUp(true)
     }
 
     return (
         <div className="landingpage">
-            <NavHeader user={user} />
+            <NavHeader user={user} setIsSignUp={setIsSignUp} />
 
             <div className="landingpage-content">
                 <h1>Find The Right One, Right Here, Right Now</h1>

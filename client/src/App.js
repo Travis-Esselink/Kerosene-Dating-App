@@ -8,7 +8,7 @@ import EditProfile from "./components/EditProfile"
 
 // Structure of Components:
 // - LandingPage:
-//  1. Header
+//  1. NavHeader
 //  2. Login Modal
 //  3. CreateAccount Modal
 

@@ -1,5 +1,5 @@
-// Edit Route -> '/v1/profiles/:userID'
-// upload.fields([{name:'images'},{name:'coverImage'}])
+// confirm whether onChange is needed for this?
+
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -47,7 +47,7 @@ const EditProfile = () => {
                     </Form.Label>
                     <br />
                         <Form.Check
-                        inline type="radio" label="Male" id="male"
+                        inline type="radio" label="Male" id="male" className="gender-radio"
                         name="gender"
                         value="M" // fields.gender = "M" 
                          // onChange={handleChange}
@@ -64,7 +64,7 @@ const EditProfile = () => {
                     <fieldset>
                     <Form.Group className="mb-3">
                     <Form.Label as="legend" column sm={4}>
-                        Preferred Gender
+                    Interested in
                     </Form.Label>
                     <br />
                         <Form.Check
@@ -79,8 +79,27 @@ const EditProfile = () => {
                         value="F" // fields.gender = "F" 
                          // onChange={handleChange}
                         />
+                        <Form.Check
+                        inline type="radio" label="Everyone" id="everyone"
+                        name="gender"
+                        value="F" // fields.gender = "F" 
+                         // onChange={handleChange}
+                        />
                     </Form.Group>
                     </fieldset>
+
+                    <Form.Group className="mb-3">
+                    <Form.Label as="legend" column sm={4}>
+                        Maximum Age Difference
+                    </Form.Label>
+                    <br />
+                    <Form.Control
+                        type="number" min="0"
+                        name="ageRange" 
+                        // value={fields.dateOfBirth}
+                        // onChange={handleChange}
+                        />
+                    </Form.Group>
 
                     <Form.Group className="mb-3" controlId="bio">
                     <Form.Label>About Me:</Form.Label>
@@ -132,21 +151,8 @@ const EditProfile = () => {
 export default EditProfile
 
 // make the arrow disappear for number selector
-// .onboarding form input::-webkit-outer-spin-button,
-// .onboarding form input::-webkit-inner-spin-button {
-//     -webkit-appearance: none;
-//     margin: 0;
-// }
-
-// This make the radio button disappear
-// .onboarding form .multiple-input-container label {
-//     padding: 10px;
-//     border: solid 2px rgb(144, 144, 144);
-//     border-radius: 10px;
-//     transition: all 0.3s;
-//     margin-right: 10px;
-// }
-
-// .onboarding form input[type=radio] {
-//     display: none;
+// .age-range::-webkit-outer-spin-button,
+// .age-range::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
 // }

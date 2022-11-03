@@ -12,6 +12,7 @@ const LandingPage = ({user, setUser}) => {
     const handleClick = () => {
         setModalShow(true)
     }
+
     return (
         <div className="landingpage">
             <NavHeader setUser={setUser} user={user} />

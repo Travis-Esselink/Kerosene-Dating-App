@@ -6,12 +6,11 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavHeader from "./NavHeader"
 import CreateAccount from "./CreateAccount"
 
-const LandingPage = ({user, setUser, setIsSignUp}) => {
+const LandingPage = ({user, setUser}) => {
     const [modalShow, setModalShow] = React.useState(false);
 
     const handleClick = () => {
         setModalShow(true)
-        setIsSignUp(true)
     }
     console.log(user,'user')
     return (

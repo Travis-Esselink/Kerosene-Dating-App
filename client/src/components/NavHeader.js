@@ -12,14 +12,13 @@ const NavHeader = ({user, setUser, setIsSignUp}) => {
 
     const handleClick = () => {
         setModalShow(true)
-        setIsSignUp(false)
     }
 
     return (
         <>
         <nav>
             <div className="logo-container">
-                <Link to="/"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
+                <Link to="/home/main"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
 
             <ThemeProvider prefixes={{ btn: 'login-button' }}>

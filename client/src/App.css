@@ -230,7 +230,12 @@ h1 {
   all: unset;
 }
 
+/* ========================= Match and Match gallery ========================== */
 
+.matches-container {
+  height:100vh;
+  /* overflow-y:hidden; */
+}
 
 .match-gallery {
   display: flex;
@@ -299,10 +304,10 @@ h1 {
 
 .message-gallery {
   padding-top: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
+  /* overflow-y:auto; */
   max-width: 650px;
   margin: 0 auto;
-  height: 100vh;
   background: white;
 }
 

@@ -8,7 +8,7 @@ import NavConsistent from './NavConsistent';
 
 
 
-const Matches = ({user}) => {
+const Matches = ({user, setUser}) => {
 
     const [notMessagedMatches,setNotMessagedMatches] = useState([])
     const [messagedMatches,setMessagedMatches] = useState ([])
@@ -35,10 +35,11 @@ const Matches = ({user}) => {
                         onValue(fetchChat, (snapshot) => {
                             if (snapshot.exists()) {
                                 const messages = snapshot.val()
-                                console.log(messages,'messages')
                                 const keys = Object.keys(messages)
                                 const latestMessageTime = Math.max(...keys)
                                 const latestMessage = messages[latestMessageTime]
+
+                                latestMessage.time = latestMessageTime
                                 match.latestMessage = latestMessage
                                 messaged.push(match)
                             } else {
@@ -47,7 +48,13 @@ const Matches = ({user}) => {
                         })
                     })
                 }
-                console.log('setting matches')
+
+
+                messaged.sort((a,b)=>{
+                    console.log(a.latestMessage.time)
+                    return a.latestMessage.time>b.latestMessage.time ? -1:1
+                })
+
                 setNotMessagedMatches(notMessaged)
                 setMessagedMatches(messaged)
             }
@@ -56,8 +63,9 @@ const Matches = ({user}) => {
     },[user])
 
     return (
-        <>
-        <NavConsistent className="nav-consistent"/>
+
+        <div className="matches-contianer">
+        <NavConsistent setUser={setUser} className="nav-consistent"/>
             <div className="match-gallery">
 
                 <div className="match-gallery-inner">
@@ -90,8 +98,8 @@ const Matches = ({user}) => {
                 )}
             </div>
             <HomeNav display={'matches'}/>
-
-        </>
+        </div>
+       
     )
 }
 

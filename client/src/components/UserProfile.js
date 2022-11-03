@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-// import Button from 'react-bootstrap/Button';
-// import Card from 'react-bootstrap/Card';
+import { useParams, Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 // import Carousel from 'react-bootstrap/Carousel';
 
 import MatchNav from "./MatchNav"
@@ -28,7 +28,22 @@ const UserProfile = ({user}) => {
         <>
         <MatchNav />
         { !userData ? <Loading /> : (
-            <p>Testing first</p>
+            <>
+            <div className="userprofile-container">
+                <img className="userprofice-pic" src={userData.coverImage} alt={userData.username} />
+            </div>
+            <div className="userprofile-content">
+                <h5>{userData.displayName}</h5>
+                <ul>
+                    <li>Preferred Name: {userData.displayName}</li>
+                    <li>Date of Birth{userData.dateOfBirth}</li>
+                    <li>Gender: {userData.gender}</li>
+                    <li>Interested In: {userData.genderPref}</li>
+                    <li>About Me: {userData.bio}</li>
+                </ul>
+                <Link to={`/editprofile`}>Edit Profile</Link>
+            </div>
+            </>
         )}
         </>
     )

@@ -198,7 +198,7 @@ h1 {
 
 .selected {
   background-color: rgb(255, 205, 205);
-  opacity: 80%;
+  opacity: 50%;
   border-radius: 30%;
 }
 

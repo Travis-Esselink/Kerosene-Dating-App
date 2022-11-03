@@ -6,11 +6,13 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavMatch from "./NavMatch"
 import Loading from "./Loading"
 import ProfileCard from "./ProfileCard"
+import NavConsistent from './NavConsistent';
 
-const UserProfile = ({user}) => {
+const UserProfile = ({user, setUser}) => {
+
     return (
         <> 
-        <NavMatch />
+        <NavConsistent setUser={setUser} />
         { !user ? <Loading /> : (
             <>
             <ProfileCard userProfile={user} />
@@ -19,9 +21,8 @@ const UserProfile = ({user}) => {
                 <ThemeProvider prefixes={{ btn: 'editprofile-button' }}>
                     <Button variant="editprofile-button"><Link to={`/editprofile`}>Edit Profile</Link></Button>
                 </ThemeProvider>
-                <ThemeProvider prefixes={{ btn: 'delete-button' }}>
-                    <Button variant="danger">Delete Profile</Button>
-                </ThemeProvider>
+
+                
             </div>
             </>
         )}

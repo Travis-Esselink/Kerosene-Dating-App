@@ -63,7 +63,7 @@ function App() {
         <Route path="/profile/edit" element={<EditProfile user={user} setUser={setUser} />} />
         <Route path="/home" element = {<Home user={user}/>}/>
 
-        <Route path="/profile" element = {<UserProfile user={user}/>} />
+        <Route path="/profile" element = {<UserProfile user={user} setUser={setUser} />} />
         <Route path="/loading" element = {<Loading />} />
 
 

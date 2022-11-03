@@ -44,7 +44,7 @@ const Chat = ({user,roomID}) => {
                 </ul>
 
                 <form id="message-form" onSubmit={handleSubmit}>
-                    <input id="message-input" type="text" value={field} onChange={handleChange} />
+                    <input id="message-input" type="text" autocomplete="off" value={field} onChange={handleChange} />
                     <input id="message-btn" type="submit" value="Send" />
                 </form>
             </div>

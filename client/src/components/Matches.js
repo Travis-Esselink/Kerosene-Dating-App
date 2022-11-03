@@ -58,20 +58,33 @@ const Matches = ({user}) => {
         <>
             <div className="match-gallery">
 
-                {notMessagedMatches.map((match)=>
-                <Link to={`/home/matches/${match._id}`} key={`${match._id}linkm`}>
+                <div className="match-gallery-inner">
+                {notMessagedMatches.map((match) =>
+                    <Link className="match-thumb-link" to={`/home/matches/${match._id}`}>
+                        <div className="match-thumb-container">
+                            <MatchThumb profile={match} key={`${match._id}thumb`} />
+                            <p className='match-thumb-name'>{match.displayName}</p>
+                            
+                        </div>
+                    </Link>
 
-                    <MatchThumb profile={match} key={`${match._id}thumb`}/> 
-                </Link>
                 )}
+                </div>
             </div>
             <div className="message-gallery">
-                {messagedMatches.map((match)=>
-                <Link to={`/home/matches/${match._id}`} key={`${match._id}linkn`}>
-                        
-                    <MatchThumb profile={match} key={`${match._id}messaged`}/> 
-                    <span>{match.latestMessage.message}</span>
-                </Link>
+
+                <h3 className="message-gallery-title">MESSAGES</h3>
+                {messagedMatches.map((match) =>
+                    <Link className="match-thumb-link" to={`/home/matches/${match._id}`}>
+                        <div className="message-thumb-container">
+                            <MatchThumb profile={match} key={`${match._id}messaged`} />
+                            <div className="name-message-div">
+                                <p className='message-thumb-name' >{match.displayName}</p>
+                                <span className="match-thumb-message">{match.latestMessage.message}</span>
+                            </div>
+                        </div>
+                    </Link>
+
                 )}
             </div>
             <HomeNav display={'matches'}/>

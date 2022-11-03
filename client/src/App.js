@@ -43,19 +43,20 @@ function App() {
   
   useEffect( () => {
 
-      
-    
-
     const getUser = async () => {
         const res = await fetch('/loggedin-user')
         const user = await res.json()
-        
+        if (res.status === 200) {
         setUser(user)
+      } else {
+        setUser(null)
       }
+    }
       getUser()
   },[])
 
   console.log(user?.displayName,'user in app')
+
   return (
     <div className="App">
       <Routes>

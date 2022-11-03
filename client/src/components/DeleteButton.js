@@ -9,8 +9,8 @@ const DeleteButton = ({user, setUser}) => {
     const navigate = useNavigate()
 
     const handleClick = async () => {
-        const res = await fetch(`/v1/profiles/${user._id}`, {
-            method: "DELETE"
+        const res = await fetch(`/v1/profiles/${user._id.toString()}`, {
+            method: "DELETE",
         })
         const data = await res.json()
         console.log(data)

@@ -8,20 +8,20 @@ import Loading from "./Loading"
 import ProfileCard from "./ProfileCard"
 
 const UserProfile = ({user, setUser}) => {
+
     return (
         <> 
-        <NavConsistent setUser={setUser}/>
+        <NavConsistent setUser={setUser} />
         { !user ? <Loading /> : (
             <>
             <ProfileCard userProfile={user} />
             
             <div className="profilebuttons-container">
                 <ThemeProvider prefixes={{ btn: 'editprofile-button' }}>
-                    <Button variant="editprofile-button"><Link to={`/editprofile`}>Edit Profile</Link></Button>
+                    <Button variant="editprofile-button"><Link to={`/profile/edit`}>Edit Profile</Link></Button>
                 </ThemeProvider>
-                <ThemeProvider prefixes={{ btn: 'delete-button' }}>
-                    <Button variant="danger">Delete Profile</Button>
-                </ThemeProvider>
+
+                
             </div>
             </>
         )}

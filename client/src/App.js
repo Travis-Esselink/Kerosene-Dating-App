@@ -40,7 +40,6 @@ import Loading from "./components/Loading"
 
 function App() {
   const [user,setUser] = useState(null)
-  const [isSignUp, setIsSignUp] = useState(true)
   
   useEffect( () => {
 
@@ -60,7 +59,6 @@ function App() {
   return (
     <div className="App">
       <Routes>
-
 
         <Route path="/" element={<LandingPage user={user} setUser={setUser} />} />
         

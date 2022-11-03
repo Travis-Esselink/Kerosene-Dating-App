@@ -5,9 +5,8 @@ import Button from 'react-bootstrap/Button';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import Login from "./Login"
-import LogoutButton from "./LogoutButton";
 
-const NavHeader = ({user, setUser, setIsSignUp}) => {
+const NavHeader = ({user, setUser}) => {
     const [modalShow, setModalShow] = useState(false);
 
     const handleClick = () => {
@@ -21,10 +20,11 @@ const NavHeader = ({user, setUser, setIsSignUp}) => {
                 <Link to="/home/main"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
 
-            <ThemeProvider prefixes={{ btn: 'login-button' }}>
-            <Button onClick={handleClick}>Login</Button>
-            </ThemeProvider>
-            <LogoutButton setUser={setUser} />
+            { user &&
+                <ThemeProvider prefixes={{ btn: 'login-button' }}>
+                <Button onClick={handleClick}>Login</Button>
+                </ThemeProvider>
+            }
 
         </nav>
         <Login setUser={setUser} show={modalShow} onHide={() => setModalShow(false)} />

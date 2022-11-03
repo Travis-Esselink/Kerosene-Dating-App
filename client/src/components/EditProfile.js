@@ -7,27 +7,21 @@ import Row from 'react-bootstrap/Row';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import NavHeader from "./NavHeader"
+import { useNavigate } from 'react-router-dom';
 
-const newUser1 = {
-    displayName: "",
-    dateOfBirth: "",
-    gender:"",
+const formatDate = (dateStr) => {
+    return new Date(dateStr).toISOString().substring(0,10)
 }
 
-const oldUser = {
-    displayName: "old User",
-    dateOfBirth: "2002-01-30",
-    gender:"M",
-    ageRange: "8"
-}
-
-const EditProfile = () => {
+const EditProfile = ({user, setUser}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
     const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
-    const [userData, setUserData] = useState({...oldUser})
+    const [userData, setUserData] = useState({...user}) // get from App.js
 
-    // isSignUp = true, initial fields = {key: value-blank} - user.displayName = ""
-    // isSignUp = false, initial fields = {user.key: user.value} - user.displayName = "test"
+    const navigate = useNavigate()
+    
+    console.log(user); // the user obj
+    console.log(userData); // {} - empty obj
 
     // Handling number of images uploaded
     const handleSelect = (event) => {
@@ -39,20 +33,31 @@ const EditProfile = () => {
         }
     }
 
-    const handleAgeRangeChange = (event) => {
-        if (event.target.value < 0) {
+    const handleChange = (event) => {
+        const {name, value} = event.target
+        // handling ageRange validation
+        if (name === "ageRange" && value < 0) {
             setErrorAgeRange(true)
         } else {
             setErrorAgeRange(false)
         }
-    }
-
-    const handleChange = (event) => {
-        const {name, value} = event.target
         setUserData({
             ...userData,
             [name]: value
         })
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        const formData = new FormData(event.target)
+        const res = await fetch (`/v1/profiles/${user._id}`, {
+            method: "PUT",
+            body: formData
+        })
+        const data = await res.json()
+        console.log(data)
+        setUser(data)
+        navigate('/home/main')
     }
 
     return (
@@ -60,9 +65,9 @@ const EditProfile = () => {
         <NavHeader />
         <hr />
         <div className="profile-form">
-        <h2>Create an Account Or Edit Profile</h2>
+        <h2>{user.displayName ? "Edit Profile" : "Create an Account" }</h2>
         <br />
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Row>
                 <Col> {/* xs={7} */}
                     <Form.Group className="mb-3" controlId="displayName">
@@ -80,7 +85,7 @@ const EditProfile = () => {
                     <Form.Control 
                         type="date" required
                         name="dateOfBirth" 
-                        value={userData.dateOfBirth}
+                        value={formatDate(userData.dateOfBirth)}
                         onChange={handleChange}
                         />
                     </Form.Group>
@@ -118,16 +123,22 @@ const EditProfile = () => {
                         inline type="radio" label="Male" id="male"
                         name="genderPref"
                         value="M"
+                        checked={userData.genderPref === "M" ? true : false}
+                        onChange={handleChange}
                         />
                         <Form.Check
                         inline type="radio" label="Female" id="female"
                         name="genderPref"
                         value="F"
+                        checked={userData.genderPref === "F" ? true : false}
+                        onChange={handleChange}
                         />
                         <Form.Check
                         inline type="radio" label="Everyone" id="everyone"
                         name="genderPref"
                         value="FM"
+                        checked={userData.genderPref === "FM" ? true : false}
+                        onChange={handleChange}
                         />
                     </Form.Group>
                     </fieldset>
@@ -151,6 +162,8 @@ const EditProfile = () => {
                     <Form.Control 
                         as="textarea" rows={3} placeholder="Tell about yourself"
                         name="bio"
+                        value={userData.bio}
+                        onChange={handleChange}
                     />
                     </Form.Group>
                 </Col>
@@ -184,7 +197,6 @@ const EditProfile = () => {
                 <Button 
                 type="submit"
                 disabled={errorImages} 
-                //{errorImages && "disabled"}
                 >
                     Submit
                 </Button>
@@ -197,12 +209,3 @@ const EditProfile = () => {
 }
 
 export default EditProfile
-
-// make the arrow disappear for number selector
-// .age-range::-webkit-outer-spin-button,
-// .age-range::-webkit-inner-spin-button {
-//   -webkit-appearance: none;
-//   margin: 0;
-// }
-
-// Edit Profile

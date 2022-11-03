@@ -10,8 +10,13 @@ import EditProfile from "./components/EditProfile"
 import Swipe from "./components/Swipe"
 import Home from "./components/Home"
 import Match from "./components/Match"
+
 import Matches from "./components/Matches"
 
+
+
+import UserProfile from "./components/UserProfile"
+import Loading from "./components/Loading"
 
 
 // Structure of Components:
@@ -35,6 +40,8 @@ import Matches from "./components/Matches"
 
 function App() {
   const [user,setUser] = useState()
+  console.log(user)
+  const [isSignUp, setIsSignUp] = useState(true)
   
   useEffect( () => {
 
@@ -55,9 +62,12 @@ function App() {
         <Route path="/home/main" element = {<Home user={user}/>}/>
         <Route path="/home/matches" element = {<Matches user={user} />}/>
         <Route path="/home/matches/:id" element = {<Match user={user}/>} />
-        <Route path="/" user={user} element={<LandingPage />} />
-        <Route path="/editprofile" element={<EditProfile />} />
+        <Route path="/" element={<LandingPage user={user} setUser={setUser} setIsSignUp={setIsSignUp} />} />
+        <Route path="/editprofile" element={<EditProfile user={user} setUser={setUser} />} />
         <Route path="/home" element = {<Home user={user}/>}/>
+
+        <Route path="/profile/:id" element = {<UserProfile user={user}/>} />
+        <Route path="/loading" element = {<Loading />} />
 
 
       </Routes>

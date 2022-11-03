@@ -2,8 +2,6 @@
 // If registered successfully:
 // render accountSetup page
 // Need to pass setUser here?
-// show existed username error first before password not matched.
-// if password not matched, retain the fields.username
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +14,7 @@ import DownloadAppLogo from "../images/app-store.png"
 
 const initialState = { username: '', password: '', confirmPassword: '' }
 
-const CreateAccount = (props) => {
+const CreateAccount = ({show, onHide, setUser }) => {
     const [fields, setFields] = useState(initialState) // only for this compo
     const [errorPassword, setErrorPassword] = useState(null) // only for this compo
     const [errorRegister, setErrorRegister] = useState(null) // only for this compo
@@ -67,8 +65,8 @@ const CreateAccount = (props) => {
                 console.log(data + "Test Fails Registered");
             } else if (res.status === 200) {
                 setErrorRegister(null)
-                // props.setUser(data) // the user's obj
-                // navigate('/v1/profiles/${data.id}')
+                setUser(data) // the user's obj
+                navigate('/editprofile')
                 console.log("Test Registered!");
             }
             setFields(initialState)
@@ -77,7 +75,8 @@ const CreateAccount = (props) => {
 
     return (
         <Modal
-            {...props}
+            show={show}
+            onHide={onHide}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
@@ -122,10 +121,8 @@ const CreateAccount = (props) => {
                         onChange={handleChange}
                         value={fields.confirmPassword}
                         placeholder="Confirm Password" />
+                    {errorPassword && <Form.Text className="text-muted">{errorPassword}</Form.Text>}
                     </Form.Group>
-                    
-                    {errorPassword && <p>{errorPassword}</p>}
-                   
                     
                     <ThemeProvider prefixes={{ btn: 'createAcc-button'}}>
                     <Button type="submit">

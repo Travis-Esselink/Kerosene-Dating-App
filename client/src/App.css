@@ -239,6 +239,7 @@ h1 {
 .match-content img {
   max-width:100%;
 }
+
 /* ============================== Edit User Profile compo ============================== */
 hr {
   margin: 10px;
@@ -259,3 +260,37 @@ hr {
   color: #ffffff;
   background: #4644442e;
 }
+
+/* ============================== Loading Page compo ============================== */
+.loading-page {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(to left top, #ff0000, #ff6e40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-page h3 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-style: italic;
+}
+
+/* ============================== User Profile compo ============================== */
+.userprofile-container {
+  max-width: 100vw;
+  margin: 25px 0;
+}
+  
+.userprofile-pic {
+  width: 100vw;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.userprofile-content ul li {
+  list-style: default;
+}
+

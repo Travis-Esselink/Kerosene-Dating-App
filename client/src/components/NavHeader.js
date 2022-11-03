@@ -5,14 +5,10 @@ import Button from 'react-bootstrap/Button';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import Login from "./Login"
+import LogoutButton from "./LogoutButton";
 
-const NavHeader = ({user, setIsSignUp}) => {
+const NavHeader = ({user, setUser, setIsSignUp}) => {
     const [modalShow, setModalShow] = useState(false);
-    // const [user, setUser] = useState(initialUser); // TO DE DELETED!!! **
-    // if there is a loggedin User, login button disappear.
-    // If user is loggedin , then no need to see the login button. 
-    // If no user log in (user = false), show login button
-    // **ACTUALLY, need to pass in the user as props to NavHeader so i dont need to setup the state here.
 
     const handleClick = () => {
         setModalShow(true)
@@ -26,13 +22,13 @@ const NavHeader = ({user, setIsSignUp}) => {
                 <Link to="/home"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
 
-            { !user && 
-            <ThemeProvider prefixes={{ btn: 'login-button'}}>
-                    <Button onClick={handleClick}>Login</Button>
+            <ThemeProvider prefixes={{ btn: 'login-button' }}>
+            <Button onClick={handleClick}>Login</Button>
             </ThemeProvider>
-            }
+            <LogoutButton setUser={setUser} />
+
         </nav>
-        <Login show={modalShow} onHide={() => setModalShow(false)} />
+        <Login setUser={setUser} show={modalShow} onHide={() => setModalShow(false)} />
         </>
     )
 }

@@ -173,7 +173,7 @@ h1 {
   padding: 20px;
 }
 
-.nav {
+.navBar {
   position: fixed;
   background: linear-gradient(45deg, #ffcaca, #ff6e40);
   display: flex;
@@ -192,6 +192,16 @@ h1 {
 .top {
   top: 0;
   box-shadow: 0 8px 10px -10px rgba(82, 4, 4, 0.5);
+}
+
+.space-between {
+  display:flex;
+  justify-content: space-between;
+}
+
+.space-evenly {
+  display:flex;
+  justify-content:space-evenly;
 }
 
 .base-nav img {

@@ -2,7 +2,7 @@ import {useState} from "react"
 import TinderCard from "react-tinder-card"
 
 
-const Swipe = ({queue, updateQueue, handleMatch}) => {
+const Swipe = ({queue, updateQueue, handleMatch, user}) => {
     
     const leftScreen = async (direction,id) => {
       if (direction === 'left' || direction === 'right') {
@@ -23,6 +23,7 @@ const Swipe = ({queue, updateQueue, handleMatch}) => {
 
         if (swipeResult.match) {
           console.log('Match!')
+          user.matches.push(swipeResult.match)
           //update state of showMatch by calling handleMatch
           //create a modal, on modal close -> set showMatch to false 
           //push match to users match array

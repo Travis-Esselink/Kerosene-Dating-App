@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 // import Carousel from 'react-bootstrap/Carousel';
 
-import MatchNav from "./MatchNav"
+import NavMatch from "./NavMatch"
 import Loading from "./Loading"
 
 const UserProfile = ({user}) => {
@@ -26,7 +26,7 @@ const UserProfile = ({user}) => {
 
     return (
         <>
-        <MatchNav />
+        <NavMatch />
         { !userData ? <Loading /> : (
             <>
             <div className="userprofile-container">

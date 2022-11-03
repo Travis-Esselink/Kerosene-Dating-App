@@ -10,9 +10,8 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavHeader from "./NavHeader"
 import CreateAccount from "./CreateAccount"
 
-const LandingPage = ({user}) => {
+const LandingPage = ({user, setUser, setIsSignUp}) => {
     const [modalShow, setModalShow] = React.useState(false);
-    const [isSignUp, setIsSignUp] = useState(true) // might need to lift
 
     const handleClick = () => {
         setModalShow(true)
@@ -30,7 +29,7 @@ const LandingPage = ({user}) => {
                 </ThemeProvider>
             </div>
 
-            <CreateAccount show={modalShow} onHide={() => setModalShow(false)} />
+            <CreateAccount setUser={setUser} show={modalShow} onHide={() => setModalShow(false)} />
         </div>
     )
 }

@@ -1,13 +1,16 @@
 import { ref, onValue } from "firebase/database";
 import { db } from './lib/FirebaseDatabase'
 import { useState,useEffect } from 'react'
-// import Modal from 'react-bootstrap/Modal';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import BrandLogo from "../images/two-hearts-48.png"
 import Swipe from "./Swipe"
 import HomeNav from "./HomeNav"
 import Matches from "./Matches"
 import { useParams } from 'react-router-dom'
+
+import NavHeader from "./NavHeader"
 
 const Home = ({user}) => {
 
@@ -90,6 +93,7 @@ const Home = ({user}) => {
 
     return (
         <>
+        <NavHeader />
             {display==='main' ? 
                 <Swipe queue={queue} setQueue={setQueue} updateQueue={updateQueue} user={user} handleMatch={handleMatch}/> : 
                 <Matches notMessagedMatches={notMessagedMatches} messagedMatches={messagedMatches}/>

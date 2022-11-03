@@ -39,7 +39,7 @@ router.post('/logout', (req, res) => {
 })
 
 
-router.get('/loggedin-user', async (req,res) => {
+router.get('/loggedin-user', (req,res) => {
   if (req.user) {
     console.log('sending user')
     res.json(req.user)
@@ -72,7 +72,6 @@ router.post('/register', async (req,res)=>{
 
 router.get("/v1/checkUsername/:username", async (req ,res) => {
   const existedUser = await User.find({username: req.params.username})
-  console.log(existedUser);
   if (existedUser.length > 0) {
     res.json({
       message: "The username is already registered",

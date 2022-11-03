@@ -57,7 +57,16 @@ router.post('/register', async (req,res)=>{
   try {
       if (password === confirmPassword) { 
         const user = await User.register(    
-            new User({username:username}),
+            new User({
+              username:username,
+              displayName:'',
+              dateOfBirth:'',
+              gender:'',
+              genderPref:'',
+              bio:'',
+              coverImage:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
+              
+            }),
             password
         )
 

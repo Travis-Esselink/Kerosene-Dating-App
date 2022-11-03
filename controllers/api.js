@@ -192,7 +192,7 @@ router.put('/v1/profiles/:userID', upload.fields([{name:'images'},{name:'coverIm
 router.put('/v1/remove-image/:imageID', async (req,res) => {
     //expects the cloudinary image name, eg "wt0sd4gcjcjsr4xyxydg.jpg"
     let user = await User.findById(req.user.id)
-
+    console.log(user.images)
     const newImages = [...user.images].filter((image)=>{
         const id = image.slice(image.lastIndexOf('/')+1)
         return id !== req.params.imageID

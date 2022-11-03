@@ -9,6 +9,7 @@ import BrandLogo from "../images/two-hearts-48.png"
 
 import Swipe from "./Swipe"
 import NavMain from "./NavMain"
+import NavConsistent from './NavConsistent';
 
 import NavHeader from "./NavHeader"
 
@@ -44,6 +45,7 @@ const Home = ({user}) => {
 
     return (
         <>
+        <NavConsistent className="nav-consistent"/>
             <Swipe queue={queue} setQueue={setQueue} updateQueue={updateQueue} user={user} handleMatch={handleMatch}/>
             <NavMain display={'main'} />
         </>

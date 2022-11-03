@@ -1,6 +1,6 @@
-import BackButton from "../images/back.png"
-import MessageButton from "../images/message.png"
-import ProfileButton from "../images/profile.png"
+
+import BackPic from "../images/red-back-button4.png"
+import ChatPic from "../images/chatbutton5.png"
 
 
 
@@ -17,9 +17,12 @@ const NavMatch = ({match, navBack, displayTab, tab}) => {
     return (
         <>
             <div className="top navBar space-between">
-                <img src={BackButton} onClick={navBack}/>
-                <img src={ProfileButton} onClick={displayProfile} className={tab==='profile' ? 'selected' : ''}/>
-                <img src={MessageButton} onClick={displayMessages} className={tab==='messages' ? 'selected' : ''}/>
+                <img src={BackPic} onClick={navBack} id="top-nav-img"/>
+                <div className="match-nav-profile-div">
+                <img src={match.coverImage} onClick={displayProfile} id="top-nav-img" className={tab==='profile' ? 'selected' : ''}/>
+                <p className="nav-match-name">{match.displayName}</p>
+                </div>
+                <img src={ChatPic} onClick={displayMessages} id="top-nav-img" className={tab==='messages' ? 'selected' : ''}/>
             </div>
         </>
     )

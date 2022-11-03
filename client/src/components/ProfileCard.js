@@ -2,8 +2,6 @@
 
 
 import Card from 'react-bootstrap/Card';
-import Carousel from 'react-bootstrap/Carousel';
-import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import ImageCarousel from "./ImageCarousel"
 
@@ -18,8 +16,6 @@ const calculateAge = (birthday) => {
   }
 
 const ProfileCard = ({userProfile}) => {
-
-    // const allImages = userProfile.coverImage.concat(userProfile.images)
 
     return (
         <div className="card-container">

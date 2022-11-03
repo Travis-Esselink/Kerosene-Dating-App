@@ -18,7 +18,6 @@ import Matches from "./components/Matches"
 import UserProfile from "./components/UserProfile"
 import Loading from "./components/Loading"
 
-
 // Structure of Components:
 // - LandingPage:
 //  1. NavHeader
@@ -66,7 +65,7 @@ function App() {
         <Route path="/editprofile" element={<EditProfile user={user} setUser={setUser} />} />
         <Route path="/home" element = {<Home user={user}/>}/>
 
-        <Route path="/profile/:id" element = {<UserProfile user={user}/>} />
+        <Route path="/profile" element = {<UserProfile user={user}/>} />
         <Route path="/loading" element = {<Loading />} />
 
 

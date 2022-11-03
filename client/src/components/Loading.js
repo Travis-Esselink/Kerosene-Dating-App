@@ -1,8 +1,10 @@
+import AppLogo from "../images/two-hearts-48.png"
+
 const Loading = () => {
     return (
         <>
         <div className="loading-page">
-            <h3>Loading...</h3>
+            <img src={AppLogo} alt="BrandLogo" />
         </div>
         </>
     )

@@ -40,7 +40,7 @@ const Login = ({show, onHide, setUser }) => {
             setError(data) // {msg: 'Incorrect username or password'}
         } else if (res.status === 200) {
             setError(null)
-            // props.setUser(data)
+            setUser(data)
             navigate('/home/main')
             console.log("Test Logged In!"); // to be deleted!
         }

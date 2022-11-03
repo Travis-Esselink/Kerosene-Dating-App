@@ -216,6 +216,33 @@ h1 {
 
 
 
+.nav-consistent {
+  position: relative;
+  z-index: +5;
+}
+
+.nav-consistent-brand {
+  margin-left: 20px;
+}
+
+.nav-consistent-toggler {
+  margin-right: 20px;
+  max-width: 60px;
+
+}
+
+.nav-consistent-collapse {
+  background: white;
+  position: relative;
+  z-index: +5;
+  text-align: center;
+}
+
+.nav-consistent-logout button{
+  all: unset;
+}
+
+
 
 .match-gallery {
   display: flex;
@@ -229,6 +256,7 @@ h1 {
   box-shadow: 0 8px 10px -10px rgba(82, 4, 4, 0.5);
   position: relative;
   z-index: +1;
+ 
 
 
 }
@@ -253,9 +281,32 @@ h1 {
 
 .match-thumb {
   border-radius: 50%;
-  max-height: 60px;
+  object-fit: square;
+  height: 60px;
+  width: 60px;
   margin: 5px 15px;
   border: 2px solid white;
+}
+
+#top-nav-img {
+  border-radius: 50%;
+  object-fit: square;
+  height: 38px;
+  width: 38px;
+  box-shadow: 0 8px 10px -10px rgba(0, 0, 0, 0.5);
+  
+}
+
+.nav-match-name {
+  font-size: 14px;
+  padding: 0;
+  margin: 0px;
+  color: white;
+  margin-top: 5px;
+}
+
+.match-nav-profile-div {
+  text-align: center
 }
 
 .message-gallery {
@@ -265,13 +316,15 @@ h1 {
   margin: 0 auto;
   height: 100vh;
   background: white;
-
-
 }
 
 .match-thumb-name {
   color: white;
   font-weight: 600;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .message-thumb-name {
@@ -280,6 +333,7 @@ h1 {
   font-weight: 600;
   margin-top: 10px;
   margin-bottom: 6px;
+  
 }
 
 .match-content {

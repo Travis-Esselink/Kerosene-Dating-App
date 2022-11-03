@@ -1,15 +1,18 @@
 import { db } from './lib/FirebaseDatabase'
 import Messages from './Messages'
 import { ref, set } from "firebase/database";
-import { useState } from 'react'
+import { useState} from 'react'
 import "../chat.css"
 
-const Chat = ({user,roomID}) => {
+
+
+const Chat = ({ user, roomID }) => {
     const username = user.displayName
     const initialField = ''
     const [field, setField] = useState(initialField)
     const [message1, setMessage1] = useState({})
 
+  
     // Form submission logic for sending messages
     const onFormSubmit = (newMessageField) => {
         const timestamp = Date.now()
@@ -33,14 +36,16 @@ const Chat = ({user,roomID}) => {
         setField(initialField)
     }
     //Receiving text messages
-
-
+   
+    
+  
+    
     return (
         <>
             <div id="chat">
 
                 <ul id="messages">
-                    <Messages db={db} username={username} roomID={roomID}/>
+                    <Messages db={db} username={username} roomID={roomID} />
                 </ul>
 
                 <form id="message-form" onSubmit={handleSubmit}>
@@ -50,6 +55,7 @@ const Chat = ({user,roomID}) => {
             </div>
         </>
     )
+    window.scroll(0, 1000)
 }
 
 export default Chat

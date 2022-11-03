@@ -1,7 +1,3 @@
-// NEED TO DO:
-// If registered successfully:
-// render accountSetup page
-// Need to pass setUser here?
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -66,7 +62,7 @@ const CreateAccount = ({show, onHide, setUser }) => {
             } else if (res.status === 200) {
                 setErrorRegister(null)
                 setUser(data) // the user's obj
-                navigate('/editprofile')
+                navigate('/profile/edit')
                 console.log("Test Registered!");
             }
             setFields(initialState)

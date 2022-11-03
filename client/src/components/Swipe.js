@@ -1,5 +1,6 @@
 import {useState} from "react"
 import TinderCard from "react-tinder-card"
+import ProfileCard from "./ProfileCard"
 
 
 const Swipe = ({queue, updateQueue, handleMatch, user}) => {
@@ -42,7 +43,7 @@ const Swipe = ({queue, updateQueue, handleMatch, user}) => {
 
     return (
       <>
-          <div className='card-container'>
+          <div className='swipecard-container'>
             {queue.map((profile) =>
               <TinderCard 
                   className='swipe' 
@@ -50,10 +51,9 @@ const Swipe = ({queue, updateQueue, handleMatch, user}) => {
                   onCardLeftScreen={(dir) => leftScreen(dir,profile._id.toString())}
                   onSwipe={(dir) => swiped(dir)} 
                   preventSwipe={["up", "down"]}>
-                <div className='card'>
-                  <img src={profile.coverImage} />
-                  <h3 id="profile-header">{profile.displayName}</h3>
-                </div>
+                <div className="swipecard-border">
+                <ProfileCard userProfile={profile} />
+                </div>    
               </TinderCard>
             )}
           </div>

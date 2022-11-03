@@ -11,7 +11,7 @@ import NavConsistent from './NavConsistent';
 
 import NavHeader from "./NavHeader"
 
-const Home = ({user}) => {
+const Home = ({user, setUser}) => {
 
     const [queue,setQueue] = useState([])
     const [showMatch,setShowMatch] = useState(false)
@@ -43,7 +43,7 @@ const Home = ({user}) => {
 
     return (
         <>
-        <NavConsistent className="nav-consistent"/>
+        <NavConsistent setUser={setUser} className="nav-consistent"/>
             <Swipe queue={queue} setQueue={setQueue} updateQueue={updateQueue} user={user} handleMatch={handleMatch}/>
 
             <MatchModal

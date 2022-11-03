@@ -230,7 +230,12 @@ h1 {
   all: unset;
 }
 
+/* ========================= Match and Match gallery ========================== */
 
+.matches-container {
+  height:100vh;
+  /* overflow-y:hidden; */
+}
 
 .match-gallery {
   display: flex;
@@ -252,7 +257,7 @@ h1 {
 .match-gallery-inner {
   display: flex;
   flex-direction: row;
-  overflow-x: scroll;
+  overflow-x: auto;
   justify-content: flex-start;
   width: 100%;
   max-width: 650px;
@@ -299,10 +304,10 @@ h1 {
 
 .message-gallery {
   padding-top: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
+  /* overflow-y:auto; */
   max-width: 650px;
   margin: 0 auto;
-  height: 100vh;
   background: white;
 }
 
@@ -391,23 +396,34 @@ hr {
 }
 
 .images-edit {
+  max-width: 350px;
   display:flex;
   flex-direction: row;
   position: relative;
+  overflow-x: scroll;
 }
 
 .img-del {
-  position: absolute;
-  top:0;
-  max-width:5px;
+  position: relative;
+  margin:0;
+  left:12px;
+  max-width:20px;
+  max-height:20px;
 
 }
 
-.images-edit img {
-  max-width:100px;
-  margin: 0 2px;
+.img-edit {
+  max-width:150px;
+  min-width:150px;
+  max-height: 150px;
+  min-height:150px;
+  object-fit: cover;
+  margin: 10px 2px 0 2px;
 }
 
+.img-cross {
+  display:flex;
+}
 
 
 /* ============================== Loading Page compo ============================== */

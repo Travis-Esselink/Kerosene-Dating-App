@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
-import NavMatch from "./NavMatch"
+import NavConsistent from "./NavConsistent"
 import Loading from "./Loading"
 import ProfileCard from "./ProfileCard"
 
-const UserProfile = ({user}) => {
+const UserProfile = ({user, setUser}) => {
     return (
         <> 
-        <NavMatch />
+        <NavConsistent setUser={setUser}/>
         { !user ? <Loading /> : (
             <>
             <ProfileCard userProfile={user} />

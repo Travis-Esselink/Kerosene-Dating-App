@@ -5,7 +5,7 @@ import SmallLogo from "../images/mainLogoSmall.png";
 import LogoutButton from './LogoutButton';
 
 
-const NavConsistent = () => {
+const NavConsistent = ({setUser}) => {
     return (
         <Navbar collapseOnSelect variant='light' expand='md'>
             <Navbar.Brand as={Link} to='/home' className="nav-consistent-brand">
@@ -23,7 +23,7 @@ const NavConsistent = () => {
                     </Nav.Link>
                    
                             <Nav.Link as={Link} to='/' className="nav-consistent-logout">
-                                <LogoutButton />
+                                <LogoutButton setUser={setUser}/>
                             </Nav.Link>
                 </Nav>
             </Navbar.Collapse>

@@ -17,7 +17,7 @@ const NavHeader = ({user, setUser}) => {
         <>
         <nav>
             <div className="logo-container">
-                <Link to="/"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
+                <Link to="/home/main"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
 
             { user &&

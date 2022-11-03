@@ -12,10 +12,9 @@ const LandingPage = ({user, setUser}) => {
     const handleClick = () => {
         setModalShow(true)
     }
-    console.log(user,'user')
     return (
         <div className="landingpage">
-            <NavHeader user={user} setUser={setUser} />
+            <NavHeader setUser={setUser} user={user} />
 
             <div className="landingpage-content">
                 <h1>Find The Right One, Right Here, Right Now</h1>

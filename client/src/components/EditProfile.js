@@ -130,14 +130,14 @@ const EditProfile = ({user, setUser}) => {
                         </Form.Label>
                         <br />
                             <Form.Check
-                            inline type="radio" label="Male" id="male"
+                            inline type="radio" label="Male" id="malePref"
                             name="genderPref"
                             value="M"
                             checked={userData.genderPref === "M" ? true : false}
                             onChange={handleChange}
                             />
                             <Form.Check
-                            inline type="radio" label="Female" id="female"
+                            inline type="radio" label="Female" id="femalePref"
                             name="genderPref"
                             value="F"
                             checked={userData.genderPref === "F" ? true : false}

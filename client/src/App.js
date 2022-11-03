@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 
@@ -10,7 +10,8 @@ import EditProfile from "./components/EditProfile"
 import Swipe from "./components/Swipe"
 import Home from "./components/Home"
 import Match from "./components/Match"
-
+import PrivateAndSetUpRoute from './components/PrivateAndSetUpRoute'
+import PrivateRoute from './components/PrivateRoute'
 import Matches from "./components/Matches"
 
 
@@ -42,29 +43,32 @@ function App() {
   
   useEffect( () => {
 
+      
+    
+
     const getUser = async () => {
         const res = await fetch('/loggedin-user')
         const user = await res.json()
+        
         setUser(user)
       }
       getUser()
   },[])
 
-
+  console.log(user?.displayName,'user in app')
   return (
     <div className="App">
       <Routes>
 
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/home/main" element = {<Home user={user}/>}/>
-        <Route path="/home/matches" element = {<Matches user={user} />}/>
-        <Route path="/home/matches/:id" element = {<Match user={user}/>} />
         <Route path="/" element={<LandingPage user={user} setUser={setUser} />} />
-        <Route path="/profile/edit" element={<EditProfile user={user} setUser={setUser} />} />
-        <Route path="/home" element = {<Home user={user}/>}/>
-
-        <Route path="/profile" element = {<UserProfile user={user} setUser={setUser} />} />
-        <Route path="/loading" element = {<Loading />} />
+        
+        <Route path="/home" element = {<PrivateAndSetUpRoute authorised={user}><Home user={user} setUser={setUser}/></PrivateAndSetUpRoute>}/>
+        <Route path="/home/main" element = {<PrivateAndSetUpRoute authorised={user}><Home user={user} setUser={setUser}/></PrivateAndSetUpRoute>}/>
+        <Route path="/home/matches" element = {<PrivateAndSetUpRoute authorised={user}><Matches user={user} setUser={setUser} /></PrivateAndSetUpRoute>}/>
+        <Route path="/home/matches/:id" element = {<PrivateAndSetUpRoute authorised={user}><Match user={user}/></PrivateAndSetUpRoute>} />
+        <Route path="/profile" element = {<PrivateAndSetUpRoute authorised={user}><UserProfile user={user} setUser={setUser}/></PrivateAndSetUpRoute>} />
+        <Route path="/profile/edit" element={<PrivateRoute authorised={user}><EditProfile user={user} setUser={setUser} /></PrivateRoute>} />
+        
 
 
       </Routes>

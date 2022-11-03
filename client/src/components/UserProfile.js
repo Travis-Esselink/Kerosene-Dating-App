@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
-import NavMatch from "./NavMatch"
+import NavConsistent from "./NavConsistent"
 import Loading from "./Loading"
 import ProfileCard from "./ProfileCard"
-import NavConsistent from './NavConsistent';
 
 const UserProfile = ({user, setUser}) => {
 
@@ -19,7 +18,7 @@ const UserProfile = ({user, setUser}) => {
             
             <div className="profilebuttons-container">
                 <ThemeProvider prefixes={{ btn: 'editprofile-button' }}>
-                    <Button variant="editprofile-button"><Link to={`/editprofile`}>Edit Profile</Link></Button>
+                    <Button variant="editprofile-button"><Link to={`/profile/edit`}>Edit Profile</Link></Button>
                 </ThemeProvider>
 
                 

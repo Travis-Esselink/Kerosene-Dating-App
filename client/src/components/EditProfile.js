@@ -75,7 +75,7 @@ const EditProfile = ({user, setUser}) => {
             <NavHeader user={user} setUser={setUser} />
             <hr />
             <div className="profile-form">
-            <h2>{userData.displayName ? "Edit Profile" : "Create an Account" }</h2>
+            <h2>{user?.displayName ? "Edit Profile" : "Create an Account" }</h2>
             <br />
             <Form onSubmit={handleSubmit}>
                 <Row>

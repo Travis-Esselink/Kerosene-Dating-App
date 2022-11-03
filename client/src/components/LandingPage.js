@@ -1,7 +1,3 @@
-// TODO:
-// 1. Might need to define isSignUp state here and pass it or the setIsSignUp to Login & CreateAccount to render different things. 
-
-
 import React, {useState} from "react"
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';

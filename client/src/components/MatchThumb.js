@@ -1,11 +1,11 @@
 
-const MatchThumb = ({profile}) => {
+const MatchThumb = ({profile, match}) => {
     return (
         <>
-            <div>
+            
             <img className='match-thumb' src={profile.coverImage}/>
-            <p className='match-thumb-name'>{profile.displayName}</p>
-            </div>
+            
+        
         </>
     )
 }

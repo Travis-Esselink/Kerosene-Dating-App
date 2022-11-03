@@ -1,5 +1,5 @@
 body {
-    background-color: #f3f2f3;
+    background-color: white;
     margin: 0;
     padding: 0;
 }
@@ -10,16 +10,26 @@ header {
 
 #messages{
     padding-bottom: 30%;
+    padding-top: 35px;
+    padding-left: 0px;
+    margin: 0 auto;
 }
+
 
 li {
     list-style-type: none;
     margin-bottom: 10px;
-    background-color: #c32e5b;
-    padding: 5px;
+    background-color: #dcdcdc;
+    padding-left: 10px;
+    padding-right: 10px;
     border-radius: 10px;
-    color: white;
-    width: 50%;
+    color: rgb(47, 47, 47);
+    max-width: 50%;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 13px;
+    font-family: helvetica, arial, sans-serif;
+    
 }
 
 li span {
@@ -29,8 +39,9 @@ li span {
 }
 
 #chat {
-    width: 80%;
-    margin: auto;
+    width: 95%;
+    max-width: 650px;
+    margin: 0px auto;
 }
 
 #message-form {
@@ -39,17 +50,36 @@ li span {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #b7b5b9;
+    background-color: white
 }
 
 #message-btn {
-    width: 100px;
-    height: 35px;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    margin-left: 10px;
+    border: 0;
+    background: linear-gradient(45deg, #ff6030, #ff4343);
+    color: white;
+    box-shadow: 10px 0 15px 4px rgba(0, 0, 0, 0.06);
 }
 
-input {
+#message-input {
     width: 70%;
     height: 30px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 0;
+    /* background-color: rgb(228, 228, 228); */
+    box-shadow:0 0 15px 4px rgba(0, 0, 0, 0.20);
+    padding: 5px;
+    font-family: helvetica, arial, sans-serif;
+    color: rgb(47, 47, 47);
+}
+
+#message-input:focus {
+    outline: none;
+    border-color:#b5b0b9
 }
 
 button {
@@ -58,9 +88,10 @@ button {
 }
 
 .sent {
-    text-align: right;
-    background-color: #e293b3;
-    margin-left: 50%;
+    text-align: left;
+    background: linear-gradient(45deg, #ff6030, #ff4343);
+    color: white;
+    float: right;
 }
 
 .sent span {

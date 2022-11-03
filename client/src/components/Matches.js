@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ref, onValue } from "firebase/database";
 import { db } from './lib/FirebaseDatabase'
 import HomeNav from "./NavMain"
+import NavConsistent from './NavConsistent';
 
 
 
@@ -56,6 +57,7 @@ const Matches = ({user}) => {
 
     return (
         <>
+        <NavConsistent className="nav-consistent"/>
             <div className="match-gallery">
 
                 <div className="match-gallery-inner">
@@ -80,7 +82,7 @@ const Matches = ({user}) => {
                             <MatchThumb profile={match} key={`${match._id}messaged`} />
                             <div className="name-message-div">
                                 <p className='message-thumb-name' >{match.displayName}</p>
-                                <span className="match-thumb-message">{match.latestMessage.message}</span>
+                                <span className="match-thumb-message">{match.latestMessage.username === user.username ? 'You' : match.latestMessage.username}: {match.latestMessage.message}</span>
                             </div>
                         </div>
                     </Link>

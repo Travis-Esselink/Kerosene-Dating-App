@@ -8,7 +8,6 @@ import Loading from "./Loading"
 import ProfileCard from "./ProfileCard"
 
 const UserProfile = ({user}) => {
-
     return (
         <> 
         <NavMatch />
@@ -17,12 +16,12 @@ const UserProfile = ({user}) => {
             <ProfileCard userProfile={user} />
             
             <div className="profilebuttons-container">
-            <ThemeProvider prefixes={{ btn: 'editprofile-button' }}>
-                <Button variant="editprofile-button"><Link to={`/editprofile`}>Edit Profile</Link></Button>
-            </ThemeProvider>
-            <ThemeProvider prefixes={{ btn: 'delete-button' }}>
-                <Button variant="danger">Delete Profile</Button>
-            </ThemeProvider>
+                <ThemeProvider prefixes={{ btn: 'editprofile-button' }}>
+                    <Button variant="editprofile-button"><Link to={`/editprofile`}>Edit Profile</Link></Button>
+                </ThemeProvider>
+                <ThemeProvider prefixes={{ btn: 'delete-button' }}>
+                    <Button variant="danger">Delete Profile</Button>
+                </ThemeProvider>
             </div>
             </>
         )}

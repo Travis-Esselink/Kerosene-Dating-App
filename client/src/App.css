@@ -485,6 +485,14 @@ hr {
 }
 
 /* ============================== MatchModal ============================== */
+#match-modal-body {
+  background: #ff8e6c;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-body h3 {
   text-align: center;
   font-weight: 700;

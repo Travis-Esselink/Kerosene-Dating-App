@@ -11,7 +11,7 @@ const MatchModal = ({show, onHide}) => {
         centered="true"
         className="border-0"
         >
-        <Modal.Body>
+        <Modal.Body id="match-modal-body">
             <h3>It's A MATCH! <img src={AppLogo} alt="BrandLogo" /></h3>
         </Modal.Body>
         </Modal>

@@ -18,7 +18,6 @@ import Matches from "./components/Matches"
 import UserProfile from "./components/UserProfile"
 import Loading from "./components/Loading"
 
-
 // Structure of Components:
 // - LandingPage:
 //  1. NavHeader

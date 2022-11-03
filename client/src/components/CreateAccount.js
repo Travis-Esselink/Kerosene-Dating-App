@@ -1,7 +1,3 @@
-// NEED TO DO:
-// If registered successfully:
-// render accountSetup page
-// Need to pass setUser here?
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';

@@ -26,6 +26,7 @@ const NavHeader = ({user, setUser, setIsSignUp}) => {
             <Button onClick={handleClick}>Login</Button>
             </ThemeProvider>
             <LogoutButton setUser={setUser} />
+
         </nav>
         <Login setUser={setUser} show={modalShow} onHide={() => setModalShow(false)} />
         </>

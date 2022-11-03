@@ -56,7 +56,7 @@ function App() {
         <Route path="/home/:tab" element = {<Home user={user}/>}/>
         <Route path="/home/matches/:id" element = {<Match user={user}/>} />
         <Route path="/" element={<LandingPage user={user} setUser={setUser} setIsSignUp={setIsSignUp} />} />
-        <Route path="/editprofile" element={<EditProfile user={user} setUser={setUser} isSignUp={isSignUp} />} />
+        <Route path="/editprofile" element={<EditProfile user={user} setUser={setUser} />} />
         <Route path="/home" element = {<Home user={user}/>}/>
 
         <Route path="/profile/:id" element = {<UserProfile user={user}/>} />

@@ -1,32 +1,27 @@
-import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-// import Carousel from 'react-bootstrap/Carousel';
+import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import NavMatch from "./NavMatch"
 import Loading from "./Loading"
+import ProfileCard from "./ProfileCard"
 
 const UserProfile = ({user}) => {
-
     return (
-        <>
+        <> 
         <NavMatch />
         { !user ? <Loading /> : (
             <>
-            <div className="userprofile-container">
-                <img className="userprofice-pic" src={user.coverImage} alt={user.username} />
-            </div>
-            <div className="userprofile-content">
-                <h5>{user.displayName}</h5>
-                <ul>
-                    <li>Preferred Name: {user.displayName}</li> 
-                    <li>Date of Birth{user.dateOfBirth}</li>
-                    <li>Gender: {user.gender}</li>
-                    <li>Interested In: {user.genderPref}</li>
-                    <li>About Me: {user.bio}</li>
-                </ul>
-                <Link to={`/profile/edit`}>Edit Profile</Link>
+            <ProfileCard userProfile={user} />
+            
+            <div className="profilebuttons-container">
+                <ThemeProvider prefixes={{ btn: 'editprofile-button' }}>
+                    <Button variant="editprofile-button"><Link to={`/editprofile`}>Edit Profile</Link></Button>
+                </ThemeProvider>
+                <ThemeProvider prefixes={{ btn: 'delete-button' }}>
+                    <Button variant="danger">Delete Profile</Button>
+                </ThemeProvider>
             </div>
             </>
         )}

@@ -9,7 +9,11 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavHeader from "./NavHeader"
 import { useNavigate } from 'react-router-dom';
 
-const EditProfile = ({user, setUser, isSignUp}) => {
+const formatDate = (dateStr) => {
+    return new Date(dateStr).toISOString().substring(0,10)
+}
+
+const EditProfile = ({user, setUser}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
     const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
     const [userData, setUserData] = useState({...user}) // get from App.js
@@ -61,7 +65,7 @@ const EditProfile = ({user, setUser, isSignUp}) => {
         <NavHeader />
         <hr />
         <div className="profile-form">
-        <h2>{isSignUp ? "Create an Account" : "Edit Profile"}</h2>
+        <h2>{user.displayName ? "Edit Profile" : "Create an Account" }</h2>
         <br />
         <Form onSubmit={handleSubmit}>
             <Row>
@@ -81,7 +85,7 @@ const EditProfile = ({user, setUser, isSignUp}) => {
                     <Form.Control 
                         type="date" required
                         name="dateOfBirth" 
-                        value={userData.dateOfBirth}
+                        value={formatDate(userData.dateOfBirth)}
                         onChange={handleChange}
                         />
                     </Form.Group>
@@ -119,16 +123,22 @@ const EditProfile = ({user, setUser, isSignUp}) => {
                         inline type="radio" label="Male" id="male"
                         name="genderPref"
                         value="M"
+                        checked={userData.genderPref === "M" ? true : false}
+                        onChange={handleChange}
                         />
                         <Form.Check
                         inline type="radio" label="Female" id="female"
                         name="genderPref"
                         value="F"
+                        checked={userData.genderPref === "F" ? true : false}
+                        onChange={handleChange}
                         />
                         <Form.Check
                         inline type="radio" label="Everyone" id="everyone"
                         name="genderPref"
                         value="FM"
+                        checked={userData.genderPref === "FM" ? true : false}
+                        onChange={handleChange}
                         />
                     </Form.Group>
                     </fieldset>
@@ -152,6 +162,8 @@ const EditProfile = ({user, setUser, isSignUp}) => {
                     <Form.Control 
                         as="textarea" rows={3} placeholder="Tell about yourself"
                         name="bio"
+                        value={userData.bio}
+                        onChange={handleChange}
                     />
                     </Form.Group>
                 </Col>

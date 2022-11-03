@@ -8,7 +8,7 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import Loading from './Loading'
 import NavHeader from "./NavHeader"
 import { useNavigate } from 'react-router-dom';
-import ImageEdit from './ImageEdit'
+import ImgEdit from './ImgEdit'
 
 const EditProfile = ({user, setUser}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
@@ -25,12 +25,9 @@ const EditProfile = ({user, setUser}) => {
 
     const navigate = useNavigate()
      // the user obj
-    console.log(userData,'user data'); // {} - empty obj
-    console.log(user,'user')
-    console.log(images,'images')
     // Handling number of images uploaded
     const handleSelect = (event) => {
-        if (event.target.files.length > 6-user.images.length ) {
+        if (event.target.files.length > 6-images.length ) {
             event.preventDefault()
             setErrorImages(true)
         } else {
@@ -61,17 +58,19 @@ const EditProfile = ({user, setUser}) => {
         })
         const data = await res.json()
         setUser(data)
-        navigate('/home/main')
+        navigate('/profile')
     }
 
     const formatDate = (dateStr) => {
+        if (!dateStr) {
+            return ''
+        }
         return new Date(dateStr).toISOString().substring(0,10)
     }
-    console.log(user,'user')
-    console.log(userData,'userData')
+    console.log(user)
     return (
         <>
-        { (!userData?.displayName || !images) ? <Loading /> : (
+        { (userData?.displayName===undefined ) ? <Loading /> : (
             <>
             <NavHeader />
             <hr />
@@ -188,7 +187,7 @@ const EditProfile = ({user, setUser}) => {
                         name="coverImage"
                         />
                     </Form.Group>
-
+                    <img className="img-edit" src={userData.coverImage}/>
                     <Form.Group className="position-relative mb-3" controlId="images">
                         <Form.Label>Gallery</Form.Label>
                         <Form.Control
@@ -201,10 +200,9 @@ const EditProfile = ({user, setUser}) => {
                         : <Form.Text className="text-muted">Can choose up to 6 images</Form.Text>
                         }
                     </Form.Group>
-                    <p>Your Photos</p>
                     <div className="images-edit">
                         {images.map((img)=>
-                            <ImageEdit image={img} key={img}/>
+                            <ImgEdit image={img} key={img} setImages={setImages}/>
                         )}
                     </div>
                     </Col>

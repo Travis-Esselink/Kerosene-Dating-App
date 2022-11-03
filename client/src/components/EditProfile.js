@@ -72,7 +72,7 @@ const EditProfile = ({user, setUser}) => {
         <>
         { (userData?.displayName===undefined ) ? <Loading /> : (
             <>
-            <NavHeader />
+            <NavHeader user={user} setUser={setUser} />
             <hr />
             <div className="profile-form">
             <h2>{userData.displayName ? "Edit Profile" : "Create an Account" }</h2>

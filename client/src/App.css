@@ -34,12 +34,15 @@ nav .logo-container .logo {
 .login-button {
   color: #ff0000;
   background: #ffffff;
-  font-size: 18px;
+  font-size: 3vw;
   font-weight: 600;
   padding: 0 20px;
   border-radius: 20px;
   border: none;
   margin: 20px 20px;
+  max-width: 100px;
+  text-align: center;
+  text-decoration: none;
 }
 
 /* Login & LOGOUT button when hover */
@@ -48,6 +51,11 @@ nav .logo-container .logo {
   background: #ff6e40;
 }
 
+@media screen and (min-width: 650px ) {
+  .login-button {
+    font-size: 16px;
+  }
+}
 /* ============================== LandingPage ============================== */
 /* - Set width & height to 100vw/vh so it takes up the whole viewport */
 /* - Set position:fixed so unable to scroll */

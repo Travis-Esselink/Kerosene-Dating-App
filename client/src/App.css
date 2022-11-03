@@ -405,12 +405,32 @@ hr {
   background: #4644442e;
 }
 
+.images-edit {
+  display:flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.img-del {
+  position: absolute;
+  top:0;
+  max-width:5px;
+
+}
+
+.images-edit img {
+  max-width:100px;
+  margin: 0 2px;
+}
+
+
+
 /* ============================== Loading Page compo ============================== */
 .loading-page {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background: linear-gradient(to left top, #ff0000, #ff6e40);
+  background: linear-gradient(to left top, #ff8e6c,rgb(255,205,205));
   display: flex;
   justify-content: center;
   align-items: center;

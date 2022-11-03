@@ -5,6 +5,7 @@ import NavMatch from './NavMatch'
 import Chat from './Chat'
 import Unmatch from './Unmatch'
 import Button from 'react-bootstrap/Button';
+import Loading from './Loading'
 
 const Match = ({user}) => {
     const navigate = useNavigate()
@@ -56,7 +57,7 @@ const Match = ({user}) => {
     return (
         <>
             <div>
-            {!match? <p>Loading...</p> :
+            {!match? < Loading /> :
                 <div className='match-content'>
                     <div className='match-nav'>
                         <NavMatch match={match} navBack={navBack} displayTab={displayTab} tab={tab}/>

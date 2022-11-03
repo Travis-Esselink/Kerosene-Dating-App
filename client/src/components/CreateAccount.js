@@ -66,7 +66,7 @@ const CreateAccount = ({show, onHide, setUser }) => {
             } else if (res.status === 200) {
                 setErrorRegister(null)
                 setUser(data) // the user's obj
-                navigate('/editprofile')
+                navigate('/profile/edit')
                 console.log("Test Registered!");
             }
             setFields(initialState)

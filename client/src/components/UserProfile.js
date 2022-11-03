@@ -8,40 +8,25 @@ import NavMatch from "./NavMatch"
 import Loading from "./Loading"
 
 const UserProfile = ({user}) => {
-    const [userData, setUserData] = useState({})
-    const { id } = useParams()
-
-    console.log(user);
-    // console.log(user._id);
-
-    useEffect(() => {
-        const getUser = async () => {
-          const res = await fetch(`/v1/profiles/${id}`)
-          const data = await res.json()
-          console.log(data);
-          setUserData(data)
-        }
-        getUser()
-      }, [id])
 
     return (
         <>
         <NavMatch />
-        { !userData ? <Loading /> : (
+        { !user ? <Loading /> : (
             <>
             <div className="userprofile-container">
-                <img className="userprofice-pic" src={userData.coverImage} alt={userData.username} />
+                <img className="userprofice-pic" src={user.coverImage} alt={user.username} />
             </div>
             <div className="userprofile-content">
-                <h5>{userData.displayName}</h5>
+                <h5>{user.displayName}</h5>
                 <ul>
-                    <li>Preferred Name: {userData.displayName}</li>
-                    <li>Date of Birth{userData.dateOfBirth}</li>
-                    <li>Gender: {userData.gender}</li>
-                    <li>Interested In: {userData.genderPref}</li>
-                    <li>About Me: {userData.bio}</li>
+                    <li>Preferred Name: {user.displayName}</li> 
+                    <li>Date of Birth{user.dateOfBirth}</li>
+                    <li>Gender: {user.gender}</li>
+                    <li>Interested In: {user.genderPref}</li>
+                    <li>About Me: {user.bio}</li>
                 </ul>
-                <Link to={`/editprofile`}>Edit Profile</Link>
+                <Link to={`/profile/edit`}>Edit Profile</Link>
             </div>
             </>
         )}

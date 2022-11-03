@@ -12,8 +12,9 @@ const imageEdit = ({image}) => {
 
     return (
         <div className="img-cross">
+            <img className="img-del" src={Cross} onClick={handleDelete} />
             <img src={image}/>
-            <img src={Cross} onClick={handleDelete}/>
+
         </div>
     )
 }

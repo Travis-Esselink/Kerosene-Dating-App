@@ -5,7 +5,10 @@ import NavMatch from './NavMatch'
 import Chat from './Chat'
 import Unmatch from './Unmatch'
 import Button from 'react-bootstrap/Button';
+import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Loading from './Loading'
+import ProfileCard from './ProfileCard'
+
 
 const Match = ({user}) => {
     const navigate = useNavigate()
@@ -65,10 +68,12 @@ const Match = ({user}) => {
 
                     {tab==='profile' ? 
                         <>
-                            <img src={match.coverImage}/>
-                            <p>{match.displayName}</p>
-                            <p>{match.dateOfBirth}</p>
-                            <Button onClick={handleShow}>Unmatch</Button>
+                            <ProfileCard userProfile={match} />
+                            <div className="unmatch-butt-div">
+                            <ThemeProvider prefixes={{ btn: 'unmatch-button' }}>
+                                <Button variant="danger" onClick={handleShow}>Unmatch</Button>
+                            </ThemeProvider>
+                            </div>
                             <Unmatch show={show} handleClose={handleClose} match={match}/>
                         </>
                         : 

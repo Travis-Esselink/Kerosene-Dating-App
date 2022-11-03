@@ -32,17 +32,19 @@ const Home = ({user, setUser}) => {
         const res = await fetch('/v1/profiles')
         let data = await res.json()
         const newQueue = data.reverse()
+        data[data.length-1].top=true
         setQueue(newQueue)
     }
 
 
-    const handleMatch = (match) => {
+    const handleMatch = () => {
         setShowMatch(true)
         setModalShow(true)
     }
 
     return (
         <>
+
         <NavConsistent setUser={setUser} className="nav-consistent"/>
             <Swipe queue={queue} setQueue={setQueue} updateQueue={updateQueue} user={user} handleMatch={handleMatch}/>
 
@@ -52,6 +54,7 @@ const Home = ({user, setUser}) => {
             />
             
             <NavMain display={'main'} />
+
         </>
     )
 }

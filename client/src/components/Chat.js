@@ -55,7 +55,7 @@ const Chat = ({ user, roomID }) => {
             </div>
         </>
     )
-    window.scroll(0, 1000)
+    
 }
 
 export default Chat

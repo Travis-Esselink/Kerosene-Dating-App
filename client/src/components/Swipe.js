@@ -2,7 +2,7 @@ import {useState} from "react"
 import TinderCard from "react-tinder-card"
 
 
-const Swipe = ({queue, updateQueue, handleMatch}) => {
+const Swipe = ({queue, updateQueue, handleMatch, user}) => {
     
     const leftScreen = async (direction,id) => {
       if (direction === 'left' || direction === 'right') {

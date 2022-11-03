@@ -351,6 +351,26 @@ hr {
   background: #4644442e;
 }
 
+.images-edit {
+  display:flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.img-del {
+  position: absolute;
+  top:0;
+  max-width:5px;
+
+}
+
+.images-edit img {
+  max-width:100px;
+  margin: 0 2px;
+}
+
+
+
 /* ============================== Loading Page compo ============================== */
 .loading-page {
   width: 100vw;

@@ -2,12 +2,12 @@ import Cross from '../images/cross-48.png'
 
 const imageEdit = ({image}) => {
 
-    removeImage = () => {
-
-    }
+    const removeImage = () => {
+        console.log('a')
+    }    
 
     const handleDelete = () => {
-        console.log('de;ete called')
+        console.log('delete called')
     }
 
     return (

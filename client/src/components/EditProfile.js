@@ -14,10 +14,12 @@ const EditProfile = ({user, setUser}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
     const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
     const [userData, setUserData] = useState(null) // get from App.js
-
+    const [images,setImages] = useState(null)
     useEffect(() => {
-        console.log(user,'ser from useEffect')
-        setUserData({...user})
+        if (user) {
+            setUserData({...user})
+            setImages([...user.images])
+        }
     },[user])
 
 
@@ -25,9 +27,10 @@ const EditProfile = ({user, setUser}) => {
      // the user obj
     console.log(userData,'user data'); // {} - empty obj
     console.log(user,'user')
+    console.log(images,'images')
     // Handling number of images uploaded
     const handleSelect = (event) => {
-        if (event.target.files.length > 6 ) {
+        if (event.target.files.length > 6-user.images.length ) {
             event.preventDefault()
             setErrorImages(true)
         } else {
@@ -38,7 +41,7 @@ const EditProfile = ({user, setUser}) => {
     const handleChange = (event) => {
         const {name, value} = event.target
         // handling ageRange validation
-        if (name === "ageRange" && value < 0) {
+        if (name === "ageRange" && value < 1) {
             setErrorAgeRange(true)
         } else {
             setErrorAgeRange(false)
@@ -57,20 +60,18 @@ const EditProfile = ({user, setUser}) => {
             body: formData
         })
         const data = await res.json()
-        console.log(data)
         setUser(data)
         navigate('/home/main')
     }
 
     const formatDate = (dateStr) => {
-        console.log(dateStr,'date')
         return new Date(dateStr).toISOString().substring(0,10)
     }
-    
- 
+    console.log(user,'user')
+    console.log(userData,'userData')
     return (
         <>
-        { !userData?.displayName ? <Loading /> : (
+        { (!userData?.displayName || !images) ? <Loading /> : (
             <>
             <NavHeader />
             <hr />
@@ -159,12 +160,12 @@ const EditProfile = ({user, setUser}) => {
                         </Form.Label>
                         <br />
                         <Form.Control
-                            type="number" min="0"
+                            type="number" min="1"
                             name="ageRange" 
                             value={userData.ageRange}
                             onChange={handleChange}
                             />
-                        {errorAgeRange && <Form.Text className="text-danger">Number has to be minimum zero</Form.Text>}
+                        {errorAgeRange && <Form.Text className="text-danger">Age Range has to be atleast 1</Form.Text>}
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="bio">
@@ -196,14 +197,14 @@ const EditProfile = ({user, setUser}) => {
                         onChange={handleSelect}
                         />
                         {errorImages 
-                        ? <Form.Text className="text-danger">Only 6 images accepted</Form.Text>
+                        ? <Form.Text className="text-danger">Only 6 total images accepted</Form.Text>
                         : <Form.Text className="text-muted">Can choose up to 6 images</Form.Text>
                         }
                     </Form.Group>
                     <p>Your Photos</p>
                     <div className="images-edit">
-                        {userData.images.map((img)=>
-                            <ImageEdit image={img}/>
+                        {images.map((img)=>
+                            <ImageEdit image={img} key={img}/>
                         )}
                     </div>
                     </Col>

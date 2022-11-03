@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 import Login from "./Login"
+import LogoutButton from "./LogoutButton";
 
 const NavHeader = ({user, setUser}) => {
     const [modalShow, setModalShow] = useState(false);
@@ -13,6 +14,8 @@ const NavHeader = ({user, setUser}) => {
         setModalShow(true)
     }
 
+    console.log(user + "NavHeader compo");
+
     return (
         <>
         <nav>
@@ -20,10 +23,13 @@ const NavHeader = ({user, setUser}) => {
                 <Link to="/home/main"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
 
-            { user &&
-                <ThemeProvider prefixes={{ btn: 'login-button' }}>
+            { !user 
+                ?
+                (<ThemeProvider prefixes={{ btn: 'login-button' }}>
                 <Button onClick={handleClick}>Login</Button>
-                </ThemeProvider>
+                </ThemeProvider>)
+                :
+                (<LogoutButton setUser={setUser} />)
             }
 
         </nav>

@@ -30,11 +30,11 @@ nav .logo-container .logo {
   border-radius: 10px;
 }
 
-/* Style Login button */
+/* Style Login & LOGOUT button */
 .login-button {
   color: #ff0000;
   background: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   padding: 0 20px;
   border-radius: 20px;
@@ -42,7 +42,7 @@ nav .logo-container .logo {
   margin: 20px 20px;
 }
 
-/* Login button when hover */
+/* Login & LOGOUT button when hover */
 .login-button:hover {
   color: #ffffff;
   background: #ff6e40;
@@ -459,6 +459,10 @@ hr {
   display: flex;
   max-width: 300px;
   margin: 0 auto;
+}
+
+.profilebuttons-container a:hover {
+  color: #ffffff;
 }
 
 .editprofile-button {

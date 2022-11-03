@@ -10,11 +10,7 @@ const DeleteButton = ({user, setUser}) => {
 
     const handleClick = async () => {
         const res = await fetch(`/v1/profiles/${user._id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(user)
+            method: "DELETE"
         })
         const data = await res.json()
         console.log(data)

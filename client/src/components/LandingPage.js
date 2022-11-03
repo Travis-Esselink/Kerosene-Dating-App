@@ -16,7 +16,7 @@ const LandingPage = ({user, setUser, setIsSignUp}) => {
     console.log(user,'user')
     return (
         <div className="landingpage">
-            <NavHeader user={user} setIsSignUp={setIsSignUp} />
+            <NavHeader user={user} setUser={setUser} />
 
             <div className="landingpage-content">
                 <h1>Find The Right One, Right Here, Right Now</h1>

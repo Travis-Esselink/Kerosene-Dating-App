@@ -56,6 +56,12 @@ nav .logo-container .logo {
     font-size: 16px;
   }
 }
+
+@media screen and (max-width: 300px ) {
+  .login-button {
+    font-size: 10px;
+  }
+}
 /* ============================== LandingPage ============================== */
 /* - Set width & height to 100vw/vh so it takes up the whole viewport */
 /* - Set position:fixed so unable to scroll */
@@ -510,6 +516,10 @@ hr {
 .user-name-age {
   display: flex;
   justify-content: space-between;
+  color: #ff0000;
+  background: -webkit-linear-gradient(#ff6e40, #ff0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ============================== MatchModal ============================== */

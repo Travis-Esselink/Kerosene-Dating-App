@@ -27,7 +27,7 @@ const authenticate = (req,res,next) => {
 router.post('/login', authenticate, (req, res) => {
   console.log('logged in', req.user)
   const { id, username } = req.user
-  res.json({ id, username } )
+  res.json(req.user)
 })
 
 router.post('/logout', (req, res) => {

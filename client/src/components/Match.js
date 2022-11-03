@@ -11,7 +11,7 @@ const Match = ({user}) => {
 
     const { id } = useParams()
     const [match,setMatch] = useState()
-    const [tab,setTab] = useState('profile')
+    const [tab,setTab] = useState('messages')
     const [roomID,setRooomID] = useState('defaultChat')
 
     const navBack = () => {

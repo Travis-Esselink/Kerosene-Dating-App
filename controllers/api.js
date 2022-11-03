@@ -264,7 +264,16 @@ router.put('/v1/swipe/:swipedUserID', async (req,res) => {
     }
     user.save()
     swipedUser.save()
-    res.json({profile:swipedUser,match:matched})
+    res.json({
+        match:matched,
+        userMatch: {
+            match:
+            swipedUser.id,
+            chatRoomID:
+            `${user.id}-${swipedUser.id}`
+        },
+        
+    })
 })
 
 
@@ -296,9 +305,6 @@ router.put('/v1/profiles/unmatch/:matchedUserID', async (req,res) => {
 })
 
 
-
-
-//Messaging API??? need research
 
 
 

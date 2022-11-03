@@ -23,6 +23,7 @@ const Swipe = ({queue, updateQueue, handleMatch}) => {
 
         if (swipeResult.match) {
           console.log('Match!')
+          user.matches.push(swipeResult.match)
           //update state of showMatch by calling handleMatch
           //create a modal, on modal close -> set showMatch to false 
           //push match to users match array

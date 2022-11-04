@@ -18,7 +18,7 @@ const NavHeader = ({user, setUser}) => {
 
     return (
         <>
-        <nav>
+        <nav class="nav-header">
             <div className="logo-container">
                 <Link to="/home/main"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
@@ -29,7 +29,9 @@ const NavHeader = ({user, setUser}) => {
                 <Button onClick={handleClick}>Login</Button>
                 </ThemeProvider>)
                 :
-                (<LogoutButton setUser={setUser} />)
+                (
+                    <LogoutButton setUser={setUser} />
+                )
             }
 
         </nav>

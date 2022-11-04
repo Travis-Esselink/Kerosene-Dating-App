@@ -6,6 +6,7 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavConsistent from "./NavConsistent"
 import Loading from "./Loading"
 import ProfileCard from "./ProfileCard"
+import DeleteButton from './DeleteButton';
 
 const UserProfile = ({user, setUser}) => {
 
@@ -21,7 +22,7 @@ const UserProfile = ({user, setUser}) => {
                     <Button variant="editprofile-button"><Link to={`/profile/edit`}>Edit Profile</Link></Button>
                 </ThemeProvider>
 
-                
+                <DeleteButton user={user} setUser={setUser} />
             </div>
             </>
         )}

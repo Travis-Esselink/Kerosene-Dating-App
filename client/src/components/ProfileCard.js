@@ -30,11 +30,7 @@ const ProfileCard = ({userProfile}) => {
                 <Card.Title>{userProfile.displayName}</Card.Title>
                 <Card.Title>{calculateAge(userProfile.dateOfBirth)}</Card.Title>
                 </div>
-                <Card.Text>Date of Birth: {formatDate(userProfile.dateOfBirth)}</Card.Text>
-                <Card.Text>Gender: {userProfile.gender}</Card.Text>
-                <Card.Text>Age: {calculateAge(userProfile.dateOfBirth)}</Card.Text>
-                <Card.Text>Interested In: {userProfile.genderPref === "FM" ? "Everyone" : userProfile.genderPref}</Card.Text>
-                <Card.Text>About Me: {userProfile.bio}</Card.Text>
+                <Card.Text>{userProfile.bio}</Card.Text>
             </Card.Body>
         </Card>
         </div>  

@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import MatchThumb from './MatchThumb'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ref, onValue } from "firebase/database";
 import { db } from './lib/FirebaseDatabase'
 import HomeNav from "./NavMain"

@@ -30,24 +30,38 @@ nav .logo-container .logo {
   border-radius: 10px;
 }
 
-/* Style Login button */
+/* Style Login & LOGOUT button */
 .login-button {
   color: #ff0000;
   background: #ffffff;
-  font-size: 20px;
+  font-size: 3vw;
   font-weight: 600;
   padding: 0 20px;
   border-radius: 20px;
-  border: none;
+  border: 1px solid #da8971;
   margin: 20px 20px;
+  max-width: 100px;
+  text-align: center;
+  text-decoration: none;
 }
 
-/* Login button when hover */
+/* Login & LOGOUT button when hover */
 .login-button:hover {
   color: #ffffff;
   background: #ff6e40;
 }
 
+@media screen and (min-width: 650px ) {
+  .login-button {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 300px ) {
+  .login-button {
+    font-size: 10px;
+  }
+}
 /* ============================== LandingPage ============================== */
 /* - Set width & height to 100vw/vh so it takes up the whole viewport */
 /* - Set position:fixed so unable to scroll */
@@ -488,6 +502,10 @@ hr {
   margin: 0 auto;
 }
 
+.profilebuttons-container a:hover {
+  color: #ffffff;
+}
+
 .editprofile-button {
   color: #ffffff;
   background-color: #ff6e40;
@@ -525,6 +543,11 @@ hr {
 .user-name-age {
   display: flex;
   justify-content: space-between;
+  color: #ff0000;
+  background: -webkit-linear-gradient(#ff6e40, #ff0000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ============================== MatchModal ============================== */

@@ -5,10 +5,11 @@ import { ref, onValue } from "firebase/database";
 import { db } from './lib/FirebaseDatabase'
 import HomeNav from "./NavMain"
 import NavConsistent from './NavConsistent';
+import Loading from './Loading'
 
 
 
-const Matches = ({user, setUser}) => {
+const Matches = ({user, setUser, userFetched}) => {
 
     const [notMessagedMatches,setNotMessagedMatches] = useState([])
     const [messagedMatches,setMessagedMatches] = useState ([])
@@ -64,6 +65,8 @@ const Matches = ({user, setUser}) => {
 
     return (
 
+        <>
+        { !userFetched ? <Loading /> : (
         <div className="matches-contianer">
         <NavConsistent setUser={setUser} className="nav-consistent"/>
             <div className="match-gallery">
@@ -99,7 +102,8 @@ const Matches = ({user, setUser}) => {
             </div>
             <HomeNav display={'matches'}/>
         </div>
-       
+        )}
+        </>
     )
 }
 

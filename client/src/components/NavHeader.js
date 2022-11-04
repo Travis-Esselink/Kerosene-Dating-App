@@ -20,11 +20,11 @@ const NavHeader = ({user, setUser}) => {
                 <Link to="/home/main"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
 
-            { user &&
+            
                 <ThemeProvider prefixes={{ btn: 'login-button' }}>
                 <Button onClick={handleClick}>Login</Button>
                 </ThemeProvider>
-            }
+            
 
         </nav>
         <Login setUser={setUser} show={modalShow} onHide={() => setModalShow(false)} />

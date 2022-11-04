@@ -40,7 +40,7 @@ import Loading from "./components/Loading"
 
 function App() {
   const [user,setUser] = useState(null)
-  
+  const [userFetched,setuserFetched] = useState(false)
   useEffect( () => {
 
       
@@ -49,8 +49,12 @@ function App() {
     const getUser = async () => {
         const res = await fetch('/loggedin-user')
         const user = await res.json()
-        
-        setUser(user)
+        if (res.status===200) {
+          setUser(user)
+        } else {
+          setUser(null)
+        }
+        setuserFetched(true)
       }
       getUser()
   },[])
@@ -62,12 +66,12 @@ function App() {
 
         <Route path="/" element={<LandingPage user={user} setUser={setUser} />} />
         
-        <Route path="/home" element = {<PrivateAndSetUpRoute authorised={user}><Home user={user} setUser={setUser}/></PrivateAndSetUpRoute>}/>
-        <Route path="/home/main" element = {<PrivateAndSetUpRoute authorised={user}><Home user={user} setUser={setUser}/></PrivateAndSetUpRoute>}/>
-        <Route path="/home/matches" element = {<PrivateAndSetUpRoute authorised={user}><Matches user={user} setUser={setUser} /></PrivateAndSetUpRoute>}/>
-        <Route path="/home/matches/:id" element = {<PrivateAndSetUpRoute authorised={user}><Match user={user}/></PrivateAndSetUpRoute>} />
-        <Route path="/profile" element = {<PrivateAndSetUpRoute authorised={user}><UserProfile user={user} setUser={setUser}/></PrivateAndSetUpRoute>} />
-        <Route path="/profile/edit" element={<PrivateRoute authorised={user}><EditProfile user={user} setUser={setUser} /></PrivateRoute>} />
+        <Route path="/home" element = {<PrivateAndSetUpRoute authorised={user} userFetched={userFetched}><Home user={user} setUser={setUser} userFetched={userFetched}/></PrivateAndSetUpRoute>}/>
+        <Route path="/home/main" element = {<PrivateAndSetUpRoute authorised={user} userFetched={userFetched}><Home user={user} setUser={setUser} userFetched={userFetched}/></PrivateAndSetUpRoute>}/>
+        <Route path="/home/matches" element = {<PrivateAndSetUpRoute authorised={user} userFetched={userFetched}><Matches user={user} setUser={setUser} userFetched={userFetched}/></PrivateAndSetUpRoute>}/>
+        <Route path="/home/matches/:id" element = {<PrivateAndSetUpRoute authorised={user} userFetched={userFetched}><Match user={user} userFetched={userFetched}/></PrivateAndSetUpRoute>} />
+        <Route path="/profile" element = {<PrivateAndSetUpRoute authorised={user} userFetched={userFetched}><UserProfile user={user} setUser={setUser} userFetched={userFetched}/></PrivateAndSetUpRoute>} />
+        <Route path="/profile/edit" element={<PrivateRoute authorised={user} userFetched={userFetched}><EditProfile user={user} setUser={setUser} userFetched={userFetched}/></PrivateRoute>} />
         
 
 

@@ -10,7 +10,7 @@ import Loading from './Loading'
 import ProfileCard from './ProfileCard'
 
 
-const Match = ({user}) => {
+const Match = ({user, userFetched}) => {
     const navigate = useNavigate()
 
     const { id } = useParams()
@@ -60,7 +60,7 @@ const Match = ({user}) => {
     return (
         <>
             <div>
-            {!match? < Loading /> :
+            {(!match || !userFetched) ? < Loading /> :
                 <div className='match-content'>
                     <div className='match-nav'>
                         <NavMatch match={match} navBack={navBack} displayTab={displayTab} tab={tab}/>

@@ -7,11 +7,11 @@ import Swipe from "./Swipe"
 import NavMain from "./NavMain"
 import MatchModal from "./MatchModal"
 import NavConsistent from './NavConsistent';
-
+import Loading from './Loading'
 
 import NavHeader from "./NavHeader"
 
-const Home = ({user, setUser}) => {
+const Home = ({user, setUser, userFetched}) => {
 
     const [queue,setQueue] = useState([])
     const [showMatch,setShowMatch] = useState(false)
@@ -44,7 +44,8 @@ const Home = ({user, setUser}) => {
 
     return (
         <>
-
+        { !userFetched ? <Loading /> : (
+            <>
         <NavConsistent setUser={setUser} className="nav-consistent"/>
             <Swipe queue={queue} setQueue={setQueue} updateQueue={updateQueue} user={user} handleMatch={handleMatch}/>
 
@@ -54,7 +55,9 @@ const Home = ({user, setUser}) => {
             />
             
             <NavMain display={'main'} />
-
+            </>
+            )
+        }
         </>
     )
 }

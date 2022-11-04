@@ -10,7 +10,8 @@ import NavHeader from "./NavHeader"
 import { useNavigate } from 'react-router-dom';
 import ImgEdit from './ImgEdit'
 
-const EditProfile = ({user, setUser}) => {
+
+const EditProfile = ({user, setUser, userFetched}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
     const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
     const [userData, setUserData] = useState(null) // get from App.js
@@ -78,7 +79,7 @@ const EditProfile = ({user, setUser}) => {
     console.log(user)
     return (
         <>
-        { (userData?.displayName===undefined ) ? <Loading /> : (
+        { !userFetched || userData?.displayName===undefined ? <Loading /> : (
             <>
             <NavHeader />
             <hr />

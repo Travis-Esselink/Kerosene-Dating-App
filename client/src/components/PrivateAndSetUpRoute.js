@@ -1,7 +1,13 @@
 import { Navigate } from 'react-router-dom'
 
-const PrivateAndSetUpRoute = ({ children, authorised }) => {
+const PrivateAndSetUpRoute = ({ children, authorised, userFetched }) => {
+    if (!userFetched) {
+      return children
+    }
+  
     if (!authorised) {
+      console.log(authorised)
+      console.log('not auth')
       return <Navigate to="/"/>
     } else if (!authorised.displayName || !authorised.dateOfBirth || !authorised.gender || !authorised.genderPref) {
         return <Navigate to="/profile/edit" />

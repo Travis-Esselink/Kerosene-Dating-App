@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import MatchThumb from './MatchThumb'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ref, onValue } from "firebase/database";
 import { db } from './lib/FirebaseDatabase'
 import HomeNav from "./NavMain"
@@ -38,7 +38,11 @@ const Matches = ({user, setUser, userFetched}) => {
                                 const messages = snapshot.val()
                                 const keys = Object.keys(messages)
                                 const latestMessageTime = Math.max(...keys)
-                                const latestMessage = messages[latestMessageTime]
+                                let latestMessage = messages[latestMessageTime]
+
+                                if (latestMessage.length > 10) {
+                                    latestMessage = latestMessage.slice(0, 10)
+                                }
 
                                 latestMessage.time = latestMessageTime
                                 match.latestMessage = latestMessage
@@ -65,9 +69,13 @@ const Matches = ({user, setUser, userFetched}) => {
 
     return (
 
+
         <>
         { !userFetched ? <Loading /> : (
-        <div className="matches-contianer">
+
+
+        <div className="matches-container">
+
         <NavConsistent setUser={setUser} className="nav-consistent"/>
             <div className="match-gallery">
 

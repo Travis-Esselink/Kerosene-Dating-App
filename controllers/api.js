@@ -212,7 +212,7 @@ router.put('/v1/remove-image/:imageID', async (req,res) => {
 router.delete('/v1/profiles/:userID', async (req,res) => {
 
     let user = await User.findById(req.params.userID)
-    console.log()
+
     if (req.user?.id !== req.params.userID) {
         return res.status(401).json({msg: 'Not Authorised'})
     }

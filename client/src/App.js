@@ -43,23 +43,24 @@ function App() {
   const [userFetched,setuserFetched] = useState(false)
   useEffect( () => {
 
-      
-    
-
     const getUser = async () => {
         const res = await fetch('/loggedin-user')
         const user = await res.json()
+
         if (res.status===200) {
           setUser(user)
         } else {
           setUser(null)
         }
         setuserFetched(true)
+
       }
+    
       getUser()
   },[])
 
   console.log(user?.displayName,'user in app')
+
   return (
     <div className="App">
       <Routes>

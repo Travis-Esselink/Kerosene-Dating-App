@@ -72,10 +72,10 @@ const EditProfile = ({user, setUser}) => {
         <>
         { (userData?.displayName===undefined ) ? <Loading /> : (
             <>
-            <NavHeader />
+            <NavHeader user={user} setUser={setUser} />
             <hr />
             <div className="profile-form">
-            <h2>{userData.displayName ? "Edit Profile" : "Create an Account" }</h2>
+            <h2>{user?.displayName ? "Edit Profile" : "Create an Account" }</h2>
             <br />
             <Form onSubmit={handleSubmit}>
                 <Row>
@@ -187,7 +187,7 @@ const EditProfile = ({user, setUser}) => {
                         name="coverImage"
                         />
                     </Form.Group>
-                    <img className="img-edit" src={userData.coverImage}/>
+                    <img className="img-edit" src={userData.coverImage} alt="User Cover" />
                     <Form.Group className="position-relative mb-3" controlId="images">
                         <Form.Label>Gallery</Form.Label>
                         <Form.Control

@@ -318,7 +318,7 @@ h1 {
   mask-repeat: no-repeat, no-repeat;
 }
 
-::-webkit-scrollbar {
+.match-gallery-inner::-webkit-scrollbar {
   height: 10px;
   position: relative;
   z-index: +10;

@@ -14,7 +14,7 @@ const NavHeader = ({user, setUser}) => {
         setModalShow(true)
     }
 
-    console.log(user + "NavHeader compo");
+    console.log(user + " - NavHeader compo");
 
     return (
         <>

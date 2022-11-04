@@ -29,14 +29,31 @@ Our project is to build a dating app with the swiping function.
 * Users can unmatch anytime they want and all the chat history will be deleted. 
 * The app is styled with responsive design. 
 
-
 ## General Approach
 We started by discussing what functions we want it to be in our app. Then discuss how to structure our model, routes and components. 
+We made a new state as userFetched, if there's a user
 
 Wireframe:
 ![Wirefram] (./client/src/images/wireframe.png)
 
 
+## Challenges and Unsolved Problems
+### Private Routes
+* We set all the routes as PrivateRoute except the Landing Page. However, after logged in and refreshed the page, it will kick the user back to Landing Page while the user is still logged in
+
+### The Matching Function
+
+### Chat
+
+
+## Future Improvements
+
+## Credits & Acknowledgement
+
+Images are from:
+* [Unsplash] (https://unsplash.com/)
+* [Icons8] (https://icons8.com/)
+* [Flaticon] (https://www.flaticon.com/)
 
 Explanations of the technologies used
 A couple paragraphs about the general approach you took

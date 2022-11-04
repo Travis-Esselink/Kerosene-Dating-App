@@ -64,7 +64,7 @@ const Matches = ({user, setUser}) => {
 
     return (
 
-        <div className="matches-contianer">
+        <div className="matches-container">
         <NavConsistent setUser={setUser} className="nav-consistent"/>
             <div className="match-gallery">
 

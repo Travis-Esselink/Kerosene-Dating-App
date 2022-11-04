@@ -38,7 +38,7 @@ nav .logo-container .logo {
   font-weight: 600;
   padding: 0 20px;
   border-radius: 20px;
-  border: none;
+  border: 1px solid #da8971;
   margin: 20px 20px;
   max-width: 100px;
   text-align: center;

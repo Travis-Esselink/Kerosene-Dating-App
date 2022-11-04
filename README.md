@@ -1,7 +1,7 @@
 # KEROSENE DATING-APP - "Can you handle the heat?"
 ### A project by [Chris](https://github.com/ChristopherHendrickson), [Travis](https://github.com/Travis-Esselink) and [Adora](https://github.com/AdoraWyne)
 
-Check out the heatest dating app [here] (...)
+Check out the heatest dating app [here](# heruko link)
 
 **Username**: Dido
 **Password**: 1234

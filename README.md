@@ -30,16 +30,19 @@ Our project is to build a dating app with the swiping function.
 * The app is styled with responsive design. 
 
 ## General Approach
-We started by discussing what functions we want it to be in our app. Then discuss how to structure our model, routes and components. 
-We made a new state as userFetched, if there's a user
+We had a few ideas of what to do with our first group project and we chose dating app eventually thinking this would be fun!
 
+We started by discussing what functions we want it to be in our app. Then discuss how to structure our model, then the routes and components. 
+
+Once we have roughly idea, we proceeded to sketch the user interface by using Paint.
 Wireframe:
 ![Wirefram] (./client/src/images/wireframe.png)
 
+We distributed the tasks based on personal's strength and had a few discussion everyday to make sure everyone is on the same page.
 
 ## Challenges and Unsolved Problems
 ### Private Routes
-* We set all the routes as PrivateRoute except the Landing Page. However, after logged in and refreshed the page, it will kick the user back to Landing Page while the user is still logged in
+* We set all the routes as PrivateRoute except the Landing Page. However, after logged in and refreshed the page, it will kick the user back to Landing Page while the user is still logged in. We made a new state as userFetched, if there's a user Loading component, then only the routes wrapped by Private Routes.
 
 ### The Matching Function
 

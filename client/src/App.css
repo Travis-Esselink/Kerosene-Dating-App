@@ -13,7 +13,7 @@
 
 /* ============================== NavHeader ============================== */
 /* Set children elements inside the nav to space-between */
-nav {
+.nav-header {
   width: 100%;
   max-height: 80px;
   display: flex;
@@ -21,18 +21,19 @@ nav {
 }
 
 /* Set the logo-container size to contain logo image */
-nav .logo-container {
+.nav-header .logo-container {
   max-width: 170px;
   margin: 15px;
 }
 
 /* Style the logo to fit the logo-container & border-radius */
-nav .logo-container .logo {
+.nav-header .logo-container .logo {
   width: 100%;
   border-radius: 10px;
 }
 
 /* Style Login & LOGOUT button */
+.nav-header button,
 .login-button {
   color: #ff0000;
   background: #ffffff;
@@ -48,18 +49,21 @@ nav .logo-container .logo {
 }
 
 /* Login & LOGOUT button when hover */
+.nav-header button:hover,
 .login-button:hover {
   color: #ffffff;
   background: #ff6e40;
 }
 
 @media screen and (min-width: 650px ) {
+  .nav-header button,
   .login-button {
     font-size: 16px;
   }
 }
 
 @media screen and (max-width: 300px ) {
+  .nav-header button,
   .login-button {
     font-size: 10px;
   }

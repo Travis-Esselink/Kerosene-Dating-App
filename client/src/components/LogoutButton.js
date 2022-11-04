@@ -1,6 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 const LogoutButton = ({setUser}) => {
 
@@ -16,9 +14,7 @@ const LogoutButton = ({setUser}) => {
 
     return (
         <>
-        <ThemeProvider prefixes={{ btn: 'login-button' }}>
-            <Button onClick={handleClick}>Logout</Button>
-        </ThemeProvider>
+            <button onClick={handleClick}>Logout</button>
         </>
     )
 }

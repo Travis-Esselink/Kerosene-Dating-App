@@ -26,7 +26,7 @@ Our project is to build a dating app with the swiping function.
 * Not only the users can upload one profile picture, they can upload multiple pictures in their gallery and all the images will be shown in carousel.
 * Swiping function based on users' preferences.
 * Once swiped left (not interested), the un-interested profiles will never be shown again.
-* With the chatting function, once swiped right and it's a matched, users can start chatting with the matched profiles.
+* With the chatting function, once swiped right and it's a matched, users can start chatting with the matched profiles. On Chat UI, the users can preview part of the latest message.
 * Users can unmatch anytime they want and all the chat history will be deleted. 
 * The app is styled with responsive design. 
 

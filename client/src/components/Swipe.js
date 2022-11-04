@@ -25,13 +25,8 @@ const Swipe = ({queue, updateQueue, handleMatch, user}) => {
         if (swipeResult.match) {
           console.log('Match!')
           user.matches.push(swipeResult.match)
-          //update state of showMatch by calling handleMatch
-          //create a modal, on modal close -> set showMatch to false 
-          //push match to users match array
-          //update match state
-        } else {
-          console.log('sad times')
-        }
+          handleMatch()
+        } 
 
       }
     }
@@ -43,7 +38,7 @@ const Swipe = ({queue, updateQueue, handleMatch, user}) => {
 
     return (
       <>
-          <div className='swipecard-container'>
+          <div className='tinder-cards'>
             {queue.map((profile) =>
               <TinderCard 
                   className='swipe' 

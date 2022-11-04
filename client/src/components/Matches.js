@@ -5,10 +5,11 @@ import { ref, onValue } from "firebase/database";
 import { db } from './lib/FirebaseDatabase'
 import HomeNav from "./NavMain"
 import NavConsistent from './NavConsistent';
+import Loading from './Loading'
 
 
 
-const Matches = ({user, setUser}) => {
+const Matches = ({user, setUser, userFetched}) => {
 
     const [notMessagedMatches,setNotMessagedMatches] = useState([])
     const [messagedMatches,setMessagedMatches] = useState ([])
@@ -55,7 +56,7 @@ const Matches = ({user, setUser}) => {
 
 
                 messaged.sort((a,b)=>{
-                    console.log(a.latestMessage.time)
+
                     return a.latestMessage.time>b.latestMessage.time ? -1:1
                 })
 
@@ -68,13 +69,19 @@ const Matches = ({user, setUser}) => {
 
     return (
 
+
+        <>
+        { !userFetched ? <Loading /> : (
+
+
         <div className="matches-container">
+
         <NavConsistent setUser={setUser} className="nav-consistent"/>
             <div className="match-gallery">
 
                 <div className="match-gallery-inner">
                 {notMessagedMatches.map((match) =>
-                    <Link className="match-thumb-link" to={`/home/matches/${match._id}`}>
+                    <Link className="match-thumb-link" to={`/home/matches/${match._id}`} key={`${match._id}linkn`}>
                         <div className="match-thumb-container">
                             <MatchThumb profile={match} key={`${match._id}thumb`} />
                             <p className='match-thumb-name'>{match.displayName}</p>
@@ -89,7 +96,7 @@ const Matches = ({user, setUser}) => {
 
                 <h3 className="message-gallery-title">MESSAGES</h3>
                 {messagedMatches.map((match) =>
-                    <Link className="match-thumb-link" to={`/home/matches/${match._id}`}>
+                    <Link className="match-thumb-link" to={`/home/matches/${match._id}`} key={`${match._id}linkm`}>
                         <div className="message-thumb-container">
                             <MatchThumb profile={match} key={`${match._id}messaged`} />
                             <div className="name-message-div">
@@ -103,7 +110,8 @@ const Matches = ({user, setUser}) => {
             </div>
             <HomeNav display={'matches'}/>
         </div>
-       
+        )}
+        </>
     )
 }
 

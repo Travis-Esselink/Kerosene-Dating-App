@@ -8,13 +8,14 @@ import Loading from "./Loading"
 import ProfileCard from "./ProfileCard"
 import DeleteButton from './DeleteButton';
 
-const UserProfile = ({user, setUser}) => {
+const UserProfile = ({user, setUser, userFetched}) => {
 
     return (
         <> 
-        <NavConsistent setUser={setUser} />
-        { !user ? <Loading /> : (
+        
+        { !userFetched ? <Loading /> : (
             <>
+            <NavConsistent setUser={setUser} />
             <ProfileCard userProfile={user} />
             
             <div className="profilebuttons-container">

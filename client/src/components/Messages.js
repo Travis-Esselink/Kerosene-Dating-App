@@ -1,7 +1,7 @@
 
 import { ref, onValue } from "firebase/database";
 import { useState, useEffect, useRef } from 'react'
-
+import { Fragment } from 'react'
 const Messages = ({db, username, roomID}) => {
     const [messages1, setMessages1] = useState([])
     const fetchChat = ref(db, roomID);
@@ -35,14 +35,14 @@ const Messages = ({db, username, roomID}) => {
 
     const renderedMessages = messages1.map((msg) => {
         return (
-            <>
+            <Fragment key={msg.key}>
             <li className={`${username === msg.username ? "sent" : "receive"}`}
-                key={msg.key}
+                
                 username={msg.username}
                 message={msg.message}
             >{`${msg.message}`}</li>
              <div ref={messagesEndRef} />
-            </>
+            </Fragment>
         )
     })
 return renderedMessages

@@ -1,6 +1,10 @@
 import { Navigate } from 'react-router-dom'
 
-const PrivateRoute = ({ children, authorised }) => {
+const PrivateRoute = ({ children, authorised, userFetched }) => {
+    if (!userFetched) {
+      return children
+    }
+      
     if (authorised) {
       return children
     } else {

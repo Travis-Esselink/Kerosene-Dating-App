@@ -1,7 +1,8 @@
 # KEROSENE DATING-APP - "Can you handle the heat?"
-### A project by [Chris] (https://github.com/ChristopherHendrickson), [Travis] (https://github.com/Travis-Esselink) and [Adora] (https://github.com/AdoraWyne)
+### A project by [Chris](https://github.com/ChristopherHendrickson), [Travis](https://github.com/Travis-Esselink) and [Adora](https://github.com/AdoraWyne)
 
 Check out the heatest dating app [here] (...)
+
 **Username**: Dido
 **Password**: 1234
 
@@ -36,7 +37,7 @@ We started by discussing what functions we want it to be in our app. Then discus
 
 Once we have roughly idea, we proceeded to sketch the user interface by using Paint.
 Wireframe:
-![Wirefram] (./client/src/images/wireframe.png)
+![Wirefram](./client/src/images/wireframe.png)
 
 We distributed the tasks based on personal's strength and had a few discussion everyday to make sure everyone is on the same page.
 
@@ -54,9 +55,9 @@ We distributed the tasks based on personal's strength and had a few discussion e
 ## Credits & Acknowledgement
 
 Images are from:
-* [Unsplash] (https://unsplash.com/)
-* [Icons8] (https://icons8.com/)
-* [Flaticon] (https://www.flaticon.com/)
+* [Unsplash](https://unsplash.com/)
+* [Icons8](https://icons8.com/)
+* [Flaticon](https://www.flaticon.com/)
 
 Explanations of the technologies used
 A couple paragraphs about the general approach you took

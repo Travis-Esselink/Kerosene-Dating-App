@@ -12,10 +12,10 @@ const Unmatch = ({show, handleClose, match}) => {
             method:'PUT'
         })
         const res = await resp.json()
-        console.log(res,'res')
+
         navigate('/home/matches')
     }
-    //need to update user state
+
     return (
         <Modal
         show={show}

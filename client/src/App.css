@@ -620,7 +620,7 @@ hr {
   font-size: 15px;
   border-radius: 5px;
   border: 1px solid #ffffff;
-  
+  max-width: 100px;
 
 }
 

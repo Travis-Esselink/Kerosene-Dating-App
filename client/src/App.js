@@ -59,7 +59,6 @@ function App() {
       getUser()
   },[])
 
-  console.log(user?.displayName,'user in app')
 
   return (
     <div className="App">

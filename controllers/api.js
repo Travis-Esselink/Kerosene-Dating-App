@@ -108,7 +108,7 @@ router.get('/v1/profiles', async (req,res) => {
 
         const queue=[]
         const allProfiles = await User.find({_id: {$ne:req.user.id}}) //get all profiles except the loged in users
-        console.log(allProfiles.length,'profs')
+
         const filteredProfiles = allProfiles.filter((e)=>{
             return (e.displayName) //filter out any incomplete profiles. displayName will be undefined for incomplete profiles
         })
@@ -124,7 +124,7 @@ router.get('/v1/profiles', async (req,res) => {
 
             return queue.length<responseLength
         })
-        console.log(queue.length)
+
         res.json(queue)
     } else {
         res.status(401).json({msg:'No user logged in'})
@@ -152,7 +152,6 @@ router.get('/v1/profiles/:matchedUserID', async (req,res) => {
     //expects a user id of the matched user to dispaly
     //returns profile of user
     const user = await User.findById(req.params.matchedUserID)
-    console.log(user)
     res.json(user)
 })
 
@@ -174,7 +173,7 @@ router.put('/v1/profiles/:userID', upload.fields([{name:'images'},{name:'coverIm
     if (req.files?.images) {
 
         const newImages = req.files.images.map((image)=>{
-            console.log(image,'iterated image')
+
             return image.path
         })
         req.body.images = [...existingImages,...newImages]
@@ -192,7 +191,7 @@ router.put('/v1/profiles/:userID', upload.fields([{name:'images'},{name:'coverIm
 router.put('/v1/remove-image/:imageID', async (req,res) => {
     //expects the cloudinary image name, eg "wt0sd4gcjcjsr4xyxydg.jpg"
     let user = await User.findById(req.user.id)
-    console.log(user.images)
+
     const newImages = [...user.images].filter((image)=>{
         const id = image.slice(image.lastIndexOf('/')+1)
         return id !== req.params.imageID
@@ -227,8 +226,7 @@ router.delete('/v1/profiles/:userID', async (req,res) => {
     //check for match - named function
     //create match, update user match arrays, create a chatroom - named function
 router.put('/v1/swipe/:swipedUserID', async (req,res) => {
-    console.log('hit swipe api')
-    console.log(req.body)
+
     const user = await User.findById(req.user.id)
     const swipedUser = await User.findById(req.params.swipedUserID) 
     const alreadySeen = user.seen.filter((e)=>{

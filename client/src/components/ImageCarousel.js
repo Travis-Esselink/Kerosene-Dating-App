@@ -9,16 +9,17 @@ const ImageCarousel = ({userProfile}) => {
     return (
         <>
         <Carousel slide={false} interval={1500}>
-        {imagesCarousel.map((image) => {
+        {imagesCarousel.map((image,i) => {
             return (
-                
-                <Carousel.Item>
+
+                <Carousel.Item key = {image+'c-item'+i}>
                 <img
                 className="d-block w-100"
                 src={image}
                 alt="profile image"
                 />
                 </Carousel.Item>
+
 
             )
         })}

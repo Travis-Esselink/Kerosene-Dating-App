@@ -42,7 +42,6 @@ const Login = ({show, onHide, setUser }) => {
             setError(null)
             setUser(data)
             navigate('/home/main')
-            console.log("Test Logged In!"); // to be deleted!
         }
         setFields(initialState)
     }

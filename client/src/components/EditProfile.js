@@ -76,7 +76,7 @@ const EditProfile = ({user, setUser, userFetched}) => {
         }
         return new Date(dateStr).toISOString().substring(0,10)
     }
-    console.log(user)
+
     return (
         <>
         { !userFetched || userData?.displayName===undefined ? <Loading /> : (
@@ -183,7 +183,7 @@ const EditProfile = ({user, setUser, userFetched}) => {
                             name="bio"
                             value={userData.bio}
                             onChange={handleChange}
-                            maxlength={250}
+                            maxLength={250}
                         />
                         </Form.Group>
                         <p className='remaining-chars'>{chars} Characters Remaining</p>

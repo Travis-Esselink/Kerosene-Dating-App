@@ -16,8 +16,7 @@ const Home = ({user, setUser, userFetched}) => {
     const [queue,setQueue] = useState([])
     const [showMatch,setShowMatch] = useState(false)
     const [modalShow, setModalShow] = React.useState(false);
-
-    console.log(user,'user')
+    
     useEffect( () => {
         const getQueue = async () => {
             const res = await fetch('/v1/profiles')
@@ -32,7 +31,6 @@ const Home = ({user, setUser, userFetched}) => {
         const res = await fetch('/v1/profiles')
         let data = await res.json()
         const newQueue = data.reverse()
-        data[data.length-1].top=true
         setQueue(newQueue)
     }
 

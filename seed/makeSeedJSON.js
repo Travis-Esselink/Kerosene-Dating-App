@@ -21988,7 +21988,11 @@ const names = [
     ]
 
 const genders = ['M','F']
-const img = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
+
+const getImage = () => {
+    return "https://placedog.net/"+Math.floor(Math.random()*1000)
+}
+
 const bio = 'Lorem ipsum'
 const seed = [{
     "username": "Dido",
@@ -21999,8 +22003,8 @@ const seed = [{
     "ageRange": "100",
         
     "bio": "Im the light mode guy with more than 10 beanies. Superpower: 'Can teach under any conditions: train sound, migraine, even in the midst of moving house'. What can kill me: 'bread'",
-    "coverImage":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
-    "images":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
+    "coverImage":[getImage()],
+    "images":[getImage(),getImage(),getImage(),getImage(),getImage()],
     "matches": [],
     "seen": []
 },
@@ -22014,8 +22018,8 @@ const seed = [{
     "ageRange": "6",
         
     "bio": "I own a few businesses however I still felt like I lack of something then I fall in love with coding. I also good at multi-tasking. I can do my own personal project while teaching a class. Room 10 is my fav and students like to call me Rob",
-    "coverImage":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
-    "images":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
+    "coverImage":[getImage()],
+    "images":[getImage(),getImage(),getImage()],
     "matches": [],
     "seen": []
 },
@@ -22029,8 +22033,8 @@ const seed = [{
     "ageRange": "7",
         
     "bio": "Cringe and CSS is not my things. I usually finish homework and exercise earlier than anyone in the class because I have dishes to wash and dinner to cook. How do I keep my energy for all these tasks? Redbull",
-    "coverImage":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
-    "images":["https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"],
+    "coverImage":[getImage()],
+    "images":[getImage(),getImage(),getImage()],
     "matches": [],
     "seen": []
 }]
@@ -22044,8 +22048,8 @@ for (let i=0;i<1000;i++) {
     const randomDay = Math.floor(Math.random()*31)+1
     const randomDOB = `${randomYear}-${randomMonth}-${randomDay}`
     let randomGender = genders[Math.floor(Math.random()*2)]
-    randomGender = 'F'
-    let randomGenderPref = randomGender==='F' ? 'M' : 'F'
+
+    let randomGenderPref = 'FM'
     const randomName = names[Math.floor(Math.random()*names.length)]
     names.splice(names.indexOf(randomName),1)
     const range = Math.floor(Math.random()*10)+2
@@ -22058,8 +22062,8 @@ for (let i=0;i<1000;i++) {
         "ageRange": range,
             
         "bio": bio,
-        "coverImage":[img],
-        "images":[img],
+        "coverImage":[getImage()],
+        "images":[getImage(),getImage(),getImage(),getImage()],
         "matches": [],
         "seen": []
     })

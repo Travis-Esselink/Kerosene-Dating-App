@@ -275,8 +275,34 @@ h1 {
   justify-content: flex-start;
   width: 100%;
   max-width: 650px;
+
+  /* CSS mask */
+  --scrollbar-width: 0px;
+  --mask-height: 20px;
+  padding-left: var(--mask-width);
+  padding-right: var(--mask-width);
+  --mask-image-content: linear-gradient(
+      to left,
+      transparent,
+      black var(--mask-height),
+      black calc(100% - var(--mask-height)),
+      transparent
+  );
+  --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
+  --mask-image-scrollbar: linear-gradient(black, black);
+  --mask-size-scrollbar: var(--scrollbar-width) 100%;
+  mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+  mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+  mask-position: 0 0, 100% 0;
+  mask-repeat: no-repeat, no-repeat;
 }
 
+::-webkit-scrollbar {
+  height: 10px;
+  position: relative;
+  z-index: +10;
+  background: #ff6e40
+}
 
 .message-gallery-title {
   color: rgb(250, 126, 126);
@@ -292,7 +318,7 @@ h1 {
   height: 60px;
   width: 60px;
   margin: 5px 15px;
-  border: 2px solid white;
+  box-shadow: 0 8px 10px -10px rgba(0, 0, 0, 1);
 }
 
 #top-nav-img {
@@ -300,7 +326,7 @@ h1 {
   object-fit: square;
   height: 38px;
   width: 38px;
-  box-shadow: 0 8px 10px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 10px -10px rgba(0, 0, 0, 1);
   
 }
 
@@ -319,7 +345,8 @@ h1 {
 .message-gallery {
   padding-top: 20px;
   padding-bottom: 60px;
-  /* overflow-y:auto; */
+  overflow: hidden;
+  width: 90%;
   max-width: 650px;
   margin: 0 auto;
   background: white;
@@ -332,6 +359,7 @@ h1 {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);;
 }
 
 .message-thumb-name {
@@ -355,6 +383,7 @@ h1 {
 }
 
 .match-thumb-message {
+  word-break:break-all;
   max-width: 350px;
   overflow: hidden;
   display: -webkit-box;
@@ -363,9 +392,7 @@ h1 {
   font-size: 13px;
   font-weight: 300;
   color: grey;
-
-
-
+  
 }
 
 .match-thumb-link {

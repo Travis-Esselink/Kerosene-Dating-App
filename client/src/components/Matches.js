@@ -37,7 +37,11 @@ const Matches = ({user, setUser}) => {
                                 const messages = snapshot.val()
                                 const keys = Object.keys(messages)
                                 const latestMessageTime = Math.max(...keys)
-                                const latestMessage = messages[latestMessageTime]
+                                let latestMessage = messages[latestMessageTime]
+
+                                if (latestMessage.length > 10) {
+                                    latestMessage = latestMessage.slice(0, 10)
+                                }
 
                                 latestMessage.time = latestMessageTime
                                 match.latestMessage = latestMessage

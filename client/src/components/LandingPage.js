@@ -18,7 +18,9 @@ const LandingPage = ({user, setUser}) => {
             <NavHeader setUser={setUser} user={user} />
 
             <div className="landingpage-content">
-                <h1>It Ignites with a Match</h1>
+
+                <h1>It all Ignites with a Match</h1>
+
                 <ThemeProvider prefixes={{ btn: 'createAcc-button'}}>
                     <Button onClick={handleClick}>Create Account</Button>
                 </ThemeProvider>

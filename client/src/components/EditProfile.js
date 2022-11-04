@@ -187,7 +187,7 @@ const EditProfile = ({user, setUser}) => {
                         name="coverImage"
                         />
                     </Form.Group>
-                    <img className="img-edit" src={userData.coverImage}/>
+                    <img className="img-edit" src={userData.coverImage} alt="User Cover" />
                     <Form.Group className="position-relative mb-3" controlId="images">
                         <Form.Label>Gallery</Form.Label>
                         <Form.Control

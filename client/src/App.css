@@ -518,6 +518,7 @@ hr {
   justify-content: space-between;
   color: #ff0000;
   background: -webkit-linear-gradient(#ff6e40, #ff0000);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

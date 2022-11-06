@@ -11,6 +11,7 @@ const Chat = ({ user, roomID }) => {
     const initialField = ''
     const [field, setField] = useState(initialField)
     const [message1, setMessage1] = useState({})
+    const [text, setText] = useState({value: '' })
 
 
     // Form submission logic for sending messages
@@ -24,16 +25,21 @@ const Chat = ({ user, roomID }) => {
     }
 
     const handleChange = (event) => {
-        const { value } = event.target
+        const { value, maxLength, } = event.target
         let updatedField = { username }
         updatedField = value
+        if (value.length <= maxLength ) {
         setField(updatedField)
+        
+        }
+        setText(event.target.value)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
         onFormSubmit(field)
         setField(initialField)
+        setText({value: ''})
     }
     //Receiving text messages
 
@@ -49,8 +55,8 @@ const Chat = ({ user, roomID }) => {
                 </ul>
 
                 <form id="message-form" onSubmit={handleSubmit}>
-                    <input id="message-input" type="text" autoComplete="off" value={field} onChange={handleChange} />
-                    <input id="message-btn" type="submit" value="Send" />
+                    <input id="message-input" type="text" maxLength={600} autoComplete="off" value={field} onChange={handleChange} />
+                    <input id="message-btn" type="submit" value="Send" disabled={text.length < 1 || text.value ===  '' ? true : false} />
                 </form>
             </div>
         </>

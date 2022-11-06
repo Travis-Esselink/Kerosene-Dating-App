@@ -21,8 +21,8 @@ const ProfileCard = ({userProfile}) => {
         <div className="card-container">
         <Card className="border-0">
             <>
-            <div className="profilecard-image">
-                <ImageCarousel userProfile={userProfile} />
+            <div className="profilecard-carousel">
+                <ImageCarousel userProfile={userProfile} key={userProfile._id+"carouselImage"}/>
             </div>
             </>
             <Card.Body>

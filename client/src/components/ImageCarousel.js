@@ -8,16 +8,19 @@ const ImageCarousel = ({userProfile}) => {
 
     return (
         <>
-        <Carousel>
-        {imagesCarousel.map((image) => {
+        <Carousel slide={false} interval={1500}>
+        {imagesCarousel.map((image,i) => {
             return (
-                <Carousel.Item>
+
+                <Carousel.Item key = {image+'c-item'+i}>
                 <img
-                className="d-block w-100 image-size"
+                className="d-block w-100"
                 src={image}
-                alt="First slide"
+                alt="profile image"
                 />
                 </Carousel.Item>
+
+
             )
         })}
         </Carousel>

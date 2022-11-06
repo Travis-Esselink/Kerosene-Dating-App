@@ -1,3 +1,7 @@
+* {
+    scroll-behavior: auto;
+}
+
 body {
     background-color: white;
     margin: 0;
@@ -12,7 +16,8 @@ header {
     padding-bottom: 75px;
     padding-top: 35px;
     padding-left: 0px;
-    margin: 0 auto;
+    margin: 20px auto;
+    
 }
 
 
@@ -24,11 +29,14 @@ li {
     padding-right: 10px;
     border-radius: 10px;
     color: rgb(47, 47, 47);
+    min-width: 4%;
+    min-height: 4%;
     max-width: 65%;
     width: -moz-fit-content;
     width: fit-content;
     font-size: 13px;
     font-family: helvetica, arial, sans-serif;
+    overflow-wrap: break-word;
     
 }
 
@@ -61,7 +69,7 @@ li span {
     border: 0;
     background: linear-gradient(45deg, #ff6030, #ff4343);
     color: white;
-    box-shadow: 10px 0 15px 4px rgba(0, 0, 0, 0.06);
+    box-shadow: 10px 0 15px 4px rgba(0, 0, 0, 0.20);
 }
 
 #message-input {

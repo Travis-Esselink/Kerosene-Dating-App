@@ -10,15 +10,18 @@ import NavHeader from "./NavHeader"
 import { useNavigate } from 'react-router-dom';
 import ImgEdit from './ImgEdit'
 
-const EditProfile = ({user, setUser}) => {
+
+const EditProfile = ({user, setUser, userFetched}) => {
     const [errorImages, setErrorImages] = useState(false) // only for this compo
     const [errorAgeRange, setErrorAgeRange] = useState(false) // only for this compo
     const [userData, setUserData] = useState(null) // get from App.js
     const [images,setImages] = useState(null)
+    const [chars, setChars] = useState(250)
     useEffect(() => {
         if (user) {
             setUserData({...user})
             setImages([...user.images])
+            setChars({...user}.bio.length)
         }
     },[user])
 
@@ -35,11 +38,17 @@ const EditProfile = ({user, setUser}) => {
         }
     }
 
+    const handleCancel = () => {
+        navigate('/profile')
+    }
+
     const handleChange = (event) => {
         const {name, value} = event.target
         // handling ageRange validation
         if (name === "ageRange" && value < 1) {
             setErrorAgeRange(true)
+        } else if (name === "bio") {
+            setChars(250-value.length)
         } else {
             setErrorAgeRange(false)
         }
@@ -67,10 +76,10 @@ const EditProfile = ({user, setUser}) => {
         }
         return new Date(dateStr).toISOString().substring(0,10)
     }
-    console.log(user)
+
     return (
         <>
-        { (userData?.displayName===undefined ) ? <Loading /> : (
+        { !userFetched || userData?.displayName===undefined ? <Loading /> : (
             <>
             <NavHeader user={user} setUser={setUser} />
             <hr />
@@ -168,14 +177,16 @@ const EditProfile = ({user, setUser}) => {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="bio">
-                        <Form.Label>About Me:</Form.Label>
+                        <Form.Label>Bio:</Form.Label>
                         <Form.Control 
-                            as="textarea" rows={3} placeholder="Tell about yourself"
+                            as="textarea" rows={3} placeholder="Say a Little About Yourself"
                             name="bio"
                             value={userData.bio}
                             onChange={handleChange}
+                            maxLength={250}
                         />
                         </Form.Group>
+                        <p className='remaining-chars'>{chars} Characters Remaining</p>
                     </Col>
                 
                     <Col>
@@ -214,6 +225,11 @@ const EditProfile = ({user, setUser}) => {
                     disabled={errorImages} 
                     >
                         Submit
+                    </Button>
+                </ThemeProvider>
+                <ThemeProvider prefixes={{ btn: 'cancel-button'}}>
+                    <Button onClick={handleCancel}>
+                        Cancel
                     </Button>
                 </ThemeProvider>
             </Form>

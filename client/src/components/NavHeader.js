@@ -14,14 +14,13 @@ const NavHeader = ({user, setUser}) => {
         setModalShow(true)
     }
 
-    console.log(user + " - NavHeader compo");
-
     return (
         <>
         <nav class="nav-header">
             <div className="logo-container">
                 <Link to="/home/main"><img className="logo" src={AppLogo} alt="App Logo" /></Link>
             </div>
+
 
             { !user 
                 ?
@@ -33,6 +32,7 @@ const NavHeader = ({user, setUser}) => {
                     <LogoutButton setUser={setUser} />
                 )
             }
+
 
         </nav>
         <Login setUser={setUser} show={modalShow} onHide={() => setModalShow(false)} />

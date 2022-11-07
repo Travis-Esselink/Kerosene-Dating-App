@@ -39,11 +39,13 @@ We started by discussing what functions we want it to be in our app. Then discus
 Once we have roughly idea, we proceeded to sketch the user interface by using Paint.
 Wireframe:
 
-![Wireframe](./client/src/images/matched-user-list.png)![Wireframe](./client/src/images/matched-user-profile-chat.png)![Wireframe](./client/src/images/main-swipe-card.png)
+Matched Users List         |  Matched User Profile     | Main Page (Swiping Card) |
+:-------------------------:|:-------------------------:|:-------------------------:
+![](./client/src/images/matched-user-list.png) | ![](./client/src/images/matched-user-profile-chat.png)| ![](./client/src/images/main-swipe-card.png) |
 
 We distributed the tasks based on personal's strength and had a few discussion everyday to make sure everyone is on the same page.
 
-## Challenges and Unsolved Problems
+## Challenges
 ### The Swiping Function
 We were thinking to use CSS Animation to do the swiping part. However, we found a react-tinder-card package that we can user for this project. Kudos to the creator!
 The only thing we need to do in order to use this package is install two dependencies into the project and the version we need to install is react-tinder-card at version 1.5.4. 

@@ -1,7 +1,7 @@
 # KEROSENE DATING-APP - "Can you handle the heat?"
 ### A project by [Chris](https://github.com/ChristopherHendrickson), [Travis](https://github.com/Travis-Esselink) and [Adora](https://github.com/AdoraWyne)
 
-Check out the heatest dating app [here](# heruko link)
+Check out the heatest dating app [here](kerosene-date.herokuapp.com)!
 
 **Username**: Dido
 
@@ -22,14 +22,14 @@ Our project is to build a dating app with the swiping function.
 * Github
 * Heruko
 
-## Features:
+## Features
 * Users can register a new account, edit the profile information and delete their profile once found the true love. 
 * Not only the users can upload one profile picture, they can upload multiple pictures in their gallery and all the images will be shown in carousel.
 * Swiping function based on users' preferences.
 * Once swiped left (not interested), the un-interested profiles will never be shown again.
 * With the chatting function, once swiped right and it's a matched, users can start chatting with the matched profiles. On Chat UI, the users can preview part of the latest message.
 * Users can unmatch anytime they want and all the chat history will be deleted. 
-* The app is styled with responsive design but the design aiming for smaller devices.
+* The app is styled with responsive design but the design aiming for mobile devices.
 
 ## General Approach
 We had a few ideas of what to do with our first group project and we chose dating app eventually thinking this would be fun!
@@ -37,6 +37,7 @@ We had a few ideas of what to do with our first group project and we chose datin
 We started by discussing what functions we want it to be in our app. Then discuss how to structure our model, then the routes and components. 
 
 Once we have roughly idea, we proceeded to sketch the user interface by using Paint.
+
 Wireframe:
 
 Matched Users List         |  Matched User Profile     | Main Page (Swiping Card) |
@@ -58,7 +59,7 @@ And, because our app is React app, so it need to install below as well:
 ```
 npm install --save @react-spring/web@9.5.5
 ```
-You can also read more about this package at [here](https://www.npmjs.com/package/react-tinder-card)
+You can also read more about this package at [here](https://www.npmjs.com/package/react-tinder-card).
 
 ### Private Routes
 We set all the routes as PrivateRoute or PrivateAndSetUpRoute except the Landing Page. However, after logged in and refreshed the page, it will kick the user back to Landing Page while the user is still logged in. 
@@ -73,7 +74,7 @@ Firebase Realtime Database implementation into react proved to be a challenge at
 These syntax issues were consolidated by consulting the offical google [firebase documentation](https://firebase.google.com/docs/web/modular-upgrade) for the most recent firebase release.
 
 ## Credits & Acknowledgement
-* To our instructor- Dido and TA- Rob guided us throughout the project.
+To our instructor- Dido and TA- Rob guided us throughout the project.
 
 Images are from:
 * [Unsplash](https://unsplash.com/)

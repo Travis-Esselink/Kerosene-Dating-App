@@ -28,7 +28,6 @@ const Matches = ({user, setUser, userFetched}) => {
                 const data = await res.json()
                 const messaged = []
                 const notMessaged = []
-                console.log(data)
                 if (data) {
                     data.forEach((match)=>{
                         const roomID = getRoomID(match)
@@ -59,8 +58,6 @@ const Matches = ({user, setUser, userFetched}) => {
 
                     return a.latestMessage.time>b.latestMessage.time ? -1:1
                 })
-                console.log(notMessaged)
-                console.log(messaged)
                 setNotMessagedMatches(notMessaged)
                 setMessagedMatches(messaged)
             }

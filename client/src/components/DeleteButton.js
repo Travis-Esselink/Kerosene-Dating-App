@@ -13,7 +13,6 @@ const DeleteButton = ({user, setUser}) => {
             method: "DELETE",
         })
         const data = await res.json()
-        console.log(data)
         setUser(null)
         navigate("/")
     

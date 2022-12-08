@@ -58,12 +58,10 @@ const CreateAccount = ({show, onHide, setUser }) => {
             const data = await res.json()
             if (res.status === 403) {
                 setErrorRegister(data)
-                console.log(data + "Test Fails Registered");
             } else if (res.status === 200) {
                 setErrorRegister(null)
                 setUser(data) // the user's obj
                 navigate('/profile/edit')
-                console.log("Test Registered!");
             }
             setFields(initialState)
         }

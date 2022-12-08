@@ -53,7 +53,6 @@ const Match = ({user, userFetched}) => {
     }
 
     const handleShow = () => {
-        console.log('button clicked')
         setShow(true)
     }
 

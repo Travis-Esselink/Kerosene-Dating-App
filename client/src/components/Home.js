@@ -31,7 +31,6 @@ const Home = ({user, setUser, userFetched}) => {
         const res = await fetch('/v1/profiles')
         let data = await res.json()
         const newQueue = data.reverse()
-        console.log(newQueue)
         setQueue(newQueue)
     }
 

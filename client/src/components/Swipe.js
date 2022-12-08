@@ -19,11 +19,9 @@ const Swipe = ({queue, updateQueue, handleMatch, user}) => {
           body:JSON.stringify({liked:liked})
         })
         const swipeResult = await res.json()
-        console.log(swipeResult)
         updateQueue()
 
         if (swipeResult.match) {
-          console.log('Match!')
           user.matches.push(swipeResult.match)
           handleMatch()
         } 
@@ -33,7 +31,6 @@ const Swipe = ({queue, updateQueue, handleMatch, user}) => {
 
 
     const swiped = (dir) => {
-      console.log('swiping ' + dir +'..')
     }
 
     return (

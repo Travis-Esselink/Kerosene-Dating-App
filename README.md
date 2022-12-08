@@ -32,7 +32,7 @@ A modern dating app complete with swiping functionality and live chat.
 * The app is styled with responsive design but designed with mobile use as a priority.
 
 ## General Approach
-We had a few ideas of what to do with our first group project and settled on a dating app eventually, thinking this would be both challenging and fun!
+Out of several ideas for out first group project, we eventually settled on a dating app, thinking this would be both challenging and fun!
 
 We started by discussing which functions we wanted to exist within our app. Then discussed how to structure our model, then the routes and components. 
 

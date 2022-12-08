@@ -1,5 +1,5 @@
 const names = [
-    "Aaberg",
+    "Aberg",
     "Aalst",
     "Aara",
     "Aaren",

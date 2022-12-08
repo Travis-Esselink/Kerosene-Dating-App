@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const app = express()
 const session = require('express-session')
 const mongoDBSession = require('connect-mongodb-session')
@@ -23,7 +24,7 @@ const sessionStore = new mongoDBStore({
 
 
 
-
+app.use(express.static(path.join(__dirname, "client", "build")));
 app.use(express.static('public')) //looking for static files in public folder
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -43,6 +44,10 @@ passport.deserializeUser(User.deserializeUser())
 
 app.use(authRouter)
 app.use(apiRouter)
+
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
 
 //LISTENER
 app.listen(PORT,()=>{

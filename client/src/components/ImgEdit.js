@@ -3,15 +3,11 @@ import Cross from '../images/cross-48.png'
 const ImgEdit = ({image, setImages}) => {
 
     const handleDelete = async () => {
-        console.log('delete called')
         const imageID = image.slice(image.lastIndexOf('/')+1)
-        console.log(imageID)
-        console.log(image)
         const res = await fetch(`/v1/remove-image/${imageID}`,{
             method:'PUT'
         })
         const newImages = await res.json()
-        console.log(newImages)
         setImages(newImages)
     }
 

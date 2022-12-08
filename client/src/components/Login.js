@@ -1,6 +1,4 @@
-// NEED TO DO:
-// cannot pass in setUser as props
-// need to delete the console.log
+
 
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"

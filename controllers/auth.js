@@ -7,7 +7,6 @@ const User = require('../models/user')
 const authenticate = (req,res,next) => {
   const auth = passport.authenticate('local', (err, user, info) => {
     if (err) {
-      console.log(err)
       next(err)
     }
     if (!user) {
@@ -18,14 +17,12 @@ const authenticate = (req,res,next) => {
       next()
     })
 
-    console.log(user)
 
   })
   auth(req,res,next)
 }
 
 router.post('/login', authenticate, (req, res) => {
-  console.log('logged in', req.user)
   const { id, username } = req.user
   res.json(req.user)
 })
@@ -41,7 +38,7 @@ router.post('/logout', (req, res) => {
 
 router.get('/loggedin-user', (req,res) => {
   if (req.user) {
-    console.log('sending user')
+
     res.json(req.user)
   } else {
     res.status(404).json({ msg: 'User not logged in' })

@@ -6,8 +6,6 @@ const PrivateAndSetUpRoute = ({ children, authorised, userFetched }) => {
     }
   
     if (!authorised) {
-      console.log(authorised)
-      console.log('not auth')
       return <Navigate to="/"/>
     } else if (!authorised.displayName || !authorised.dateOfBirth || !authorised.gender || !authorised.genderPref) {
         return <Navigate to="/profile/edit" />

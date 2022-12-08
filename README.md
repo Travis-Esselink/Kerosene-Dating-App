@@ -10,6 +10,8 @@ Check out the hottest dating app [here](https://kerosene.onrender.com/)!
 ## About the Project
 A modern dating app complete with swiping functionality and live chat.
 
+![](https://i.imgur.com/2FtPmvm.png)![](blob:https://imgur.com/99178b76-488e-49d7-83a3-911109a06a98)![](blob:https://imgur.com/f71adf28-7506-4e49-8008-42ea74cd3d7f)![](https://i.imgur.com/WvqHBxU.png)![](blob:https://imgur.com/34b5cc30-420a-4d91-8953-a96dffda7b59)
+
 ## Technologies Used:
 * CSS
 * Bootstrap
